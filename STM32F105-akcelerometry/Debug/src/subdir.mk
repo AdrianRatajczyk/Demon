@@ -6,17 +6,20 @@
 C_SRCS += \
 ../src/ADXL343.c \
 ../src/main.c \
-../src/spi.c 
+../src/spi.c \
+../src/uart.c 
 
 OBJS += \
 ./src/ADXL343.o \
 ./src/main.o \
-./src/spi.o 
+./src/spi.o \
+./src/uart.o 
 
 C_DEPS += \
 ./src/ADXL343.d \
 ./src/main.d \
-./src/spi.d 
+./src/spi.d \
+./src/uart.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

@@ -31,4 +31,28 @@
 #define SPIx_FIRSTBIT					SPI_FirstBit_MSB
 
 
+/*---------------------------------------------------------------------------------------------------------------------+
+| USART
++---------------------------------------------------------------------------------------------------------------------*/
+
+#define USARTx							USART2
+
+#define USARTx_RCC_GPIO					RCC_APB2Periph_GPIOA
+
+#define USARTx_GPIO						GPIOA
+#define USARTx_GPIO_SPEED				GPIO_Speed_50MHz
+
+#define USARTx_TX_PIN					GPIO_Pin_2
+#define USARTx_TX_MODE					GPIO_Mode_AF_PP
+#define USARTx_RX_PIN					GPIO_Pin_3
+#define USARTx_RX_MODE					GPIO_Mode_AF_PP
+
+#define USARTx_BAUDRATE            		115200
+#define USARTx_WORDLENGTH         		USART_WordLength_8b
+#define USARTx_STOPBITS           		USART_StopBits_1
+#define USARTx_PARITY           		USART_Parity_No
+#define USARTx_MODE            			USART_Mode_Rx | USART_Mode_Tx
+#define USARTx_HARDWAREFLOWCONTROL		USART_HardwareFlowControl_None
+
+
 #endif /* CONFIG_H_ */
