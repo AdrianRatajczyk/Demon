@@ -6,18 +6,21 @@
 C_SRCS += \
 ../src/ADXL343.c \
 ../src/main.c \
+../src/pomiar.c \
 ../src/spi.c \
 ../src/uart.c 
 
 OBJS += \
 ./src/ADXL343.o \
 ./src/main.o \
+./src/pomiar.o \
 ./src/spi.o \
 ./src/uart.o 
 
 C_DEPS += \
 ./src/ADXL343.d \
 ./src/main.d \
+./src/pomiar.d \
 ./src/spi.d \
 ./src/uart.d 
 

@@ -2,6 +2,12 @@
 #define CONFIG_H_
 
 /*---------------------------------------------------------------------------------------------------------------------+
+| Systick
++---------------------------------------------------------------------------------------------------------------------*/
+
+#define SYSTICK_FREQUENCY_HZ       		1000
+
+/*---------------------------------------------------------------------------------------------------------------------+
 | SPI
 +---------------------------------------------------------------------------------------------------------------------*/
 
@@ -54,5 +60,11 @@
 #define USARTx_MODE            			USART_Mode_Rx | USART_Mode_Tx
 #define USARTx_HARDWAREFLOWCONTROL		USART_HardwareFlowControl_None
 
+#define USARTx_IT						USART_IT_RXNE
+
+#define USARTx_NVIC_IRQCHannel						USART2_IRQn
+#define USARTx_NVIC_IRQChannelPreemptionPriority	1
+#define USARTx_NVIC_IRQChannelSubPriority			1
+#define USARTx_NVIC_IRQChannelCmd					ENABLE
 
 #endif /* CONFIG_H_ */
