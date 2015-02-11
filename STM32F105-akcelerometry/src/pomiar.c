@@ -4,6 +4,7 @@
 #include "config.h"
 #include "stm32f10x_usart.h"
 #include "pomiar.h"
+#include "uart.h"
 
 /*---------------------------------------------------------------------------------------------------------------------+
 | global variables
@@ -33,59 +34,25 @@ void pomiar()
 	{
 		if(pomiar_w_toku)
 		{
-			// Tutaj co ma byc wyslane
-			sChar2Str(&buf, czas,5);
-			for(i=0;buf[i]!='\0';i++)
-			{
-				USART_SendData(USARTx,buf[i]);
-				while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
-			}
-
-			USART_SendData(USARTx,',');
-			while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+			UART_Send_int16((int16_t)czas, buf, 5);
+			//UART_Send_char(',');
 
 			ADXL343_Read(&x, &y, &z);
-			//moj_sprintf(&buf, x, 5, 0);
-			sChar2Str(&buf, x, 4);
-			for(i=0;buf[i]!='\0';i++)
-			{
-				USART_SendData(USARTx,buf[i]);
-				while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
-			}
 
-			USART_SendData(USARTx,',');
-			while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+			UART_Send_int16(x, buf, 4);
+			//UART_Send_char(',');
 
-			sChar2Str(&buf, y, 4);
-			for(i=0;buf[i]!='\0';i++)
-			{
-				USART_SendData(USARTx,buf[i]);
-				while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
-			}
+			UART_Send_int16(y, buf, 4);
+			//UART_Send_char(',');
 
-			USART_SendData(USARTx,',');
-			while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+			UART_Send_int16(z, buf, 4);
 
-			sChar2Str(&buf, z, 4);
-			for(i=0;buf[i]!='\0';i++)
-			{
-				USART_SendData(USARTx,buf[i]);
-				while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
-			}
-
-			USART_SendData(USARTx,10);
-			while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
-			USART_SendData(USARTx,13);
-			while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+			UART_Send_CRLF();
 		}
 		if(!pomiar_w_toku && !wyslano_koniec)
 		{
-			USART_SendData(USARTx,'#');
-			while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
-			USART_SendData(USARTx,10);
-			while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
-			USART_SendData(USARTx,13);
-			while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+			UART_Send_char('#');
+			UART_Send_CRLF();
 			wyslano_koniec=1;
 		}
 	}

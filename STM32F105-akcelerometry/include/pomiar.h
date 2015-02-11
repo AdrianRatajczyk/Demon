@@ -1,3 +1,3 @@
-#define CZAS_POMIARU				1000
+#define CZAS_POMIARU				10000
 
 void pomiar();

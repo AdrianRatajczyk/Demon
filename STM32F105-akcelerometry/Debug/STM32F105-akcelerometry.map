@@ -287,6 +287,10 @@ Discarded input sections
  .text          0x00000000        0x0 ./src/uart.o
  .data          0x00000000        0x0 ./src/uart.o
  .bss           0x00000000        0x0 ./src/uart.o
+ .text.UART_Send_LFCR
+                0x00000000       0x3c ./src/uart.o
+ .text.sChar2Str
+                0x00000000       0xc4 ./src/uart.o
  .text.moj_sprintf
                 0x00000000      0x10c ./src/uart.o
  .debug_macro   0x00000000      0x85c ./src/uart.o
@@ -1460,11 +1464,7 @@ Discarded input sections
  .text          0x00000000        0x0 ./libs/StdPeriph/src/stm32f10x_flash.o
  .data          0x00000000        0x0 ./libs/StdPeriph/src/stm32f10x_flash.o
  .bss           0x00000000        0x0 ./libs/StdPeriph/src/stm32f10x_flash.o
- .text.FLASH_SetLatency
-                0x00000000       0x38 ./libs/StdPeriph/src/stm32f10x_flash.o
  .text.FLASH_HalfCycleAccessCmd
-                0x00000000       0x30 ./libs/StdPeriph/src/stm32f10x_flash.o
- .text.FLASH_PrefetchBufferCmd
                 0x00000000       0x30 ./libs/StdPeriph/src/stm32f10x_flash.o
  .text.FLASH_Unlock
                 0x00000000       0x24 ./libs/StdPeriph/src/stm32f10x_flash.o
@@ -1516,12 +1516,6 @@ Discarded input sections
                 0x00000000       0x44 ./libs/StdPeriph/src/stm32f10x_flash.o
  .text.FLASH_WaitForLastBank1Operation
                 0x00000000       0x44 ./libs/StdPeriph/src/stm32f10x_flash.o
- .debug_info    0x00000000      0x7a3 ./libs/StdPeriph/src/stm32f10x_flash.o
- .debug_abbrev  0x00000000      0x190 ./libs/StdPeriph/src/stm32f10x_flash.o
- .debug_aranges
-                0x00000000       0xf8 ./libs/StdPeriph/src/stm32f10x_flash.o
- .debug_ranges  0x00000000       0xe8 ./libs/StdPeriph/src/stm32f10x_flash.o
- .debug_macro   0x00000000      0x20c ./libs/StdPeriph/src/stm32f10x_flash.o
  .debug_macro   0x00000000      0x85c ./libs/StdPeriph/src/stm32f10x_flash.o
  .debug_macro   0x00000000       0x50 ./libs/StdPeriph/src/stm32f10x_flash.o
  .debug_macro   0x00000000       0x22 ./libs/StdPeriph/src/stm32f10x_flash.o
@@ -1552,13 +1546,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x34 ./libs/StdPeriph/src/stm32f10x_flash.o
  .debug_macro   0x00000000       0x8b ./libs/StdPeriph/src/stm32f10x_flash.o
  .debug_macro   0x00000000       0x35 ./libs/StdPeriph/src/stm32f10x_flash.o
- .debug_macro   0x00000000      0x2c9 ./libs/StdPeriph/src/stm32f10x_flash.o
- .debug_line    0x00000000      0x6d2 ./libs/StdPeriph/src/stm32f10x_flash.o
- .debug_str     0x00000000    0x51e3e ./libs/StdPeriph/src/stm32f10x_flash.o
- .comment       0x00000000       0x71 ./libs/StdPeriph/src/stm32f10x_flash.o
- .ARM.attributes
-                0x00000000       0x33 ./libs/StdPeriph/src/stm32f10x_flash.o
- .debug_frame   0x00000000      0x338 ./libs/StdPeriph/src/stm32f10x_flash.o
  .group         0x00000000        0x8 ./libs/StdPeriph/src/stm32f10x_fsmc.o
  .group         0x00000000        0x8 ./libs/StdPeriph/src/stm32f10x_fsmc.o
  .group         0x00000000        0x8 ./libs/StdPeriph/src/stm32f10x_fsmc.o
@@ -2133,19 +2120,9 @@ Discarded input sections
  .text          0x00000000        0x0 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .data          0x00000000        0x0 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .bss           0x00000000        0x0 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_DeInit
-                0x00000000       0x70 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_HSEConfig
-                0x00000000       0x5c ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_WaitForHSEStartUp
-                0x00000000       0x50 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .text.RCC_AdjustHSICalibrationValue
                 0x00000000       0x3c ./libs/StdPeriph/src/stm32f10x_rcc.o
  .text.RCC_HSICmd
-                0x00000000       0x20 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_PLLConfig
-                0x00000000       0x3c ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_PLLCmd
                 0x00000000       0x20 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .text.RCC_PREDIV1Config
                 0x00000000       0x40 ./libs/StdPeriph/src/stm32f10x_rcc.o
@@ -2159,16 +2136,6 @@ Discarded input sections
                 0x00000000       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .text.RCC_PLL3Cmd
                 0x00000000       0x20 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_SYSCLKConfig
-                0x00000000       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_GetSYSCLKSource
-                0x00000000       0x20 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_HCLKConfig
-                0x00000000       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_PCLK1Config
-                0x00000000       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_PCLK2Config
-                0x00000000       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .text.RCC_ITConfig
                 0x00000000       0x48 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .text.RCC_OTGFSCLKConfig
@@ -2201,8 +2168,6 @@ Discarded input sections
                 0x00000000       0x20 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .text.RCC_MCOConfig
                 0x00000000       0x20 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .text.RCC_GetFlagStatus
-                0x00000000       0x74 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .text.RCC_ClearFlag
                 0x00000000       0x1c ./libs/StdPeriph/src/stm32f10x_rcc.o
  .text.RCC_GetITStatus
@@ -3227,6 +3192,8 @@ Discarded input sections
  .text          0x00000000        0x0 ./libs/CMSIS/src/system_stm32f10x.o
  .data          0x00000000        0x0 ./libs/CMSIS/src/system_stm32f10x.o
  .bss           0x00000000        0x0 ./libs/CMSIS/src/system_stm32f10x.o
+ .data.SystemCoreClock
+                0x00000000        0x4 ./libs/CMSIS/src/system_stm32f10x.o
  .data.AHBPrescTable
                 0x00000000       0x10 ./libs/CMSIS/src/system_stm32f10x.o
  .text.SystemCoreClockUpdate
@@ -3369,7 +3336,7 @@ END GROUP
                 0x2000fc00                __Main_Stack_Limit = (__stack - __Main_Stack_Size)
                 0x2000fc00                PROVIDE (_Main_Stack_Limit, __Main_Stack_Limit)
                 0x00000100                _Minimum_Stack_Size = 0x100
-                0x20000040                PROVIDE (_Heap_Begin, _end_noinit)
+                0x2000003c                PROVIDE (_Heap_Begin, _end_noinit)
                 0x2000fc00                PROVIDE (_Heap_Limit, (__stack - _Main_Stack_Size))
 
 .isr_vector     0x08000000      0x2c0
@@ -3510,7 +3477,7 @@ END GROUP
  *(.flashtext .flashtext.*)
                 0x080002c4                . = ALIGN (0x4)
 
-.text           0x080002c4     0x1444
+.text           0x080002c4     0x1748
                 0x080002c4                . = ALIGN (0x4)
  *(.text .text.*)
  .text.ADXL343_SpiRead
@@ -3535,111 +3502,162 @@ END GROUP
                 0x080003fc       0x54 ./src/main.o
  .text.SysTick_Config
                 0x08000450       0x44 ./src/main.o
- .text.main     0x08000494       0x64 ./src/main.o
+ .text.main     0x08000494       0x54 ./src/main.o
                 0x08000494                main
  .text.Periph_Initialize
-                0x080004f8       0x14 ./src/main.o
-                0x080004f8                Periph_Initialize
- .text.pomiar   0x0800050c      0x23c ./src/pomiar.o
-                0x0800050c                pomiar
+                0x080004e8       0x14 ./src/main.o
+                0x080004e8                Periph_Initialize
+ .text.konf_zegary
+                0x080004fc       0x78 ./src/main.o
+                0x080004fc                konf_zegary
+ .text.pomiar   0x08000574       0x98 ./src/pomiar.o
+                0x08000574                pomiar
  .text.SysTick_Handler
-                0x08000748       0x40 ./src/pomiar.o
-                0x08000748                SysTick_Handler
+                0x0800060c       0x40 ./src/pomiar.o
+                0x0800060c                SysTick_Handler
  .text.USART2_IRQHandler
-                0x08000788       0xa8 ./src/pomiar.o
-                0x08000788                USART2_IRQHandler
+                0x0800064c       0xa8 ./src/pomiar.o
+                0x0800064c                USART2_IRQHandler
  .text.SPI_Initialize
-                0x08000830       0xbc ./src/spi.o
-                0x08000830                SPI_Initialize
+                0x080006f4       0xbc ./src/spi.o
+                0x080006f4                SPI_Initialize
  .text.SPI_StartTransmission
-                0x080008ec       0x14 ./src/spi.o
-                0x080008ec                SPI_StartTransmission
+                0x080007b0       0x14 ./src/spi.o
+                0x080007b0                SPI_StartTransmission
  .text.SPI_StopTransmission
-                0x08000900       0x14 ./src/spi.o
-                0x08000900                SPI_StopTransmission
+                0x080007c4       0x14 ./src/spi.o
+                0x080007c4                SPI_StopTransmission
  .text.SPI_Send
-                0x08000914       0x48 ./src/spi.o
-                0x08000914                SPI_Send
+                0x080007d8       0x48 ./src/spi.o
+                0x080007d8                SPI_Send
  .text.SPI_Read
-                0x0800095c       0x48 ./src/spi.o
-                0x0800095c                SPI_Read
+                0x08000820       0x48 ./src/spi.o
+                0x08000820                SPI_Read
  .text.UART_Initialize
-                0x080009a4       0xa8 ./src/uart.o
-                0x080009a4                UART_Initialize
- .text.sChar2Str
-                0x08000a4c       0xc4 ./src/uart.o
-                0x08000a4c                sChar2Str
+                0x08000868       0xa8 ./src/uart.o
+                0x08000868                UART_Initialize
+ .text.UART_Send_int16
+                0x08000910       0x68 ./src/uart.o
+                0x08000910                UART_Send_int16
+ .text.UART_Send_char
+                0x08000978       0x34 ./src/uart.o
+                0x08000978                UART_Send_char
+ .text.UART_Send_CRLF
+                0x080009ac       0x3c ./src/uart.o
+                0x080009ac                UART_Send_CRLF
+ .text.sprintf_int
+                0x080009e8       0xd8 ./src/uart.o
+                0x080009e8                sprintf_int
  .text.NVIC_Init
-                0x08000b10       0xc0 ./libs/StdPeriph/src/misc.o
-                0x08000b10                NVIC_Init
+                0x08000ac0       0xc0 ./libs/StdPeriph/src/misc.o
+                0x08000ac0                NVIC_Init
+ .text.FLASH_SetLatency
+                0x08000b80       0x38 ./libs/StdPeriph/src/stm32f10x_flash.o
+                0x08000b80                FLASH_SetLatency
+ .text.FLASH_PrefetchBufferCmd
+                0x08000bb8       0x30 ./libs/StdPeriph/src/stm32f10x_flash.o
+                0x08000bb8                FLASH_PrefetchBufferCmd
  .text.GPIO_Init
-                0x08000bd0      0x178 ./libs/StdPeriph/src/stm32f10x_gpio.o
-                0x08000bd0                GPIO_Init
+                0x08000be8      0x178 ./libs/StdPeriph/src/stm32f10x_gpio.o
+                0x08000be8                GPIO_Init
  .text.GPIO_WriteBit
-                0x08000d48       0x30 ./libs/StdPeriph/src/stm32f10x_gpio.o
-                0x08000d48                GPIO_WriteBit
+                0x08000d60       0x30 ./libs/StdPeriph/src/stm32f10x_gpio.o
+                0x08000d60                GPIO_WriteBit
+ .text.RCC_DeInit
+                0x08000d90       0x70 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08000d90                RCC_DeInit
+ .text.RCC_HSEConfig
+                0x08000e00       0x5c ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08000e00                RCC_HSEConfig
+ .text.RCC_WaitForHSEStartUp
+                0x08000e5c       0x50 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08000e5c                RCC_WaitForHSEStartUp
+ .text.RCC_PLLConfig
+                0x08000eac       0x3c ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08000eac                RCC_PLLConfig
+ .text.RCC_PLLCmd
+                0x08000ee8       0x20 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08000ee8                RCC_PLLCmd
+ .text.RCC_SYSCLKConfig
+                0x08000f08       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08000f08                RCC_SYSCLKConfig
+ .text.RCC_GetSYSCLKSource
+                0x08000f40       0x20 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08000f40                RCC_GetSYSCLKSource
+ .text.RCC_HCLKConfig
+                0x08000f60       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08000f60                RCC_HCLKConfig
+ .text.RCC_PCLK1Config
+                0x08000f98       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08000f98                RCC_PCLK1Config
+ .text.RCC_PCLK2Config
+                0x08000fd0       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08000fd0                RCC_PCLK2Config
  .text.RCC_GetClocksFreq
-                0x08000d78      0x1c8 ./libs/StdPeriph/src/stm32f10x_rcc.o
-                0x08000d78                RCC_GetClocksFreq
+                0x08001008      0x1c8 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08001008                RCC_GetClocksFreq
  .text.RCC_APB2PeriphClockCmd
-                0x08000f40       0x3c ./libs/StdPeriph/src/stm32f10x_rcc.o
-                0x08000f40                RCC_APB2PeriphClockCmd
+                0x080011d0       0x3c ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x080011d0                RCC_APB2PeriphClockCmd
  .text.RCC_APB1PeriphClockCmd
-                0x08000f7c       0x3c ./libs/StdPeriph/src/stm32f10x_rcc.o
-                0x08000f7c                RCC_APB1PeriphClockCmd
+                0x0800120c       0x3c ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x0800120c                RCC_APB1PeriphClockCmd
+ .text.RCC_GetFlagStatus
+                0x08001248       0x74 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08001248                RCC_GetFlagStatus
  .text.SPI_Init
-                0x08000fb8       0x88 ./libs/StdPeriph/src/stm32f10x_spi.o
-                0x08000fb8                SPI_Init
- .text.SPI_Cmd  0x08001040       0x40 ./libs/StdPeriph/src/stm32f10x_spi.o
-                0x08001040                SPI_Cmd
+                0x080012bc       0x88 ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x080012bc                SPI_Init
+ .text.SPI_Cmd  0x08001344       0x40 ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x08001344                SPI_Cmd
  .text.SPI_I2S_SendData
-                0x08001080       0x1c ./libs/StdPeriph/src/stm32f10x_spi.o
-                0x08001080                SPI_I2S_SendData
+                0x08001384       0x1c ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x08001384                SPI_I2S_SendData
  .text.SPI_I2S_ReceiveData
-                0x0800109c       0x1c ./libs/StdPeriph/src/stm32f10x_spi.o
-                0x0800109c                SPI_I2S_ReceiveData
+                0x080013a0       0x1c ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x080013a0                SPI_I2S_ReceiveData
  .text.SPI_I2S_GetFlagStatus
-                0x080010b8       0x38 ./libs/StdPeriph/src/stm32f10x_spi.o
-                0x080010b8                SPI_I2S_GetFlagStatus
+                0x080013bc       0x38 ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x080013bc                SPI_I2S_GetFlagStatus
  .text.USART_Init
-                0x080010f0      0x174 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x080010f0                USART_Init
+                0x080013f4      0x174 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x080013f4                USART_Init
  .text.USART_Cmd
-                0x08001264       0x40 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001264                USART_Cmd
+                0x08001568       0x40 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x08001568                USART_Cmd
  .text.USART_ITConfig
-                0x080012a4       0x90 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x080012a4                USART_ITConfig
+                0x080015a8       0x90 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x080015a8                USART_ITConfig
  .text.USART_SendData
-                0x08001334       0x24 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001334                USART_SendData
+                0x08001638       0x24 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x08001638                USART_SendData
  .text.USART_ReceiveData
-                0x08001358       0x20 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001358                USART_ReceiveData
+                0x0800165c       0x20 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x0800165c                USART_ReceiveData
  .text.USART_GetFlagStatus
-                0x08001378       0x38 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001378                USART_GetFlagStatus
+                0x0800167c       0x38 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x0800167c                USART_GetFlagStatus
  .text.USART_GetITStatus
-                0x080013b0       0xb0 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x080013b0                USART_GetITStatus
+                0x080016b4       0xb0 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x080016b4                USART_GetITStatus
  .text.USART_ClearITPendingBit
-                0x08001460       0x38 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001460                USART_ClearITPendingBit
+                0x08001764       0x38 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x08001764                USART_ClearITPendingBit
  .text.__libc_init_array
-                0x08001498       0x6c ./libs/CMSIS/src/startup_cm.o
-                0x08001498                __libc_init_array
+                0x0800179c       0x6c ./libs/CMSIS/src/startup_cm.o
+                0x0800179c                __libc_init_array
  .text.__libc_fini_array
-                0x08001504       0x3c ./libs/CMSIS/src/startup_cm.o
-                0x08001504                __libc_fini_array
- .text._exit    0x08001540        0xc ./libs/CMSIS/src/startup_stm32f10x.o
-                0x08001540                _exit
+                0x08001808       0x3c ./libs/CMSIS/src/startup_cm.o
+                0x08001808                __libc_fini_array
+ .text._exit    0x08001844        0xc ./libs/CMSIS/src/startup_stm32f10x.o
+                0x08001844                _exit
  .text.SystemInit
-                0x0800154c       0x78 ./libs/CMSIS/src/system_stm32f10x.o
-                0x0800154c                SystemInit
+                0x08001850       0x78 ./libs/CMSIS/src/system_stm32f10x.o
+                0x08001850                SystemInit
  .text.SetSysClock
-                0x080015c4        0xc ./libs/CMSIS/src/system_stm32f10x.o
+                0x080018c8        0xc ./libs/CMSIS/src/system_stm32f10x.o
  .text.SetSysClockTo72
-                0x080015d0      0x138 ./libs/CMSIS/src/system_stm32f10x.o
+                0x080018d4      0x138 ./libs/CMSIS/src/system_stm32f10x.o
  *(.rodata .rodata.*)
  *(.eh_frame*)
  *(.glue_7)
@@ -3647,33 +3665,33 @@ END GROUP
  *(.glue_7t)
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x08001708        0x0
+.vfp11_veneer   0x08001a0c        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08001708        0x0
+.v4_bx          0x08001a0c        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x08001708        0x0
+.iplt           0x08001a0c        0x0
  .iplt          0x00000000        0x0 ./src/ADXL343.o
 
-.rel.dyn        0x08001708        0x0
+.rel.dyn        0x08001a0c        0x0
  .rel.iplt      0x00000000        0x0 ./src/ADXL343.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08001708                __exidx_start = .
+                0x08001a0c                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08001708                __exidx_end = .
-                0x08001708                . = ALIGN (0x4)
-                0x08001708                _etext = .
-                0x08001708                _sidata = _etext
+                0x08001a0c                __exidx_end = .
+                0x08001a0c                . = ALIGN (0x4)
+                0x08001a0c                _etext = .
+                0x08001a0c                _sidata = _etext
 
 .ROarraySection
  *(.ROarraySection .ROarraySection.*)
 
-.data           0x20000000       0x20 load address 0x08001708
+.data           0x20000000       0x1c load address 0x08001a0c
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
                 0x20000000                __data_start__ = .
@@ -3690,55 +3708,52 @@ END GROUP
                 0x20000008       0x10 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .data.ADCPrescTable
                 0x20000018        0x4 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .data.SystemCoreClock
-                0x2000001c        0x4 ./libs/CMSIS/src/system_stm32f10x.o
-                0x2000001c                SystemCoreClock
-                0x20000020                . = ALIGN (0x4)
-                0x20000020                _edata = .
-                0x20000020                __data_end__ = .
+                0x2000001c                . = ALIGN (0x4)
+                0x2000001c                _edata = .
+                0x2000001c                __data_end__ = .
 
-.igot.plt       0x20000020        0x0 load address 0x08001728
+.igot.plt       0x2000001c        0x0 load address 0x08001a28
  .igot.plt      0x00000000        0x0 ./src/ADXL343.o
 
-.bss            0x20000020       0x20 load address 0x08001728
-                0x20000020                . = ALIGN (0x4)
+.bss            0x2000001c       0x20 load address 0x08001a28
+                0x2000001c                . = ALIGN (0x4)
  *rdimon-crt0.o(.data)
-                0x20000020                . = ALIGN (0x4)
-                0x20000020                __bss_start__ = .
-                0x20000020                _sbss = .
+                0x2000001c                . = ALIGN (0x4)
+                0x2000001c                __bss_start__ = .
+                0x2000001c                _sbss = .
  *(.bss .bss.*)
- .bss.czas      0x20000020        0x4 ./src/pomiar.o
-                0x20000020                czas
+ .bss.czas      0x2000001c        0x4 ./src/pomiar.o
+                0x2000001c                czas
  .bss.pomiar_w_toku
-                0x20000024        0x1 ./src/pomiar.o
-                0x20000024                pomiar_w_toku
- *fill*         0x20000025        0x3 
- .bss.buf       0x20000028       0x14 ./src/pomiar.o
-                0x20000028                buf
+                0x20000020        0x1 ./src/pomiar.o
+                0x20000020                pomiar_w_toku
+ *fill*         0x20000021        0x3 
+ .bss.buf       0x20000024       0x14 ./src/pomiar.o
+                0x20000024                buf
  *(COMMON)
- COMMON         0x2000003c        0x2 ./src/pomiar.o
-                0x2000003c                Rx
-                0x20000040                . = ALIGN (0x4)
- *fill*         0x2000003e        0x2 
-                0x20000040                __bss_end__ = .
-                0x20000040                _ebss = .
+ COMMON         0x20000038        0x2 ./src/pomiar.o
+                0x20000038                Rx
+                0x2000003c                . = ALIGN (0x4)
+ *fill*         0x2000003a        0x2 
+                0x2000003c                __bss_end__ = .
+                0x2000003c                _ebss = .
 
-.noinit         0x20000040        0x0
-                0x20000040                . = ALIGN (0x4)
-                0x20000040                _noinit = .
+.noinit         0x2000003c        0x0
+                0x2000003c                . = ALIGN (0x4)
+                0x2000003c                _noinit = .
  *(.noinit .noinit.*)
-                0x20000040                . = ALIGN (0x4)
-                0x20000040                _end_noinit = .
-                0x20000040                PROVIDE (end, _end_noinit)
-                0x20000040                PROVIDE (_end, _end_noinit)
-                0x20000040                PROVIDE (__end, _end_noinit)
-                0x20000040                PROVIDE (__end__, _end_noinit)
+                0x2000003c                . = ALIGN (0x4)
+                0x2000003c                _end_noinit = .
+                0x2000003c                PROVIDE (end, _end_noinit)
+                0x2000003c                PROVIDE (_end, _end_noinit)
+                0x2000003c                PROVIDE (__end, _end_noinit)
+                0x2000003c                PROVIDE (__end__, _end_noinit)
 
-._check_stack   0x20000040      0x100 load address 0x08001748
-                0x20000040                . = ALIGN (0x4)
-                0x20000140                . = (. + _Minimum_Stack_Size)
- *fill*         0x20000040      0x100 
-                0x20000140                . = ALIGN (0x4)
+._check_stack   0x2000003c      0x100 load address 0x08001a48
+                0x2000003c                . = ALIGN (0x4)
+                0x2000013c                . = (. + _Minimum_Stack_Size)
+ *fill*         0x2000003c      0x100 
+                0x2000013c                . = ALIGN (0x4)
 
 .bss_CCMRAM
  *(.bss.CCMRAM .bss.CCMRAM.*)
@@ -3795,6 +3810,7 @@ END GROUP
  .comment       0x00000000       0x71 ./src/spi.o
  .comment       0x00000000       0x71 ./src/uart.o
  .comment       0x00000000       0x71 ./libs/StdPeriph/src/misc.o
+ .comment       0x00000000       0x71 ./libs/StdPeriph/src/stm32f10x_flash.o
  .comment       0x00000000       0x71 ./libs/StdPeriph/src/stm32f10x_gpio.o
  .comment       0x00000000       0x71 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .comment       0x00000000       0x71 ./libs/StdPeriph/src/stm32f10x_spi.o
@@ -3819,21 +3835,23 @@ END GROUP
  .ARM.attributes
                 0x000000ff       0x33 ./libs/StdPeriph/src/misc.o
  .ARM.attributes
-                0x00000132       0x33 ./libs/StdPeriph/src/stm32f10x_gpio.o
+                0x00000132       0x33 ./libs/StdPeriph/src/stm32f10x_flash.o
  .ARM.attributes
-                0x00000165       0x33 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x00000165       0x33 ./libs/StdPeriph/src/stm32f10x_gpio.o
  .ARM.attributes
-                0x00000198       0x33 ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x00000198       0x33 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .ARM.attributes
-                0x000001cb       0x33 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x000001cb       0x33 ./libs/StdPeriph/src/stm32f10x_spi.o
  .ARM.attributes
-                0x000001fe       0x33 ./libs/CMSIS/src/startup_cm.o
+                0x000001fe       0x33 ./libs/StdPeriph/src/stm32f10x_usart.o
  .ARM.attributes
-                0x00000231       0x33 ./libs/CMSIS/src/startup_stm32f10x.o
+                0x00000231       0x33 ./libs/CMSIS/src/startup_cm.o
  .ARM.attributes
-                0x00000264       0x33 ./libs/CMSIS/src/system_stm32f10x.o
+                0x00000264       0x33 ./libs/CMSIS/src/startup_stm32f10x.o
  .ARM.attributes
-                0x00000297       0x33 ./libs/CMSIS/src/vectors_stm32f10x.o
+                0x00000297       0x33 ./libs/CMSIS/src/system_stm32f10x.o
+ .ARM.attributes
+                0x000002ca       0x33 ./libs/CMSIS/src/vectors_stm32f10x.o
 
 .debug
  *(.debug)
@@ -3847,137 +3865,145 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x630
+.debug_aranges  0x00000000      0x758
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x48 ./src/ADXL343.o
  .debug_aranges
-                0x00000048       0x38 ./src/main.o
+                0x00000048       0x40 ./src/main.o
  .debug_aranges
-                0x00000080       0x30 ./src/pomiar.o
+                0x00000088       0x30 ./src/pomiar.o
  .debug_aranges
-                0x000000b0       0x40 ./src/spi.o
+                0x000000b8       0x40 ./src/spi.o
  .debug_aranges
-                0x000000f0       0x30 ./src/uart.o
+                0x000000f8       0x58 ./src/uart.o
  .debug_aranges
-                0x00000120       0x40 ./libs/StdPeriph/src/misc.o
+                0x00000150       0x40 ./libs/StdPeriph/src/misc.o
  .debug_aranges
-                0x00000160       0xa8 ./libs/StdPeriph/src/stm32f10x_gpio.o
+                0x00000190       0xf8 ./libs/StdPeriph/src/stm32f10x_flash.o
  .debug_aranges
-                0x00000208      0x160 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x00000288       0xa8 ./libs/StdPeriph/src/stm32f10x_gpio.o
  .debug_aranges
-                0x00000368       0xd0 ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x00000330      0x160 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .debug_aranges
-                0x00000438      0x100 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x00000490       0xd0 ./libs/StdPeriph/src/stm32f10x_spi.o
  .debug_aranges
-                0x00000538       0x38 ./libs/CMSIS/src/startup_cm.o
+                0x00000560      0x100 ./libs/StdPeriph/src/stm32f10x_usart.o
  .debug_aranges
-                0x00000570       0x20 ./libs/CMSIS/src/startup_stm32f10x.o
+                0x00000660       0x38 ./libs/CMSIS/src/startup_cm.o
  .debug_aranges
-                0x00000590       0x38 ./libs/CMSIS/src/system_stm32f10x.o
+                0x00000698       0x20 ./libs/CMSIS/src/startup_stm32f10x.o
  .debug_aranges
-                0x000005c8       0x68 ./libs/CMSIS/src/vectors_stm32f10x.o
+                0x000006b8       0x38 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_aranges
+                0x000006f0       0x68 ./libs/CMSIS/src/vectors_stm32f10x.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x4928
+.debug_info     0x00000000     0x5241
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x1bb ./src/ADXL343.o
- .debug_info    0x000001bb      0x714 ./src/main.o
- .debug_info    0x000008cf      0x2e7 ./src/pomiar.o
- .debug_info    0x00000bb6      0x44d ./src/spi.o
- .debug_info    0x00001003      0x655 ./src/uart.o
- .debug_info    0x00001658      0x4f1 ./libs/StdPeriph/src/misc.o
- .debug_info    0x00001b49      0x6d9 ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_info    0x00002222      0xa85 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_info    0x00002ca7      0x99b ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_info    0x00003642      0x9da ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_info    0x0000401c      0x29c ./libs/CMSIS/src/startup_cm.o
- .debug_info    0x000042b8       0xaa ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_info    0x00004362      0x492 ./libs/CMSIS/src/system_stm32f10x.o
- .debug_info    0x000047f4      0x134 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_info    0x000001bb      0x77b ./src/main.o
+ .debug_info    0x00000936      0x2cd ./src/pomiar.o
+ .debug_info    0x00000c03      0x44d ./src/spi.o
+ .debug_info    0x00001050      0x77e ./src/uart.o
+ .debug_info    0x000017ce      0x4f1 ./libs/StdPeriph/src/misc.o
+ .debug_info    0x00001cbf      0x7a3 ./libs/StdPeriph/src/stm32f10x_flash.o
+ .debug_info    0x00002462      0x6d9 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_info    0x00002b3b      0xa85 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_info    0x000035c0      0x99b ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_info    0x00003f5b      0x9da ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_info    0x00004935      0x29c ./libs/CMSIS/src/startup_cm.o
+ .debug_info    0x00004bd1       0xaa ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_info    0x00004c7b      0x492 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_info    0x0000510d      0x134 ./libs/CMSIS/src/vectors_stm32f10x.o
 
-.debug_abbrev   0x00000000     0x11eb
+.debug_abbrev   0x00000000     0x13b6
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0xc1 ./src/ADXL343.o
- .debug_abbrev  0x000000c1      0x1ad ./src/main.o
- .debug_abbrev  0x0000026e      0x153 ./src/pomiar.o
- .debug_abbrev  0x000003c1      0x147 ./src/spi.o
- .debug_abbrev  0x00000508      0x170 ./src/uart.o
- .debug_abbrev  0x00000678      0x159 ./libs/StdPeriph/src/misc.o
- .debug_abbrev  0x000007d1      0x1cd ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_abbrev  0x0000099e      0x1bf ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_abbrev  0x00000b5d      0x183 ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_abbrev  0x00000ce0      0x167 ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_abbrev  0x00000e47      0x128 ./libs/CMSIS/src/startup_cm.o
- .debug_abbrev  0x00000f6f       0x6e ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_abbrev  0x00000fdd      0x17c ./libs/CMSIS/src/system_stm32f10x.o
- .debug_abbrev  0x00001159       0x92 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_abbrev  0x000000c1      0x1db ./src/main.o
+ .debug_abbrev  0x0000029c      0x141 ./src/pomiar.o
+ .debug_abbrev  0x000003dd      0x147 ./src/spi.o
+ .debug_abbrev  0x00000524      0x18f ./src/uart.o
+ .debug_abbrev  0x000006b3      0x159 ./libs/StdPeriph/src/misc.o
+ .debug_abbrev  0x0000080c      0x190 ./libs/StdPeriph/src/stm32f10x_flash.o
+ .debug_abbrev  0x0000099c      0x1cd ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_abbrev  0x00000b69      0x1bf ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_abbrev  0x00000d28      0x183 ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_abbrev  0x00000eab      0x167 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_abbrev  0x00001012      0x128 ./libs/CMSIS/src/startup_cm.o
+ .debug_abbrev  0x0000113a       0x6e ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_abbrev  0x000011a8      0x17c ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_abbrev  0x00001324       0x92 ./libs/CMSIS/src/vectors_stm32f10x.o
 
-.debug_line     0x00000000     0x3f79
+.debug_line     0x00000000     0x46b4
  *(.debug_line)
  .debug_line    0x00000000      0x240 ./src/ADXL343.o
- .debug_line    0x00000240      0x512 ./src/main.o
- .debug_line    0x00000752      0x57c ./src/pomiar.o
- .debug_line    0x00000cce      0x473 ./src/spi.o
- .debug_line    0x00001141      0x49e ./src/uart.o
- .debug_line    0x000015df      0x448 ./libs/StdPeriph/src/misc.o
- .debug_line    0x00001a27      0x5a8 ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_line    0x00001fcf      0x771 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_line    0x00002740      0x618 ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_line    0x00002d58      0x67f ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_line    0x000033d7      0x284 ./libs/CMSIS/src/startup_cm.o
- .debug_line    0x0000365b      0x3f9 ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_line    0x00003a54      0x492 ./libs/CMSIS/src/system_stm32f10x.o
- .debug_line    0x00003ee6       0x93 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_line    0x00000240      0x542 ./src/main.o
+ .debug_line    0x00000782      0x4f8 ./src/pomiar.o
+ .debug_line    0x00000c7a      0x473 ./src/spi.o
+ .debug_line    0x000010ed      0x55b ./src/uart.o
+ .debug_line    0x00001648      0x448 ./libs/StdPeriph/src/misc.o
+ .debug_line    0x00001a90      0x6d2 ./libs/StdPeriph/src/stm32f10x_flash.o
+ .debug_line    0x00002162      0x5a8 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_line    0x0000270a      0x771 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_line    0x00002e7b      0x618 ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_line    0x00003493      0x67f ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_line    0x00003b12      0x284 ./libs/CMSIS/src/startup_cm.o
+ .debug_line    0x00003d96      0x3f9 ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_line    0x0000418f      0x492 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_line    0x00004621       0x93 ./libs/CMSIS/src/vectors_stm32f10x.o
 
-.debug_frame    0x00000000     0x1214
+.debug_frame    0x00000000     0x1600
  *(.debug_frame)
  .debug_frame   0x00000000       0xc8 ./src/ADXL343.o
- .debug_frame   0x000000c8       0x88 ./src/main.o
- .debug_frame   0x00000150       0x64 ./src/pomiar.o
- .debug_frame   0x000001b4       0xa8 ./src/spi.o
- .debug_frame   0x0000025c       0x6c ./src/uart.o
- .debug_frame   0x000002c8       0x9c ./libs/StdPeriph/src/misc.o
- .debug_frame   0x00000364      0x210 ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_frame   0x00000574      0x484 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_frame   0x000009f8      0x29c ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_frame   0x00000c94      0x344 ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_frame   0x00000fd8       0x90 ./libs/CMSIS/src/startup_cm.o
- .debug_frame   0x00001068       0x2c ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_frame   0x00001094       0x80 ./libs/CMSIS/src/system_stm32f10x.o
- .debug_frame   0x00001114      0x100 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_frame   0x000000c8       0xa8 ./src/main.o
+ .debug_frame   0x00000170       0x64 ./src/pomiar.o
+ .debug_frame   0x000001d4       0xa8 ./src/spi.o
+ .debug_frame   0x0000027c      0x100 ./src/uart.o
+ .debug_frame   0x0000037c       0x9c ./libs/StdPeriph/src/misc.o
+ .debug_frame   0x00000418      0x338 ./libs/StdPeriph/src/stm32f10x_flash.o
+ .debug_frame   0x00000750      0x210 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_frame   0x00000960      0x484 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_frame   0x00000de4      0x29c ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_frame   0x00001080      0x344 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_frame   0x000013c4       0x90 ./libs/CMSIS/src/startup_cm.o
+ .debug_frame   0x00001454       0x2c ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_frame   0x00001480       0x80 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_frame   0x00001500      0x100 ./libs/CMSIS/src/vectors_stm32f10x.o
 
-.debug_str      0x00000000    0x56877
+.debug_str      0x00000000    0x570b3
  *(.debug_str)
  .debug_str     0x00000000     0x349f ./src/ADXL343.o
                                0x35f4 (size before relaxing)
- .debug_str     0x0000349f    0x50c77 ./src/main.o
-                              0x5429e (size before relaxing)
- .debug_str     0x00054116       0x79 ./src/pomiar.o
+ .debug_str     0x0000349f    0x50ca1 ./src/main.o
+                              0x542db (size before relaxing)
+ .debug_str     0x00054140       0x6f ./src/pomiar.o
                               0x53e54 (size before relaxing)
- .debug_str     0x0005418f      0x230 ./src/spi.o
+ .debug_str     0x000541af      0x228 ./src/spi.o
                               0x51d77 (size before relaxing)
- .debug_str     0x000543bf      0x16a ./src/uart.o
-                              0x52174 (size before relaxing)
- .debug_str     0x00054529      0x123 ./libs/StdPeriph/src/misc.o
+ .debug_str     0x000543d7      0x1c2 ./src/uart.o
+                              0x521e1 (size before relaxing)
+ .debug_str     0x00054599      0x123 ./libs/StdPeriph/src/misc.o
                               0x51854 (size before relaxing)
- .debug_str     0x0005464c      0x484 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_str     0x000546bc      0x805 ./libs/StdPeriph/src/stm32f10x_flash.o
+                              0x51e3e (size before relaxing)
+ .debug_str     0x00054ec1      0x473 ./libs/StdPeriph/src/stm32f10x_gpio.o
                               0x51bcc (size before relaxing)
- .debug_str     0x00054ad0      0xe53 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_str     0x00055334      0xe3f ./libs/StdPeriph/src/stm32f10x_rcc.o
                               0x5256f (size before relaxing)
- .debug_str     0x00055923      0x50e ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_str     0x00056173      0x50e ./libs/StdPeriph/src/stm32f10x_spi.o
                               0x51d19 (size before relaxing)
- .debug_str     0x00055e31      0x761 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_str     0x00056681      0x761 ./libs/StdPeriph/src/stm32f10x_usart.o
                               0x51edc (size before relaxing)
- .debug_str     0x00056592      0x139 ./libs/CMSIS/src/startup_cm.o
+ .debug_str     0x00056de2      0x139 ./libs/CMSIS/src/startup_cm.o
                                0x34c3 (size before relaxing)
- .debug_str     0x000566cb       0x2c ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_str     0x00056f1b       0x2c ./libs/CMSIS/src/startup_stm32f10x.o
                               0x515d9 (size before relaxing)
- .debug_str     0x000566f7       0xb5 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_str     0x00056f47       0xa1 ./libs/CMSIS/src/system_stm32f10x.o
                               0x517be (size before relaxing)
- .debug_str     0x000567ac       0xcb ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_str     0x00056fe8       0xcb ./libs/CMSIS/src/vectors_stm32f10x.o
                                0x24ed (size before relaxing)
 
 .debug_loc
@@ -3999,23 +4025,24 @@ END GROUP
  *(.debug_varnames)
 OUTPUT(STM32F105-akcelerometry.elf elf32-littlearm)
 
-.debug_ranges   0x00000000      0x550
+.debug_ranges   0x00000000      0x668
  .debug_ranges  0x00000000       0x38 ./src/ADXL343.o
- .debug_ranges  0x00000038       0x28 ./src/main.o
- .debug_ranges  0x00000060       0x20 ./src/pomiar.o
- .debug_ranges  0x00000080       0x30 ./src/spi.o
- .debug_ranges  0x000000b0       0x20 ./src/uart.o
- .debug_ranges  0x000000d0       0x30 ./libs/StdPeriph/src/misc.o
- .debug_ranges  0x00000100       0x98 ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_ranges  0x00000198      0x150 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_ranges  0x000002e8       0xc0 ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_ranges  0x000003a8       0xf0 ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_ranges  0x00000498       0x28 ./libs/CMSIS/src/startup_cm.o
- .debug_ranges  0x000004c0       0x10 ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_ranges  0x000004d0       0x28 ./libs/CMSIS/src/system_stm32f10x.o
- .debug_ranges  0x000004f8       0x58 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_ranges  0x00000038       0x30 ./src/main.o
+ .debug_ranges  0x00000068       0x20 ./src/pomiar.o
+ .debug_ranges  0x00000088       0x30 ./src/spi.o
+ .debug_ranges  0x000000b8       0x48 ./src/uart.o
+ .debug_ranges  0x00000100       0x30 ./libs/StdPeriph/src/misc.o
+ .debug_ranges  0x00000130       0xe8 ./libs/StdPeriph/src/stm32f10x_flash.o
+ .debug_ranges  0x00000218       0x98 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_ranges  0x000002b0      0x150 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_ranges  0x00000400       0xc0 ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_ranges  0x000004c0       0xf0 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_ranges  0x000005b0       0x28 ./libs/CMSIS/src/startup_cm.o
+ .debug_ranges  0x000005d8       0x10 ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_ranges  0x000005e8       0x28 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_ranges  0x00000610       0x58 ./libs/CMSIS/src/vectors_stm32f10x.o
 
-.debug_macro    0x00000000     0xf6d6
+.debug_macro    0x00000000     0xfbb5
  .debug_macro   0x00000000       0x5e ./src/ADXL343.o
  .debug_macro   0x0000005e      0x85c ./src/ADXL343.o
  .debug_macro   0x000008ba       0x16 ./src/ADXL343.o
@@ -4067,20 +4094,22 @@ OUTPUT(STM32F105-akcelerometry.elf elf32-littlearm)
  .debug_macro   0x0000d465       0xbd ./src/main.o
  .debug_macro   0x0000d522       0x16 ./src/main.o
  .debug_macro   0x0000d538      0x16c ./src/main.o
- .debug_macro   0x0000d6a4      0x23e ./src/pomiar.o
- .debug_macro   0x0000d8e2      0x177 ./src/spi.o
- .debug_macro   0x0000da59      0x2be ./src/spi.o
- .debug_macro   0x0000dd17      0x177 ./src/uart.o
- .debug_macro   0x0000de8e      0x2a6 ./src/uart.o
- .debug_macro   0x0000e134      0x16a ./libs/StdPeriph/src/misc.o
- .debug_macro   0x0000e29e       0x85 ./libs/StdPeriph/src/misc.o
- .debug_macro   0x0000e323      0x1b2 ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_macro   0x0000e4d5      0x2d9 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_macro   0x0000e7ae      0x5b4 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_macro   0x0000ed62      0x1ca ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_macro   0x0000ef2c      0x218 ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_macro   0x0000f144      0x21a ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_macro   0x0000f35e       0xa6 ./libs/CMSIS/src/startup_cm.o
- .debug_macro   0x0000f404      0x15a ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_macro   0x0000f55e      0x167 ./libs/CMSIS/src/system_stm32f10x.o
- .debug_macro   0x0000f6c5       0x11 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_macro   0x0000d6a4      0x248 ./src/pomiar.o
+ .debug_macro   0x0000d8ec      0x177 ./src/spi.o
+ .debug_macro   0x0000da63      0x2be ./src/spi.o
+ .debug_macro   0x0000dd21      0x177 ./src/uart.o
+ .debug_macro   0x0000de98      0x2a6 ./src/uart.o
+ .debug_macro   0x0000e13e      0x16a ./libs/StdPeriph/src/misc.o
+ .debug_macro   0x0000e2a8       0x85 ./libs/StdPeriph/src/misc.o
+ .debug_macro   0x0000e32d      0x20c ./libs/StdPeriph/src/stm32f10x_flash.o
+ .debug_macro   0x0000e539      0x2c9 ./libs/StdPeriph/src/stm32f10x_flash.o
+ .debug_macro   0x0000e802      0x1b2 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_macro   0x0000e9b4      0x2d9 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_macro   0x0000ec8d      0x5b4 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_macro   0x0000f241      0x1ca ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_macro   0x0000f40b      0x218 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_macro   0x0000f623      0x21a ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_macro   0x0000f83d       0xa6 ./libs/CMSIS/src/startup_cm.o
+ .debug_macro   0x0000f8e3      0x15a ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_macro   0x0000fa3d      0x167 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_macro   0x0000fba4       0x11 ./libs/CMSIS/src/vectors_stm32f10x.o

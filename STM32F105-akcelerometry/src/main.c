@@ -13,6 +13,7 @@
 
 void Periph_Initialize();
 
+void konf_zegary();
 /*static void Delay(__IO uint32_t nTime);
 
 static void TimingDelay_Decrement(void);
@@ -30,27 +31,31 @@ int main(void)
    * system_stm32f10x.c file
    */
 
-   /* Use SysTick as reference for the timer */
-   SysTick_Config(SystemCoreClock / SYSTICK_FREQUENCY_HZ);
+	konf_zegary();
 
-   Periph_Initialize();
+	/* Use SysTick as reference for the timer */
+	//SysTick_Config(SystemCoreClock / SYSTICK_FREQUENCY_HZ);
+	SysTick_Config(8000);
 
-   int16_t x;
-   int16_t y;
-   int16_t z;
 
-   uint32_t i;
+	Periph_Initialize();
 
-   pomiar();
+	int16_t x;
+	int16_t y;
+	int16_t z;
 
-   while (1)
-   {
-	   ADXL343_Read(&x, &y, &z);
+	uint32_t i;
 
-	   USART_SendData(USARTx, 65);
+	pomiar();
 
-	   for(i=0;i<1000000;i++);
-   }
+	while (1)
+	{
+		ADXL343_Read(&x, &y, &z);
+
+		USART_SendData(USARTx, 65);
+
+		for(i=0;i<1000000;i++);
+	}
 }
 
 // ----------------------------------------------------------------------------
@@ -104,6 +109,40 @@ void Periph_Initialize()
 {
   TimingDelay_Decrement();
 }*/
+
+void konf_zegary(void)
+{
+  ErrorStatus HSEStartUpStatus;
+
+  // Reset ustawien RCC
+  RCC_DeInit();
+  // Wlacz HSE
+  RCC_HSEConfig(RCC_HSE_ON);
+  // Czekaj za HSE bedzie gotowy
+  HSEStartUpStatus = RCC_WaitForHSEStartUp();
+  if(HSEStartUpStatus == SUCCESS)
+  {
+        FLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);
+        // zwloka dla pamieci Flash
+        FLASH_SetLatency(FLASH_Latency_2);
+        // HCLK = SYSCLK
+        RCC_HCLKConfig(RCC_SYSCLK_Div1);
+        // PCLK2 = HCLK
+        RCC_PCLK2Config(RCC_HCLK_Div1);
+        // PCLK1 = HCLK/2
+        RCC_PCLK1Config(RCC_HCLK_Div2);
+        // PLLCLK = 8MHz * 9 = 72 MHz
+        RCC_PLLConfig(RCC_PLLSource_PREDIV1, RCC_PLLMul_9);
+        // Wlacz PLL
+        RCC_PLLCmd(ENABLE);
+        // Czekaj az PLL poprawnie sie uruchomi
+        while(RCC_GetFlagStatus(RCC_FLAG_PLLRDY) == RESET);
+        // PLL bedzie zrodlem sygnalu zegarowego
+        RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
+        // Czekaj az PLL bedzie sygnalem zegarowym systemu
+        while(RCC_GetSYSCLKSource() != 0x08);
+  }
+}
 
 // ----------------------------------------------------------------------------
 

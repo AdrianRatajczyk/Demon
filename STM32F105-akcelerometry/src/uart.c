@@ -48,6 +48,39 @@ void UART_Initialize()
 	NVIC_Init(&Struktura_NVIC);
 }
 
+void UART_Send_int16(int16_t tx, char* buf, uint8_t d)
+{
+	sprintf_int(buf, tx, d);
+	uint8_t i;
+	for(i=0;buf[i]!='\0';i++)
+	{
+		USART_SendData(USARTx,buf[i]);
+		while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+	}
+}
+
+void UART_Send_char(char tx)
+{
+	USART_SendData(USARTx,tx);
+	while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+}
+
+void UART_Send_LFCR()
+{
+	USART_SendData(USARTx,10);
+	while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+	USART_SendData(USARTx,13);
+	while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+}
+
+void UART_Send_CRLF()
+{
+	USART_SendData(USARTx,13);
+	while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+	USART_SendData(USARTx,10);
+	while(USART_GetFlagStatus(USARTx, USART_FLAG_TC) == RESET){}
+}
+
 //Funkcja konwertujaca liczbe 8-bitowa (od -128 do 127) ze znakiem na ciag typu String
 void sChar2Str(char *pStr, int value, int charCount)
 {
@@ -132,6 +165,41 @@ void moj_sprintf(char *wsk, float liczba, uint8_t d, uint8_t p)
 		}
 		else *wsk=' ';
 		wsk++;
+		i++;
+	}
+}
+
+void sprintf_int(char* ptr, int16_t number, uint8_t d)
+{
+	int16_t copy=number;
+
+	ptr = ptr + d + 1;
+	*ptr = '\0';
+	ptr--;
+
+	uint8_t i=d;
+	do
+	{
+		*ptr-- = abs(copy % 10) + '0';
+		copy /= 10;
+	}
+	while(i--);
+
+	i++;
+	ptr++;
+	while(i<=d-1)
+	{
+		if(*ptr != '0')
+		{
+			if(number<0)
+			{
+				ptr--;
+				*ptr='-';
+			}
+			break;
+		}
+		else *ptr=' ';
+		ptr++;
 		i++;
 	}
 }
