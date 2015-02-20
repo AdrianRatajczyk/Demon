@@ -64,7 +64,9 @@ void Periph_Initialize()
 {
 	SPI_Initialize();
 
-	ADXL343_Init();
+	//ADXL343_Init();
+
+	LIS3DH_Init();
 
 	UART_Initialize();
 }

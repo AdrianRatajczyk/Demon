@@ -1,6 +1,12 @@
 #ifndef LIS3DH_H_
 #define LIS3DH_H_
 
+#define LIS3DH_READ						(1 << 7)
+#define LIS3DH_WRITE					0
+#define LIS3DH_SINGLE_BYTE				0
+#define LIS3DH_MULTIPLE_BYTE			(1 << 6)
+
+
 #define LIS3DH_STATUS_REG_AUX			0x07
 #define LIS3DH_OUT_ADC1_L				0x08
 #define LIS3DH_OUT_ADC1_H				0x09
