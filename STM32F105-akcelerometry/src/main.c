@@ -50,7 +50,7 @@ int main(void)
 
 	while (1)
 	{
-		ADXL343_Read(&x, &y, &z);
+		//ADXL343_Read(&x, &y, &z);
 
 		USART_SendData(USARTx, 65);
 
