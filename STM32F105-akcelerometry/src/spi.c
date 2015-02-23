@@ -53,6 +53,8 @@ void SPI_Initialize()
 
 	// Enabling SPI
 	SPI_Cmd(SPIx, ENABLE);
+
+	SPI_StopTransmission();
 }
 
 void SPI_StartTransmission()

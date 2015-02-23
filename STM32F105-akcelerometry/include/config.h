@@ -31,7 +31,7 @@
 #define SPIx_MODE                		SPI_Mode_Master
 #define SPIx_DATASIZE        			SPI_DataSize_8b
 #define SPIx_CPOL						SPI_CPOL_High   //SPI_CPOL_Low
-#define SPIx_CPHA        				SPI_CPHA_1Edge  //SPI_CPHA_2Edge
+#define SPIx_CPHA        				SPI_CPHA_2Edge  //SPI_CPHA_1Edge
 #define SPIx_NSS						SPI_NSS_Soft
 #define SPIx_BAUDRATEPRESCALLER   		SPI_BaudRatePrescaler_2
 #define SPIx_FIRSTBIT					SPI_FirstBit_MSB

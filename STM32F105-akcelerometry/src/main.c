@@ -46,15 +46,17 @@ int main(void)
 
 	uint32_t i;
 
-	pomiar();
+	//pomiar();
 
 	while (1)
 	{
 		//ADXL343_Read(&x, &y, &z);
 
-		USART_SendData(USARTx, 65);
+		LIS3DH_Read(&x, &y, &z);
 
-		for(i=0;i<1000000;i++);
+		//USART_SendData(USARTx, 65);
+
+		//for(i=0;i<1000000;i++);
 	}
 }
 

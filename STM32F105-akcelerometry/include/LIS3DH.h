@@ -44,12 +44,31 @@
 #define LIS3DH_TIME_LATENCY				0x3C
 #define LIS3DH_TIME_WINDOW				0x3D
 
+#define LIS3DH_NAME						51
+
+#define LIS3DH_TEMP_CFG_REG_ADC_PD		(1 << 7)	// ADC enable bit in TEMP_CFG_REG
+#define LIS3DH_TEMP_CFG_REG_TEMP_EN		(1 << 6)	// Temperature sensor enable bit in TEMP_CFG_REG
+
+#define LIS3DH_CTRL_REG1_ZEN			4
+#define LIS3DH_CTRL_REG1_YEN			2
+#define LIS3DH_CTRL_REG1_XEN			1
+#define LIS3DH_CTRL_REG1_LOW_POWER		(0 << 4)	// Low power mode enable bit in CTRL_REG1
+#define LIS3DH_CTRL_REG1_1_HZ			(1 << 4)
+#define LIS3DH_CTRL_REG1_10_HZ			(2 << 4)
+#define LIS3DH_CTRL_REG1_25_HZ			(3 << 4)
+#define LIS3DH_CTRL_REG1_50_HZ			(4 << 4)
+#define LIS3DH_CTRL_REG1_100_HZ			(5 << 4)
+#define LIS3DH_CTRL_REG1_200_HZ			(6 << 4)
+#define LIS3DH_CTRL_REG1_400_HZ			(7 << 4)
+#define LIS3DH_CTRL_REG1_1600_HZ		(8 << 4)
+#define LIS3DH_CTRL_REG1_5000_HZ		(9 << 4)
+
 
 /*---------------------------------------------------------------------------------------------------------------------+
 | global functions' prototypes
 +---------------------------------------------------------------------------------------------------------------------*/
 
-void LIS3DH_Init(void);
+uint8_t LIS3DH_Init(void);
 
 void LIS3DH_Read(int16_t *x, int16_t *y, int16_t *z);
 
