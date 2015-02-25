@@ -37,7 +37,6 @@ int main(void)
 	//SysTick_Config(SystemCoreClock / SYSTICK_FREQUENCY_HZ);
 	SysTick_Config(8000);
 
-
 	Periph_Initialize();
 
 	int16_t x;
@@ -46,7 +45,7 @@ int main(void)
 
 	uint32_t i;
 
-	//pomiar();
+	pomiar();
 
 	while (1)
 	{
@@ -66,9 +65,9 @@ void Periph_Initialize()
 {
 	SPI_Initialize();
 
-	//ADXL343_Init();
+	ADXL343_Init();
 
-	LIS3DH_Init();
+	//LIS3DH_Init();
 
 	UART_Initialize();
 }
