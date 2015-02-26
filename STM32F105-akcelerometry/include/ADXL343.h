@@ -21,6 +21,7 @@
 
 #define ADXL343_DEV_ID					0x00
 
+#define ADXL343_BW_RATE					0x2C
 #define ADXL343_POWER_CTL				0x2D
 #define ADXL343_POWER_CTL_SLEEP			(1 << 2)
 #define ADXL343_POWER_CTL_MEASURE		(1 << 3)
@@ -34,6 +35,24 @@
 #define ADXL343_DATAZ0					0x36
 #define ADXL343_DATAZ1					0x37
 
+enum ADXL343_DataRate
+{
+	ADXL343_DATA_RATE_25HZ = 8,
+	ADXL343_DATA_RATE_50HZ = 9,
+	ADXL343_DATA_RATE_100HZ = 10,
+	ADXL343_DATA_RATE_200HZ = 11,
+	ADXL343_DATA_RATE_400HZ = 12,
+	ADXL343_DATA_RATE_800HZ = 13,
+	ADXL343_DATA_RATE_1600HZ = 14,
+	ADXL343_DATA_RATE_3200HZ = 15,
+
+	// Data Rate available in Low Power Mode
+	ADXL343_DATA_RATE_25HZ_LP = 24,
+	ADXL343_DATA_RATE_50HZ_LP = 25,
+	ADXL343_DATA_RATE_100HZ_LP = 26,
+	ADXL343_DATA_RATE_200HZ_LP = 27,
+	ADXL343_DATA_RATE_400HZ_LP = 28
+};
 
 /*---------------------------------------------------------------------------------------------------------------------+
 | global functions' prototypes

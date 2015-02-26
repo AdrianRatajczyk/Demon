@@ -65,6 +65,18 @@ void ADXL343_Init()
 	ADXL343_SpiStop();
 }
 
+void ADXL343_SetDataRate(enum ADXL343_DataRate rate)
+{
+	uint8_t tx[2];
+
+	tx[0] = ADXL343_WRITE | ADXL343_SINGLE_BYTE | ADXL343_BW_RATE;
+	tx[1] = rate;
+
+	ADXL343_SpiStart();
+	ADXL343_SpiSend(tx,2);
+	ADXL343_SpiStop();
+}
+
 void ADXL343_Read(int16_t *x, int16_t *y, int16_t *z)
 {
 	uint8_t bufor[2];
@@ -81,5 +93,7 @@ void ADXL343_Read(int16_t *x, int16_t *y, int16_t *z)
 	*z = ( (int16_t)((bufor[1]) << 8) | (int16_t)bufor[0]);
 	ADXL343_SpiStop();
 }
+
+
 
 
