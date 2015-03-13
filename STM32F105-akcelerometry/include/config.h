@@ -36,6 +36,12 @@
 #define SPIx_BAUDRATEPRESCALLER   		SPI_BaudRatePrescaler_2
 #define SPIx_FIRSTBIT					SPI_FirstBit_MSB
 
+/*---------------------------------------------------------------------------------------------------------------------+
+| SPI2
++---------------------------------------------------------------------------------------------------------------------*/
+
+
+
 
 /*---------------------------------------------------------------------------------------------------------------------+
 | USART
@@ -66,5 +72,25 @@
 #define USARTx_NVIC_IRQChannelPreemptionPriority	1
 #define USARTx_NVIC_IRQChannelSubPriority			1
 #define USARTx_NVIC_IRQChannelCmd					ENABLE
+
+
+/*---------------------------------------------------------------------------------------------------------------------+
+| LSM9DS0
++---------------------------------------------------------------------------------------------------------------------*/
+
+#define LSM9DS0_SDO_XM			SPI2_MISO
+#define LSM9DS0_SDO_G			SPI_MISO
+#define LSM9DS0_SDA				SPI_MOSI
+
+#define LSM9DS0_CS_XM_GPIO				GPIOC
+#define LSM9DS0_CS_XM_PIN				GPIO_Pin_0
+#define LSM9DS0_CS_XM_MODE 				GPIO_Mode_Out_PP
+
+#define LSM9DS0_CS_XM_GPIO				GPIOC
+#define LSM9DS0_CS_XM_PIN				GPIO_Pin_0
+#define LSM9DS0_CS_XM_MODE 				GPIO_Mode_Out_PP
+
+
+
 
 #endif /* CONFIG_H_ */
