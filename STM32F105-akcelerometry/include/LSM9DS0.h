@@ -13,6 +13,11 @@
 | Register mapping
 +---------------------------------------------------------------------------------------------------------------------*/
 
+#define LSM9DS0_READ					(1 << 7)
+#define LSM9DS0_WRITE					0
+#define LSM9DS0_SINGLE_BYTE				0
+#define LSM9DS0_MULTIPLE_BYTE			(1 << 6)
+
 #define LSM9DS0_WHO_AM_I_G 				0x0F
 #define LSM9DS0_CTRL_REG1_G				0x20
 #define LSM9DS0_CTRL_REG2_G 			0x21
@@ -105,6 +110,26 @@
 void LSM9DS0_Init(void);
 
 void LSM9DS0_Read(int16_t *x, int16_t *y, int16_t *z);
+
+/*---------------------------------------------------------------------------------------------------------------------+
+| private functions' prototypes
++---------------------------------------------------------------------------------------------------------------------*/
+
+static void LSM9DS0_SPI_Init();
+
+static void LSM9DS0_XM_SpiRead(uint8_t* rx, uint8_t number);
+
+static void LSM9DS0_G_SpiRead(uint8_t* rx, uint8_t number);
+
+static void LSM9DS0_SpiSend(uint8_t* tx, uint8_t number);
+
+static void LSM9DS0_XM_SpiStart();
+
+static void LSM9DS0_G_SpiStart();
+
+static void LSM9DS0_XM_SpiStop();
+
+static void LSM9DS0_G_SpiStop();
 
 
 #endif /* ADXL343_H_ */

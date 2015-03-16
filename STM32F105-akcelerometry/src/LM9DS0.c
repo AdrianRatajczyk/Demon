@@ -14,7 +14,7 @@
 | SPI functions
 +---------------------------------------------------------------------------------------------------------------------*/
 
-void LSM9DS0_SPI_Init()
+static void LSM9DS0_SPI_Init()
 {
 	// Configuring GPIO
 	RCC_APB2PeriphClockCmd(LSM9DS0_CS_RCC_GPIO, ENABLE);
@@ -91,45 +91,86 @@ void LSM9DS0_SPI_Init()
 
 	// Enabling SPI_XM
 	SPI_Cmd(LSM9DS0_SPI_XM, ENABLE);
+
+	LSM9DS0_G_SpiStop();
+	LSM9DS0_XM_SpiStop();
 }
 
-void LSM9DS0_XM_SpiRead(uint8_t* rx, uint8_t number)
+static void LSM9DS0_XM_SpiRead(uint8_t* rx, uint8_t number)
 {
-	SPI_Read(rx, number);
+//	while (number--)
+//	{
+//		SPIx->DR = 255;
+//
+//		while (!SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_RXNE));
+//
+//		*(rx++) = SPIx->DR;
+//	}
 }
 
-void LSM9DS0_G_SpiRead(uint8_t* rx, uint8_t number)
+static void LSM9DS0_G_SpiRead(uint8_t* rx, uint8_t number)
 {
-	SPI_Read(rx, number);
+	while (number--)
+	{
+		LSM9DS0_SPI_G->DR = 255;
+
+		while (!SPI_I2S_GetFlagStatus(LSM9DS0_SPI_G, SPI_I2S_FLAG_RXNE));
+
+		*(rx++) = LSM9DS0_SPI_G->DR;
+	}
 }
 
-void LSM9DS0_SpiSend(uint8_t* tx, uint8_t number)
+static void LSM9DS0_SpiSend(uint8_t* tx, uint8_t number)
 {
-	SPI_Send(tx, number);
+	while(number--)
+	{
+		SPI_I2S_SendData(LSM9DS0_SPI_G, *(tx++));
+
+		while(!SPI_I2S_GetFlagStatus(LSM9DS0_SPI_G, SPI_I2S_FLAG_RXNE));
+
+		SPI_I2S_ReceiveData(LSM9DS0_SPI_G);
+	}
 }
 
-void LSM9DS0_XM_SpiStart()
+static void LSM9DS0_XM_SpiStart()
 {
 	GPIO_WriteBit(LSM9DS0_CS_XM_GPIO, LSM9DS0_CS_XM_PIN, Bit_RESET);
 }
 
-void LSM9DS0_G_SpiStart()
+static void LSM9DS0_G_SpiStart()
 {
 	GPIO_WriteBit(LSM9DS0_CS_G_GPIO, LSM9DS0_CS_G_PIN, Bit_RESET);
 }
 
-void LSM9DS0_XM_SpiStop()
+static void LSM9DS0_XM_SpiStop()
 {
 	GPIO_WriteBit(LSM9DS0_CS_XM_GPIO, LSM9DS0_CS_XM_PIN, Bit_SET);
 }
 
-void LSM9DS0_G_SpiStop()
+static void LSM9DS0_G_SpiStop()
 {
 	GPIO_WriteBit(LSM9DS0_CS_G_GPIO, LSM9DS0_CS_G_PIN, Bit_SET);
 }
 
 
 /*---------------------------------------------------------------------------------------------------------------------+
-| ADXL343 functions
+| LSM9DS0 functions
 +---------------------------------------------------------------------------------------------------------------------*/
 
+void LSM9DS0_Init()
+{
+	LSM9DS0_SPI_Init();
+
+	uint8_t tab;
+	tab = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_WHO_AM_I_G;
+
+	LSM9DS0_G_SpiStart();
+	LSM9DS0_SpiSend(&tab, 1);
+	LSM9DS0_G_SpiRead(&tab, 1);
+	LSM9DS0_G_SpiStop();
+}
+
+void LSM9DS0_Read(int16_t *x, int16_t *y, int16_t *z)
+{
+
+}

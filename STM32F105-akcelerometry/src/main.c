@@ -7,6 +7,7 @@
 #include "stm32f10x_rcc.h"
 #include "uart.h"
 #include "pomiar.h"
+#include "LSM9DS0.h"
 
 /*---------------------------------------------------------------------------------------------------------------------+
 | global functions' prototypes
@@ -46,13 +47,13 @@ int main(void)
 
 	uint32_t i;
 
-	pomiar();
+	//pomiar();
 
 	while (1)
 	{
 		//ADXL343_Read(&x, &y, &z);
 
-		LIS3DH_Read(&x, &y, &z);
+		//LIS3DH_Read(&x, &y, &z);
 
 		//USART_SendData(USARTx, 65);
 
@@ -64,13 +65,15 @@ int main(void)
 
 void Periph_Initialize()
 {
-	SPI_Initialize();
+	//SPI_Initialize();
 
-	ADXL343_Init();
+	LSM9DS0_Init();
+
+	//ADXL343_Init();
 
 	//LIS3DH_Init();
 
-	UART_Initialize();
+	//UART_Initialize();
 }
 
 
