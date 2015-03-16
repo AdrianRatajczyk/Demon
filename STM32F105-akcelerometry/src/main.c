@@ -4,6 +4,7 @@
 #include "spi.h"
 #include "config.h"
 #include "stm32f10x_usart.h"
+#include "stm32f10x_rcc.h"
 #include "uart.h"
 #include "pomiar.h"
 

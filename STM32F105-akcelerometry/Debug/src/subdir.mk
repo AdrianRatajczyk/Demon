@@ -6,6 +6,7 @@
 C_SRCS += \
 ../src/ADXL343.c \
 ../src/LIS3DH.c \
+../src/LM9DS0.c \
 ../src/main.c \
 ../src/pomiar.c \
 ../src/spi.c \
@@ -14,6 +15,7 @@ C_SRCS += \
 OBJS += \
 ./src/ADXL343.o \
 ./src/LIS3DH.o \
+./src/LM9DS0.o \
 ./src/main.o \
 ./src/pomiar.o \
 ./src/spi.o \
@@ -22,6 +24,7 @@ OBJS += \
 C_DEPS += \
 ./src/ADXL343.d \
 ./src/LIS3DH.d \
+./src/LM9DS0.d \
 ./src/main.d \
 ./src/pomiar.d \
 ./src/spi.d \
