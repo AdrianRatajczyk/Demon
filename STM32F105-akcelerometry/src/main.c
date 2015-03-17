@@ -22,6 +22,7 @@ static void TimingDelay_Decrement(void);
 
 void SysTick_Handler(void);*/
 
+//volatile char buf[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 int main(void)
 {
@@ -47,17 +48,30 @@ int main(void)
 
 	uint32_t i;
 
+	char buf[20];
+
 	//pomiar();
 
 	while (1)
 	{
+		//LSM9DS0_Gyro_Read(&x, &y, &z);
+		//LSM9DS0_Acc_Read(&x, &y, &z);
+		LSM9DS0_Magn_Read(&x, &y, &z);
 		//ADXL343_Read(&x, &y, &z);
 
 		//LIS3DH_Read(&x, &y, &z);
 
 		//USART_SendData(USARTx, 65);
 
-		//for(i=0;i<1000000;i++);
+		UART_Send_int16(x, buf, 6);
+
+		UART_Send_int16(y, buf, 6);
+
+		UART_Send_int16(z, buf, 6);
+
+		UART_Send_CRLF();
+
+		for(i=0;i<10000;i++);
 	}
 }
 
@@ -73,7 +87,7 @@ void Periph_Initialize()
 
 	//LIS3DH_Init();
 
-	//UART_Initialize();
+	UART_Initialize();
 }
 
 

@@ -165,17 +165,121 @@ void LSM9DS0_Init()
 	LSM9DS0_XM_SpiStop();
 
 	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG1_G;
-	tab[1] = CTRL_REG1_G_Yen | CTRL_REG1_G_Xen | CTRL_REG1_G_Zen | CTRL_REG1_G_PD;
+	tab[1] = LSM9DS0_CTRL_REG1_G_Yen | LSM9DS0_CTRL_REG1_G_Xen | LSM9DS0_CTRL_REG1_G_Zen | LSM9DS0_CTRL_REG1_G_PD;
 
 	LSM9DS0_G_SpiStart();
-	LSM9DS0_SpiSend(tab, 1);
-	LSM9DS0_SpiRead(tab, 1);
+	LSM9DS0_SpiSend(tab, 2);
 	LSM9DS0_G_SpiStop();
 
+	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG1_XM;
+	tab[1] = LSM9DS0_CTRL_REG1_XM_AXEN | LSM9DS0_CTRL_REG1_XM_AYEN | LSM9DS0_CTRL_REG1_XM_AZEN | LSM9DS0_CTRL_REG1_XM_AODR_400Hz;
 
+	LSM9DS0_XM_SpiStart();
+	LSM9DS0_SpiSend(tab, 2);
+	LSM9DS0_XM_SpiStop();
+
+
+
+
+
+
+
+	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG5_XM;
+	tab[1] = (1 << 4); // Output data rate for magnetometer 50Hz
+
+	LSM9DS0_XM_SpiStart();
+	LSM9DS0_SpiSend(tab, 2);
+	LSM9DS0_XM_SpiStop();
+
+	tab[0] = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG5_XM;
+	LSM9DS0_XM_SpiStart();
+	LSM9DS0_SpiSend(tab, 1);
+	LSM9DS0_SpiRead(tab, 1);
+	LSM9DS0_XM_SpiStop();
+
+
+
+
+
+
+
+	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG6_XM;
+	tab[1] = (1 << 5); // Sensitivity for magnetometer +-4Gauss
+
+	LSM9DS0_XM_SpiStart();
+	LSM9DS0_SpiSend(tab, 2);
+	LSM9DS0_XM_SpiStop();
+
+	tab[0] = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG6_XM;
+	LSM9DS0_XM_SpiStart();
+	LSM9DS0_SpiSend(tab, 1);
+	LSM9DS0_SpiRead(tab, 1);
+	LSM9DS0_XM_SpiStop();
+
+
+
+
+	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG7_XM;
+	tab[1] = 0;    // Magnetometer in Continous-conversion mode
+
+	LSM9DS0_XM_SpiStart();
+	LSM9DS0_SpiSend(tab, 2);
+	LSM9DS0_XM_SpiStop();
+
+	tab[0] = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG7_XM;
+	LSM9DS0_XM_SpiStart();
+	LSM9DS0_SpiSend(tab, 1);
+	LSM9DS0_SpiRead(tab, 1);
+	LSM9DS0_XM_SpiStop();
 }
 
-void LSM9DS0_Read(int16_t *x, int16_t *y, int16_t *z)
+void LSM9DS0_Gyro_Read(int16_t *x, int16_t *y, int16_t *z)
 {
+	uint8_t bufor[2];
 
+	bufor[0] = LSM9DS0_READ | LSM9DS0_MULTIPLE_BYTE | LSM9DS0_OUT_X_L_G;
+
+	LSM9DS0_G_SpiStart();
+	LSM9DS0_SpiSend(bufor, 1);
+	LSM9DS0_SpiRead(bufor, 2);
+	*x = ((int16_t) ((bufor[1]) << 8) | (int16_t) bufor[0]);
+	LSM9DS0_SpiRead(bufor, 2);
+	*y = ((int16_t) ((bufor[1]) << 8) | (int16_t) bufor[0]);
+	LSM9DS0_SpiRead(bufor, 2);
+	*z = ((int16_t) ((bufor[1]) << 8) | (int16_t) bufor[0]);
+	LSM9DS0_G_SpiStop();
+}
+
+void LSM9DS0_Acc_Read(int16_t *x, int16_t *y, int16_t *z)
+{
+	uint8_t bufor[2];
+
+	bufor[0] = LSM9DS0_READ | LSM9DS0_MULTIPLE_BYTE | LSM9DS0_OUT_X_L_A;
+
+	LSM9DS0_XM_SpiStart();
+	LSM9DS0_SpiSend(bufor, 1);
+	LSM9DS0_SpiRead(bufor, 2);
+	*x = ((int16_t) ((bufor[1]) << 8) | (int16_t) bufor[0]);
+	LSM9DS0_SpiRead(bufor, 2);
+	*y = ((int16_t) ((bufor[1]) << 8) | (int16_t) bufor[0]);
+	LSM9DS0_SpiRead(bufor, 2);
+	*z = ((int16_t) ((bufor[1]) << 8) | (int16_t) bufor[0]);
+	LSM9DS0_XM_SpiStop();
+}
+
+void LSM9DS0_Magn_Read(int16_t *x, int16_t *y, int16_t *z)
+{
+	uint8_t bufor[2];
+
+	bufor[0] = LSM9DS0_READ | LSM9DS0_MULTIPLE_BYTE | LSM9DS0_OUT_X_L_M;
+
+	LSM9DS0_XM_SpiStart();
+	LSM9DS0_SpiSend(bufor, 1);
+	LSM9DS0_SpiRead(bufor, 2);
+	*x = ((int16_t) ((bufor[1]) << 8) | (int16_t) bufor[0]);
+	LSM9DS0_SpiRead(bufor, 2);
+	*y = ((int16_t) ((bufor[1]) << 8) | (int16_t) bufor[0]);
+	LSM9DS0_SpiRead(bufor, 2);
+	*z = ((int16_t) ((bufor[1]) << 8) | (int16_t) bufor[0]);
+	LSM9DS0_XM_SpiStop();
 }
