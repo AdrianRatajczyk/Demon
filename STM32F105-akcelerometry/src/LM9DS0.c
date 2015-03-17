@@ -71,10 +71,10 @@ static void LSM9DS0_SPI_Init()
 	Struktura_SPI.SPI_FirstBit = LSM9DS0_SPI_G_FIRSTBIT;
 	Struktura_SPI.SPI_Mode = LSM9DS0_SPI_G_MODE;
 	Struktura_SPI.SPI_NSS = LSM9DS0_SPI_G_NSS;
-	SPI_Init(LSM9DS0_SPI_G, &Struktura_SPI);
+	SPI_Init(LSM9DS0_SPIx, &Struktura_SPI);
 
-	// Enabling SPI_G
-	SPI_Cmd(LSM9DS0_SPI_G, ENABLE);
+	// Enabling LSM9DS0 SPI
+	SPI_Cmd(LSM9DS0_SPIx, ENABLE);
 
 //	// Configuring SPI_XM
 //	RCC_APB1PeriphClockCmd(LSM9DS0_XM_RCC_SPI, ENABLE);
@@ -96,27 +96,15 @@ static void LSM9DS0_SPI_Init()
 	LSM9DS0_XM_SpiStop();
 }
 
-static void LSM9DS0_XM_SpiRead(uint8_t* rx, uint8_t number)
+static void LSM9DS0_SpiRead(uint8_t* rx, uint8_t number)
 {
 	while (number--)
 	{
-		SPIx->DR = 255;
+		LSM9DS0_SPIx->DR = 255;
 
-		while (!SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_RXNE));
+		while (!SPI_I2S_GetFlagStatus(LSM9DS0_SPIx, SPI_I2S_FLAG_RXNE));
 
-		*(rx++) = SPIx->DR;
-	}
-}
-
-static void LSM9DS0_G_SpiRead(uint8_t* rx, uint8_t number)
-{
-	while (number--)
-	{
-		LSM9DS0_SPI_G->DR = 255;
-
-		while (!SPI_I2S_GetFlagStatus(LSM9DS0_SPI_G, SPI_I2S_FLAG_RXNE));
-
-		*(rx++) = LSM9DS0_SPI_G->DR;
+		*(rx++) = LSM9DS0_SPIx->DR;
 	}
 }
 
@@ -124,11 +112,11 @@ static void LSM9DS0_SpiSend(uint8_t* tx, uint8_t number)
 {
 	while(number--)
 	{
-		SPI_I2S_SendData(LSM9DS0_SPI_G, *(tx++));
+		SPI_I2S_SendData(LSM9DS0_SPIx, *(tx++));
 
-		while(!SPI_I2S_GetFlagStatus(LSM9DS0_SPI_G, SPI_I2S_FLAG_RXNE));
+		while(!SPI_I2S_GetFlagStatus(LSM9DS0_SPIx, SPI_I2S_FLAG_RXNE));
 
-		SPI_I2S_ReceiveData(LSM9DS0_SPI_G);
+		SPI_I2S_ReceiveData(LSM9DS0_SPIx);
 	}
 }
 
@@ -161,20 +149,28 @@ void LSM9DS0_Init()
 {
 	LSM9DS0_SPI_Init();
 
-	uint8_t tab;
-	tab = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_WHO_AM_I_G;
+	uint8_t tab[2];
+	tab[0] = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_WHO_AM_I_G;
 
 	LSM9DS0_G_SpiStart();
-	LSM9DS0_SpiSend(&tab, 1);
-	LSM9DS0_G_SpiRead(&tab, 1);
+	LSM9DS0_SpiSend(tab, 1);
+	LSM9DS0_SpiRead(tab, 1);
 	LSM9DS0_G_SpiStop();
 
-	tab = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_WHO_AM_I_XM;
+	tab[0] = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_WHO_AM_I_XM;
 
 	LSM9DS0_XM_SpiStart();
-	LSM9DS0_SpiSend(&tab, 1);
-	LSM9DS0_G_SpiRead(&tab, 1);
+	LSM9DS0_SpiSend(tab, 1);
+	LSM9DS0_SpiRead(tab, 1);
 	LSM9DS0_XM_SpiStop();
+
+	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG1_G;
+	tab[1] = CTRL_REG1_G_Yen | CTRL_REG1_G_Xen | CTRL_REG1_G_Zen | CTRL_REG1_G_PD;
+
+	LSM9DS0_G_SpiStart();
+	LSM9DS0_SpiSend(tab, 1);
+	LSM9DS0_SpiRead(tab, 1);
+	LSM9DS0_G_SpiStop();
 
 
 }

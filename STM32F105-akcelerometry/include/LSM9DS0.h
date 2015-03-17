@@ -103,6 +103,28 @@
 #define LSM9DS0_Act_THS  				0x3E
 #define LSM9DS0_Act_DUR  				0x3F
 
+/**
+ * CTRL_REG1_G bit definition
+ */
+#define CTRL_REG1_G_Yen					1
+#define CTRL_REG1_G_Xen					2
+#define CTRL_REG1_G_Zen					4
+#define CTRL_REG1_G_PD					8
+#define CTRL_REG1_G_BW0					16
+#define CTRL_REG1_G_BW1					32
+#define CTRL_REG1_G_DR0					64
+#define CTRL_REG1_G_DR1					128
+
+#define CTRL_REG1_G_DR_95Hz				(0b00 << 6)
+#define CTRL_REG1_G_DR_190Hz			(0b01 << 6)
+#define CTRL_REG1_G_DR_380Hz			(0b10 << 6)
+#define CTRL_REG1_G_DR_760Hz			(0b11 << 6)
+
+//#define CTRL_REG1_G_BW_12Hz				(0b00 << 4)
+//#define CTRL_REG1_G_BW_25Hz				(0b01 << 4)
+//#define CTRL_REG1_G_BW_50Hz				(0b10 << 4)
+//#define CTRL_REG1_G_BW_70Hz				(0b11 << 4)
+
 /*---------------------------------------------------------------------------------------------------------------------+
 | global functions' prototypes
 +---------------------------------------------------------------------------------------------------------------------*/

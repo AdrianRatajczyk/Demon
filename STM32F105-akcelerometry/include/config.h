@@ -87,8 +87,8 @@
 #define LSM9DS0_XM_RCC_SPI						RCC_APB1Periph_SPI2
 #define LSM9DS0_G_RCC_SPI						RCC_APB2Periph_SPI1
 
-#define LSM9DS0_SPI_G							SPI1
-#define LSM9DS0_SPI_XM							SPI2
+#define LSM9DS0_SPIx							SPI1
+//#define LSM9DS0_SPI_XM							SPI2
 
 #define LSM9DS0_GPIO_SPEED						GPIO_Speed_50MHz
 
