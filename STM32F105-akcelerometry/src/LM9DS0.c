@@ -35,11 +35,11 @@ static void LSM9DS0_SPI_Init()
 	Struktura_GPIO.GPIO_Mode = LSM9DS0_CS_G_MODE;
 	GPIO_Init(LSM9DS0_CS_G_GPIO, &Struktura_GPIO);
 
-	// MISO_XM pin
-	Struktura_GPIO.GPIO_Speed = LSM9DS0_GPIO_SPEED;
-	Struktura_GPIO.GPIO_Pin = LSM9DS0_XM_MISO_PIN;
-	Struktura_GPIO.GPIO_Mode = LSM9DS0_XM_MISO_MODE;
-	GPIO_Init(LSM9DS0_XM_MISO_GPIO, &Struktura_GPIO);
+//	// MISO_XM pin
+//	Struktura_GPIO.GPIO_Speed = LSM9DS0_GPIO_SPEED;
+//	Struktura_GPIO.GPIO_Pin = LSM9DS0_XM_MISO_PIN;
+//	Struktura_GPIO.GPIO_Mode = LSM9DS0_XM_MISO_MODE;
+//	GPIO_Init(LSM9DS0_XM_MISO_GPIO, &Struktura_GPIO);
 
 	// MISO_G pin
 	Struktura_GPIO.GPIO_Speed = LSM9DS0_GPIO_SPEED;
@@ -76,21 +76,21 @@ static void LSM9DS0_SPI_Init()
 	// Enabling SPI_G
 	SPI_Cmd(LSM9DS0_SPI_G, ENABLE);
 
-	// Configuring SPI_XM
-	RCC_APB1PeriphClockCmd(LSM9DS0_XM_RCC_SPI, ENABLE);
-
-	Struktura_SPI.SPI_BaudRatePrescaler = LSM9DS0_SPI_XM_BAUDRATEPRESCALLER;
-	Struktura_SPI.SPI_CPHA = LSM9DS0_SPI_XM_CPHA;
-	Struktura_SPI.SPI_CPOL = LSM9DS0_SPI_XM_CPOL;
-	Struktura_SPI.SPI_DataSize = LSM9DS0_SPI_XM_DATASIZE;
-	Struktura_SPI.SPI_Direction = LSM9DS0_SPI_XM_DIRECTION;
-	Struktura_SPI.SPI_FirstBit = LSM9DS0_SPI_XM_FIRSTBIT;
-	Struktura_SPI.SPI_Mode = LSM9DS0_SPI_XM_MODE;
-	Struktura_SPI.SPI_NSS = LSM9DS0_SPI_XM_NSS;
-	SPI_Init(LSM9DS0_SPI_XM, &Struktura_SPI);
-
-	// Enabling SPI_XM
-	SPI_Cmd(LSM9DS0_SPI_XM, ENABLE);
+//	// Configuring SPI_XM
+//	RCC_APB1PeriphClockCmd(LSM9DS0_XM_RCC_SPI, ENABLE);
+//
+//	Struktura_SPI.SPI_BaudRatePrescaler = LSM9DS0_SPI_XM_BAUDRATEPRESCALLER;
+//	Struktura_SPI.SPI_CPHA = LSM9DS0_SPI_XM_CPHA;
+//	Struktura_SPI.SPI_CPOL = LSM9DS0_SPI_XM_CPOL;
+//	Struktura_SPI.SPI_DataSize = LSM9DS0_SPI_XM_DATASIZE;
+//	Struktura_SPI.SPI_Direction = LSM9DS0_SPI_XM_DIRECTION;
+//	Struktura_SPI.SPI_FirstBit = LSM9DS0_SPI_XM_FIRSTBIT;
+//	Struktura_SPI.SPI_Mode = LSM9DS0_SPI_XM_MODE;
+//	Struktura_SPI.SPI_NSS = LSM9DS0_SPI_XM_NSS;
+//	SPI_Init(LSM9DS0_SPI_XM, &Struktura_SPI);
+//
+//	// Enabling SPI_XM
+//	SPI_Cmd(LSM9DS0_SPI_XM, ENABLE);
 
 	LSM9DS0_G_SpiStop();
 	LSM9DS0_XM_SpiStop();
@@ -98,14 +98,14 @@ static void LSM9DS0_SPI_Init()
 
 static void LSM9DS0_XM_SpiRead(uint8_t* rx, uint8_t number)
 {
-//	while (number--)
-//	{
-//		SPIx->DR = 255;
-//
-//		while (!SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_RXNE));
-//
-//		*(rx++) = SPIx->DR;
-//	}
+	while (number--)
+	{
+		SPIx->DR = 255;
+
+		while (!SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_RXNE));
+
+		*(rx++) = SPIx->DR;
+	}
 }
 
 static void LSM9DS0_G_SpiRead(uint8_t* rx, uint8_t number)
@@ -168,6 +168,15 @@ void LSM9DS0_Init()
 	LSM9DS0_SpiSend(&tab, 1);
 	LSM9DS0_G_SpiRead(&tab, 1);
 	LSM9DS0_G_SpiStop();
+
+	tab = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_WHO_AM_I_XM;
+
+	LSM9DS0_XM_SpiStart();
+	LSM9DS0_SpiSend(&tab, 1);
+	LSM9DS0_G_SpiRead(&tab, 1);
+	LSM9DS0_XM_SpiStop();
+
+
 }
 
 void LSM9DS0_Read(int16_t *x, int16_t *y, int16_t *z)

@@ -120,7 +120,7 @@
 #define LSM9DS0_SPI_G_MODE                		SPI_Mode_Master
 #define LSM9DS0_SPI_G_DATASIZE        			SPI_DataSize_8b
 #define LSM9DS0_SPI_G_CPOL						SPI_CPOL_High   //SPI_CPOL_Low
-#define LSM9DS0_SPI_G_CPHA        				SPI_CPHA_1Edge  //SPI_CPHA_2Edge
+#define LSM9DS0_SPI_G_CPHA        				SPI_CPHA_2Edge  //SPI_CPHA_1Edge
 #define LSM9DS0_SPI_G_NSS						SPI_NSS_Soft
 #define LSM9DS0_SPI_G_BAUDRATEPRESCALLER   		SPI_BaudRatePrescaler_2
 #define LSM9DS0_SPI_G_FIRSTBIT					SPI_FirstBit_MSB
