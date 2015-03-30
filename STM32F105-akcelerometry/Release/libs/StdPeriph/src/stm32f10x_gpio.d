@@ -1,4 +1,4 @@
-libs/StdPeriph/src/stm32f10x_gpio.d: \
+libs/StdPeriph/src/stm32f10x_gpio.o: \
  ../libs/StdPeriph/src/stm32f10x_gpio.c \
  ../libs/StdPeriph/include/stm32f10x_gpio.h \
  ../libs/CMSIS/include/stm32f10x.h ../libs/CMSIS/include/core_cm3.h \

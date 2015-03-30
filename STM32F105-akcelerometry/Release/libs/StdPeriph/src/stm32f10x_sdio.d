@@ -1,4 +1,4 @@
-libs/StdPeriph/src/stm32f10x_sdio.d: \
+libs/StdPeriph/src/stm32f10x_sdio.o: \
  ../libs/StdPeriph/src/stm32f10x_sdio.c \
  ../libs/StdPeriph/include/stm32f10x_sdio.h \
  ../libs/CMSIS/include/stm32f10x.h ../libs/CMSIS/include/core_cm3.h \

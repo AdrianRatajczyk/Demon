@@ -85,17 +85,17 @@ void Periph_Initialize()
 {
 	//SPI_Initialize(LSM9DS0_SPI_CPOL, LSM9DS0_SPI_CPHA);
 
-	//MMA9551L_SpiInit();
+	MMA9551L_SpiInit();
 
-	//MMA9551L_CheckVersion();
+	MMA9551L_CheckVersion();
 
-	LSM9DS0_Init();
+	//LSM9DS0_Init();
 
 	//ADXL343_Init();
 
 	//LIS3DH_Init();
 
-	UART_Initialize();
+	//UART_Initialize();
 }
 
 

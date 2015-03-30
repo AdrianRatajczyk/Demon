@@ -1,4 +1,4 @@
-libs/StdPeriph/src/stm32f10x_dbgmcu.d: \
+libs/StdPeriph/src/stm32f10x_dbgmcu.o: \
  ../libs/StdPeriph/src/stm32f10x_dbgmcu.c \
  ../libs/StdPeriph/include/stm32f10x_dbgmcu.h \
  ../libs/CMSIS/include/stm32f10x.h ../libs/CMSIS/include/core_cm3.h \

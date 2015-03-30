@@ -1,1 +1,1 @@
-libs/misc/src/_sbrk.d: ../libs/misc/src/_sbrk.c
+libs/misc/src/_sbrk.o: ../libs/misc/src/_sbrk.c

@@ -1,4 +1,4 @@
-libs/StdPeriph/src/stm32f10x_spi.d: ../libs/StdPeriph/src/stm32f10x_spi.c \
+libs/StdPeriph/src/stm32f10x_spi.o: ../libs/StdPeriph/src/stm32f10x_spi.c \
  ../libs/StdPeriph/include/stm32f10x_spi.h \
  ../libs/CMSIS/include/stm32f10x.h ../libs/CMSIS/include/core_cm3.h \
  ../libs/CMSIS/include/system_stm32f10x.h ../include/stm32f10x_conf.h \

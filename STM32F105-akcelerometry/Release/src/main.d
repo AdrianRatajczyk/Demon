@@ -1,4 +1,4 @@
-src/main.d: ../src/main.c ../libs/CMSIS/include/stm32f10x.h \
+src/main.o: ../src/main.c ../libs/CMSIS/include/stm32f10x.h \
  ../libs/CMSIS/include/core_cm3.h \
  ../libs/CMSIS/include/system_stm32f10x.h ../include/stm32f10x_conf.h \
  ../libs/StdPeriph/include/stm32f10x_adc.h \
@@ -24,7 +24,8 @@ src/main.d: ../src/main.c ../libs/CMSIS/include/stm32f10x.h \
  ../libs/StdPeriph/include/stm32f10x_usart.h \
  ../libs/StdPeriph/include/stm32f10x_wwdg.h \
  ../libs/StdPeriph/include/misc.h ../include/ADXL343.h ../include/spi.h \
- ../include/config.h
+ ../include/config.h ../include/uart.h ../include/pomiar.h \
+ ../include/LSM9DS0.h ../include/MMA9551L.h
 
 ../libs/CMSIS/include/stm32f10x.h:
 
@@ -85,3 +86,11 @@ src/main.d: ../src/main.c ../libs/CMSIS/include/stm32f10x.h \
 ../include/spi.h:
 
 ../include/config.h:
+
+../include/uart.h:
+
+../include/pomiar.h:
+
+../include/LSM9DS0.h:
+
+../include/MMA9551L.h:

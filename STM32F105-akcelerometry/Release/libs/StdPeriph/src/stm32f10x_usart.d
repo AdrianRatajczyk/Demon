@@ -1,4 +1,4 @@
-libs/StdPeriph/src/stm32f10x_usart.d: \
+libs/StdPeriph/src/stm32f10x_usart.o: \
  ../libs/StdPeriph/src/stm32f10x_usart.c \
  ../libs/StdPeriph/include/stm32f10x_usart.h \
  ../libs/CMSIS/include/stm32f10x.h ../libs/CMSIS/include/core_cm3.h \
