@@ -122,7 +122,7 @@
 #define LSM9DS0_SPI_G_CPOL						SPI_CPOL_High   //SPI_CPOL_Low
 #define LSM9DS0_SPI_G_CPHA        				SPI_CPHA_2Edge  //SPI_CPHA_1Edge
 #define LSM9DS0_SPI_G_NSS						SPI_NSS_Soft
-#define LSM9DS0_SPI_G_BAUDRATEPRESCALLER   		SPI_BaudRatePrescaler_2
+#define LSM9DS0_SPI_G_BAUDRATEPRESCALLER   		SPI_BaudRatePrescaler_16 // can't be faster becouse of problems with reading from device
 #define LSM9DS0_SPI_G_FIRSTBIT					SPI_FirstBit_MSB
 
 #define LSM9DS0_SPI_XM_DIRECTION				SPI_Direction_2Lines_FullDuplex

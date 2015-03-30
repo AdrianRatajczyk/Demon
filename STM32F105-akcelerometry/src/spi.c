@@ -3,7 +3,7 @@
 #include "config.h"
 #include "spi.h"
 
-void SPI_Initialize()
+void SPI_Initialize(enum spi_CPOL cpol, enum spi_CPHA cpha)
 {
 	// Configuring GPIO
 
@@ -37,13 +37,12 @@ void SPI_Initialize()
 
 
 	// Configuring SPI
-
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
 
 	SPI_InitTypeDef Struktura_SPI;
 	Struktura_SPI.SPI_BaudRatePrescaler=SPIx_BAUDRATEPRESCALLER;
-	Struktura_SPI.SPI_CPHA=SPIx_CPHA;
-	Struktura_SPI.SPI_CPOL=SPIx_CPOL;
+	Struktura_SPI.SPI_CPHA=cpha;
+	Struktura_SPI.SPI_CPOL=cpol;
 	Struktura_SPI.SPI_DataSize=SPIx_DATASIZE;
 	Struktura_SPI.SPI_Direction=SPIx_DIRECTION;
 	Struktura_SPI.SPI_FirstBit=SPIx_FIRSTBIT;
@@ -55,6 +54,17 @@ void SPI_Initialize()
 	SPI_Cmd(SPIx, ENABLE);
 
 	SPI_StopTransmission();
+}
+
+void SPI_Init_CS()
+{
+	GPIO_InitTypeDef Struktura_GPIO;
+
+	// NSS PIN
+	Struktura_GPIO.GPIO_Speed = SPIx_GPIO_SPEED;
+	Struktura_GPIO.GPIO_Pin = SPIx_NSS_PIN;
+	Struktura_GPIO.GPIO_Mode = SPIx_NSS_MODE;
+	GPIO_Init(SPIx_GPIO, &Struktura_GPIO);
 }
 
 void SPI_StartTransmission()

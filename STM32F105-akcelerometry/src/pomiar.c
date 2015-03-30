@@ -58,18 +58,18 @@ void pomiar()
 	}
 }
 
-void SysTick_Handler(void)
-{
-	//TimingDelay_Decrement();
-	if(pomiar_w_toku)
-	{
-		czas++;
-		if(czas>czas_pomiaru)
-		{
-			pomiar_w_toku=0;
-		}
-	}
-}
+//void SysTick_Handler(void)
+//{
+//	//TimingDelay_Decrement();
+//	if(pomiar_w_toku)
+//	{
+//		czas++;
+//		if(czas>czas_pomiaru)
+//		{
+//			pomiar_w_toku=0;
+//		}
+//	}
+//}
 
 void USART2_IRQHandler(void)
 {

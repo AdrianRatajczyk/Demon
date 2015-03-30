@@ -8,6 +8,7 @@
 #include "uart.h"
 #include "pomiar.h"
 #include "LSM9DS0.h"
+#include "MMA9551L.h"
 
 /*---------------------------------------------------------------------------------------------------------------------+
 | global functions' prototypes
@@ -16,11 +17,12 @@
 void Periph_Initialize();
 
 void konf_zegary();
-/*static void Delay(__IO uint32_t nTime);
 
-static void TimingDelay_Decrement(void);
-
-void SysTick_Handler(void);*/
+//static void Delay(__IO uint32_t nTime);
+//
+//static void TimingDelay_Decrement(void);
+//
+//void SysTick_Handler(void);
 
 //volatile char buf[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
@@ -34,11 +36,11 @@ int main(void)
    * system_stm32f10x.c file
    */
 
-	konf_zegary();
+	//konf_zegary();
 
 	/* Use SysTick as reference for the timer */
 	//SysTick_Config(SystemCoreClock / SYSTICK_FREQUENCY_HZ);
-	SysTick_Config(8000);
+	//SysTick_Config(72000);
 
 	Periph_Initialize();
 
@@ -71,7 +73,9 @@ int main(void)
 
 		UART_Send_CRLF();
 
-		for(i=0;i<10000;i++);
+		for(i=0;i<1000000;i++);
+
+		//Delay(995);
 	}
 }
 
@@ -79,7 +83,11 @@ int main(void)
 
 void Periph_Initialize()
 {
-	//SPI_Initialize();
+	//SPI_Initialize(LSM9DS0_SPI_CPOL, LSM9DS0_SPI_CPHA);
+
+	//MMA9551L_SpiInit();
+
+	//MMA9551L_CheckVersion();
 
 	LSM9DS0_Init();
 
@@ -98,26 +106,26 @@ void Periph_Initialize()
  * @param  nTime: specifies the delay time length, in SysTick ticks.
  * @retval None
  */
-/*void Delay(__IO uint32_t nTime)
-{
-  uwTimingDelay = nTime;
-
-  while (uwTimingDelay != 0)
-    ;
-}*/
+//void Delay(__IO uint32_t nTime)
+//{
+//  uwTimingDelay = nTime;
+//
+//  while (uwTimingDelay != 0)
+//    ;
+//}
 
 /**
  * @brief  Decrements the TimingDelay variable.
  * @param  None
  * @retval None
  */
-/*void TimingDelay_Decrement(void)
-{
-  if (uwTimingDelay != 0x00)
-    {
-      uwTimingDelay--;
-    }
-}*/
+//void TimingDelay_Decrement(void)
+//{
+//  if (uwTimingDelay != 0x00)
+//    {
+//      uwTimingDelay--;
+//    }
+//}
 
 // ----------------------------------------------------------------------------
 
@@ -126,10 +134,10 @@ void Periph_Initialize()
  * @param  None
  * @retval None
  */
-/*void SysTick_Handler(void)
-{
-  TimingDelay_Decrement();
-}*/
+//void SysTick_Handler(void)
+//{
+//  TimingDelay_Decrement();
+//}
 
 void konf_zegary(void)
 {
