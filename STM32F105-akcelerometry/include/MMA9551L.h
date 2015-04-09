@@ -12,8 +12,8 @@
 | SPI settings
 +---------------------------------------------------------------------------------------------------------------------*/
 
-#define MMA9551L_SPI_CPOL							SPI_CPOL_High
-#define MMA9551L_SPI_CPHA							SPI_CPHA_2Edge
+#define MMA9551L_SPI_CPOL							SPI_CPOL_Low
+#define MMA9551L_SPI_CPHA							SPI_CPHA_1Edge
 
 
 /*---------------------------------------------------------------------------------------------------------------------+
@@ -47,6 +47,8 @@ void MMA9551L_SpiInit();
 
 void MMA9551L_CheckVersion();
 
+void MMA9551L_WakeUp();
+
 /*---------------------------------------------------------------------------------------------------------------------+
 | private functions' prototypes
 +---------------------------------------------------------------------------------------------------------------------*/
@@ -58,6 +60,10 @@ void MMA9551L_SpiSend(uint8_t* tx, uint8_t number);
 void MMA9551L_SpiStart();
 
 void MMA9551L_SpiStop();
+
+void MMA9551L_ResetB_Low();
+
+void MMA9551L_ResetB_High();
 
 
 

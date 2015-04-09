@@ -35,7 +35,7 @@
 #define SPIx_CPOL						SPI_CPOL_High   //SPI_CPOL_Low
 #define SPIx_CPHA        				SPI_CPHA_2Edge  //SPI_CPHA_1Edge
 #define SPIx_NSS						SPI_NSS_Soft
-#define SPIx_BAUDRATEPRESCALLER   		SPI_BaudRatePrescaler_2
+#define SPIx_BAUDRATEPRESCALLER   		SPI_BaudRatePrescaler_16
 #define SPIx_FIRSTBIT					SPI_FirstBit_MSB
 
 /*---------------------------------------------------------------------------------------------------------------------+
@@ -134,5 +134,13 @@
 #define LSM9DS0_SPI_XM_BAUDRATEPRESCALLER   	SPI_BaudRatePrescaler_2
 #define LSM9DS0_SPI_XM_FIRSTBIT					SPI_FirstBit_MSB
 
+/*---------------------------------------------------------------------------------------------------------------------+
+| MMA9551L
++---------------------------------------------------------------------------------------------------------------------*/
+
+#define MMA9551L_RESETB_GPIO					GPIOC
+#define MMA9551L_RESETB_PIN						GPIO_Pin_1
+#define MMA9551L_RESETB_MODE					GPIO_Mode_Out_PP
+#define MMA9551L_GPIO_SPEED						GPIO_Speed_50MHz
 
 #endif /* CONFIG_H_ */

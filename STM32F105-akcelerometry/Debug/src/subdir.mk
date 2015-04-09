@@ -9,6 +9,7 @@ C_SRCS += \
 ../src/LM9DS0.c \
 ../src/MMA9551L.c \
 ../src/main.c \
+../src/mma955x_drv.c \
 ../src/pomiar.c \
 ../src/spi.c \
 ../src/uart.c 
@@ -19,6 +20,7 @@ OBJS += \
 ./src/LM9DS0.o \
 ./src/MMA9551L.o \
 ./src/main.o \
+./src/mma955x_drv.o \
 ./src/pomiar.o \
 ./src/spi.o \
 ./src/uart.o 
@@ -29,6 +31,7 @@ C_DEPS += \
 ./src/LM9DS0.d \
 ./src/MMA9551L.d \
 ./src/main.d \
+./src/mma955x_drv.d \
 ./src/pomiar.d \
 ./src/spi.d \
 ./src/uart.d 

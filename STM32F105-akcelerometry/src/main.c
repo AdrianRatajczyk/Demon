@@ -18,11 +18,11 @@ void Periph_Initialize();
 
 void konf_zegary();
 
-//static void Delay(__IO uint32_t nTime);
-//
-//static void TimingDelay_Decrement(void);
-//
-//void SysTick_Handler(void);
+void Delay(__IO uint32_t nTime);
+
+static void TimingDelay_Decrement(void);
+
+void SysTick_Handler(void);
 
 //volatile char buf[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
@@ -39,7 +39,7 @@ int main(void)
 	//konf_zegary();
 
 	/* Use SysTick as reference for the timer */
-	//SysTick_Config(SystemCoreClock / SYSTICK_FREQUENCY_HZ);
+	SysTick_Config(SystemCoreClock / SYSTICK_FREQUENCY_HZ);
 	//SysTick_Config(72000);
 
 	Periph_Initialize();
@@ -58,22 +58,24 @@ int main(void)
 	{
 		//LSM9DS0_Gyro_Read(&x, &y, &z);
 		//LSM9DS0_Acc_Read(&x, &y, &z);
-		LSM9DS0_Magn_Read(&x, &y, &z);
+		//LSM9DS0_Magn_Read(&x, &y, &z);
 		//ADXL343_Read(&x, &y, &z);
 
 		//LIS3DH_Read(&x, &y, &z);
 
 		//USART_SendData(USARTx, 65);
 
-		UART_Send_int16(x, buf, 6);
+//		UART_Send_int16(x, buf, 6);
+//
+//		UART_Send_int16(y, buf, 6);
+//
+//		UART_Send_int16(z, buf, 6);
+//
+//		UART_Send_CRLF();
+//
+//		for(i=0;i<1000000;i++);
 
-		UART_Send_int16(y, buf, 6);
-
-		UART_Send_int16(z, buf, 6);
-
-		UART_Send_CRLF();
-
-		for(i=0;i<1000000;i++);
+		MMA9551L_CheckVersion();
 
 		//Delay(995);
 	}
@@ -87,6 +89,8 @@ void Periph_Initialize()
 
 	MMA9551L_SpiInit();
 
+	MMA9551L_WakeUp();
+
 	MMA9551L_CheckVersion();
 
 	//LSM9DS0_Init();
@@ -99,33 +103,33 @@ void Periph_Initialize()
 }
 
 
-//static __IO uint32_t uwTimingDelay;
+static __IO uint32_t uwTimingDelay;
 
 /**
  * @brief  Inserts a delay time.
  * @param  nTime: specifies the delay time length, in SysTick ticks.
  * @retval None
  */
-//void Delay(__IO uint32_t nTime)
-//{
-//  uwTimingDelay = nTime;
-//
-//  while (uwTimingDelay != 0)
-//    ;
-//}
+void Delay(__IO uint32_t nTime)
+{
+  uwTimingDelay = nTime;
+
+  while (uwTimingDelay != 0)
+    ;
+}
 
 /**
  * @brief  Decrements the TimingDelay variable.
  * @param  None
  * @retval None
  */
-//void TimingDelay_Decrement(void)
-//{
-//  if (uwTimingDelay != 0x00)
-//    {
-//      uwTimingDelay--;
-//    }
-//}
+void TimingDelay_Decrement(void)
+{
+  if (uwTimingDelay != 0x00)
+    {
+      uwTimingDelay--;
+    }
+}
 
 // ----------------------------------------------------------------------------
 
@@ -134,10 +138,10 @@ void Periph_Initialize()
  * @param  None
  * @retval None
  */
-//void SysTick_Handler(void)
-//{
-//  TimingDelay_Decrement();
-//}
+void SysTick_Handler(void)
+{
+  TimingDelay_Decrement();
+}
 
 void konf_zegary(void)
 {
