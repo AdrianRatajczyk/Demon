@@ -32,20 +32,29 @@ void pomiar()
 
 	while(1)
 	{
-		if(pomiar_w_toku)
+		if(1/*pomiar_w_toku*/)
 		{
 			UART_Send_int16((int16_t)czas, buf, 5);
-			//UART_Send_char(',');
 
-			ADXL343_Read(&x, &y, &z);
+			#if defined(ADXL343)
+				ADXL343_Read(&x, &y, &z);
+			#else
+				LIS3DH_Read(&x, &y, &z);
+			#endif
 
-			UART_Send_int16(x, buf, 4);
-			//UART_Send_char(',');
+			UART_Send_int16(x, buf, 7);
 
-			UART_Send_int16(y, buf, 4);
-			//UART_Send_char(',');
+			UART_Send_int16(y, buf, 7);
 
-			UART_Send_int16(z, buf, 4);
+			UART_Send_int16(z, buf, 7);
+
+			LSM9DS0_Acc_Read(&x, &y, &z);
+
+			UART_Send_int16(x, buf, 7);
+
+			UART_Send_int16(y, buf, 7);
+
+			UART_Send_int16(z, buf, 7);
 
 			UART_Send_CRLF();
 		}

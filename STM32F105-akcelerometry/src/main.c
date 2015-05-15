@@ -52,32 +52,11 @@ int main(void)
 
 	char buf[20];
 
-	//pomiar();
+	pomiar();
 
 	while (1)
 	{
-		//LSM9DS0_Gyro_Read(&x, &y, &z);
-		//LSM9DS0_Acc_Read(&x, &y, &z);
-		//LSM9DS0_Magn_Read(&x, &y, &z);
-		//ADXL343_Read(&x, &y, &z);
 
-		//LIS3DH_Read(&x, &y, &z);
-
-		//USART_SendData(USARTx, 65);
-
-//		UART_Send_int16(x, buf, 6);
-//
-//		UART_Send_int16(y, buf, 6);
-//
-//		UART_Send_int16(z, buf, 6);
-//
-//		UART_Send_CRLF();
-//
-//		for(i=0;i<1000000;i++);
-
-		MMA9551L_CheckVersion();
-
-		//Delay(995);
 	}
 }
 
@@ -85,21 +64,16 @@ int main(void)
 
 void Periph_Initialize()
 {
-	//SPI_Initialize(LSM9DS0_SPI_CPOL, LSM9DS0_SPI_CPHA);
+	SPI_Initialize(LSM9DS0_SPI_CPOL, LSM9DS0_SPI_CPHA);
 
-	MMA9551L_SpiInit();
+	LSM9DS0_Init();
 
-	MMA9551L_WakeUp();
-
-	MMA9551L_CheckVersion();
-
-	//LSM9DS0_Init();
-
-	//ADXL343_Init();
-
-	//LIS3DH_Init();
-
-	//UART_Initialize();
+	#if defined(ADXL343)
+		ADXL343_Init();
+	#else
+		LIS3DH_Init();
+	#endif
+	UART_Initialize();
 }
 
 
