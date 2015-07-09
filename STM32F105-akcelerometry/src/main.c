@@ -9,6 +9,8 @@
 #include "pomiar.h"
 #include "LSM9DS0.h"
 #include "MMA9551L.h"
+#include "defines.h"
+#include "LIS3DH.h"
 
 /*---------------------------------------------------------------------------------------------------------------------+
 | global functions' prototypes
@@ -70,9 +72,12 @@ void Periph_Initialize()
 
 	#if defined(ADXL343)
 		ADXL343_Init();
+	#elif defined(LSM9DS0)
+		LSM9DS0_Init();
 	#else
 		LIS3DH_Init();
 	#endif
+
 	UART_Initialize();
 }
 
@@ -112,10 +117,10 @@ void TimingDelay_Decrement(void)
  * @param  None
  * @retval None
  */
-void SysTick_Handler(void)
-{
-  TimingDelay_Decrement();
-}
+//void SysTick_Handler(void)
+//{
+//  TimingDelay_Decrement();
+//}
 
 void konf_zegary(void)
 {

@@ -21,4 +21,6 @@ void moj_sprintf(char *wsk, float liczba, uint8_t d, uint8_t p);
 
 void sprintf_int(char* ptr, int16_t number, uint8_t d);
 
+void UART_Send_hex(uint8_t byte);
+
 #endif /* UART_H_ */

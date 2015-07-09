@@ -25,7 +25,8 @@ src/main.o: ../src/main.c ../libs/CMSIS/include/stm32f10x.h \
  ../libs/StdPeriph/include/stm32f10x_wwdg.h \
  ../libs/StdPeriph/include/misc.h ../include/ADXL343.h ../include/spi.h \
  ../include/config.h ../include/uart.h ../include/pomiar.h \
- ../include/LSM9DS0.h ../include/MMA9551L.h
+ ../include/LSM9DS0.h ../include/MMA9551L.h ../include/defines.h \
+ ../include/LIS3DH.h
 
 ../libs/CMSIS/include/stm32f10x.h:
 
@@ -94,3 +95,7 @@ src/main.o: ../src/main.c ../libs/CMSIS/include/stm32f10x.h \
 ../include/LSM9DS0.h:
 
 ../include/MMA9551L.h:
+
+../include/defines.h:
+
+../include/LIS3DH.h:

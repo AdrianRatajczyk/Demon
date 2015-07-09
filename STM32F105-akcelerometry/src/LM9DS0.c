@@ -152,8 +152,9 @@ static void LSM9DS0_G_SpiStop()
 
 void LSM9DS0_Init()
 {
-	LSM9DS0_SPI_Init();
+	int i;
 
+	LSM9DS0_SPI_Init();
 
 	uint8_t tab[2];
 	tab[0] = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_WHO_AM_I_G;
@@ -163,12 +164,16 @@ void LSM9DS0_Init()
 	LSM9DS0_SpiRead(tab, 1);
 	LSM9DS0_G_SpiStop();
 
+	for(i=0;i<10000;i++){};
+
 	tab[0] = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_WHO_AM_I_XM;
 
 	LSM9DS0_XM_SpiStart();
 	LSM9DS0_SpiSend(tab, 1);
 	LSM9DS0_SpiRead(tab, 1);
 	LSM9DS0_XM_SpiStop();
+
+	for(i=0;i<10000;i++){};
 
 	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG1_G;
 	tab[1] = LSM9DS0_CTRL_REG1_G_Yen | LSM9DS0_CTRL_REG1_G_Xen | LSM9DS0_CTRL_REG1_G_Zen | LSM9DS0_CTRL_REG1_G_PD;
@@ -177,6 +182,8 @@ void LSM9DS0_Init()
 	LSM9DS0_SpiSend(tab, 2);
 	LSM9DS0_G_SpiStop();
 
+	for(i=0;i<10000;i++){};
+
 	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG1_XM;
 	tab[1] = LSM9DS0_CTRL_REG1_XM_AXEN | LSM9DS0_CTRL_REG1_XM_AYEN | LSM9DS0_CTRL_REG1_XM_AZEN | LSM9DS0_CTRL_REG1_XM_AODR_400Hz;
 
@@ -184,11 +191,7 @@ void LSM9DS0_Init()
 	LSM9DS0_SpiSend(tab, 2);
 	LSM9DS0_XM_SpiStop();
 
-
-
-
-
-
+	for(i=0;i<10000;i++){};
 
 	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG5_XM;
 	tab[1] = (1 << 4); // Output data rate for magnetometer 50Hz
@@ -197,17 +200,15 @@ void LSM9DS0_Init()
 	LSM9DS0_SpiSend(tab, 2);
 	LSM9DS0_XM_SpiStop();
 
+	for(i=0;i<10000;i++){};
+
 	tab[0] = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG5_XM;
 	LSM9DS0_XM_SpiStart();
 	LSM9DS0_SpiSend(tab, 1);
 	LSM9DS0_SpiRead(tab, 1);
 	LSM9DS0_XM_SpiStop();
 
-
-
-
-
-
+	for(i=0;i<10000;i++){};
 
 	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG6_XM;
 	tab[1] = (1 << 5); // Sensitivity for magnetometer +-4Gauss
@@ -216,14 +217,15 @@ void LSM9DS0_Init()
 	LSM9DS0_SpiSend(tab, 2);
 	LSM9DS0_XM_SpiStop();
 
+	for(i=0;i<10000;i++){};
+
 	tab[0] = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG6_XM;
 	LSM9DS0_XM_SpiStart();
 	LSM9DS0_SpiSend(tab, 1);
 	LSM9DS0_SpiRead(tab, 1);
 	LSM9DS0_XM_SpiStop();
 
-
-
+	for(i=0;i<10000;i++){};
 
 	tab[0] = LSM9DS0_WRITE | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG7_XM;
 	tab[1] = 0;    // Magnetometer in Continous-conversion mode
@@ -231,6 +233,8 @@ void LSM9DS0_Init()
 	LSM9DS0_XM_SpiStart();
 	LSM9DS0_SpiSend(tab, 2);
 	LSM9DS0_XM_SpiStop();
+
+	for(i=0;i<10000;i++){};
 
 	tab[0] = LSM9DS0_READ | LSM9DS0_SINGLE_BYTE | LSM9DS0_CTRL_REG7_XM;
 	LSM9DS0_XM_SpiStart();

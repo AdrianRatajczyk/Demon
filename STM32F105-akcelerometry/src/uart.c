@@ -59,6 +59,17 @@ void UART_Send_int16(int16_t tx, char* buf, uint8_t d)
 	}
 }
 
+void UART_Send_int16_raw(int16_t tx)
+{
+	uint8_t MSB, LSB;
+
+	LSB = tx & 0xFF;
+	MSB = tx >> 8;
+
+	UART_Send_char(LSB);
+	UART_Send_char(MSB);
+}
+
 void UART_Send_char(char tx)
 {
 	USART_SendData(USARTx,tx);
@@ -202,6 +213,27 @@ void sprintf_int(char* ptr, int16_t number, uint8_t d)
 		ptr++;
 		i++;
 	}
+}
+
+void UART_Send_hex(uint8_t byte)
+{
+	uint8_t second = (byte%16);
+	uint8_t first = (byte/16);
+
+	if (first > 9) {
+		first += 55;
+	} else {
+		first += 48;
+	}
+
+	if (second > 9) {
+		second += 55;
+	} else {
+		second += 48;
+	}
+
+	UART_Send_char(first);
+	UART_Send_char(second);
 }
 
 
