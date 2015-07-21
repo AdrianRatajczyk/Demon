@@ -11,6 +11,7 @@
 #include "MMA9551L.h"
 #include "defines.h"
 #include "LIS3DH.h"
+#include "fifo.h"
 
 /*---------------------------------------------------------------------------------------------------------------------+
 | global functions' prototypes
@@ -52,13 +53,37 @@ int main(void)
 
 	uint32_t i;
 
+	uint8_t a = 1;
+	uint8_t b = 2;
+	uint8_t c = 3;
+
+	unsigned int l=0;
+
 	char buf[20];
+
+	Queue * kolejka = createQueue();
+
+	kolejka->add(&a, 1, kolejka);
+	kolejka->add(&b, 1, kolejka);
+	kolejka->add(&c, 1, kolejka);
+
+	Element e1;
+	Element e2;
+	Element e3;
+
+	l=kolejka->getLength(kolejka);
+
+	e1 = kolejka->get(kolejka);
+	e2 = kolejka->get(kolejka);
+	e3 = kolejka->get(kolejka);
+
+	l=kolejka->getLength(kolejka);
 
 	pomiar();
 
 	while (1)
 	{
-
+		UART_Send_char(65);
 	}
 }
 

@@ -22,7 +22,8 @@ src/spi.o: ../src/spi.c ../libs/StdPeriph/include/stm32f10x_spi.h \
  ../libs/StdPeriph/include/stm32f10x_tim.h \
  ../libs/StdPeriph/include/stm32f10x_usart.h \
  ../libs/StdPeriph/include/stm32f10x_wwdg.h \
- ../libs/StdPeriph/include/misc.h ../include/config.h ../include/spi.h
+ ../libs/StdPeriph/include/misc.h ../include/config.h \
+ ../include/defines.h ../include/spi.h
 
 ../libs/StdPeriph/include/stm32f10x_spi.h:
 
@@ -79,5 +80,7 @@ src/spi.o: ../src/spi.c ../libs/StdPeriph/include/stm32f10x_spi.h \
 ../libs/StdPeriph/include/misc.h:
 
 ../include/config.h:
+
+../include/defines.h:
 
 ../include/spi.h:

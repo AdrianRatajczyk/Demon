@@ -2,6 +2,7 @@
 #define CONFIG_H_
 
 #include "stm32f10x_rcc.h"
+#include "defines.h"
 
 /*---------------------------------------------------------------------------------------------------------------------+
 | Systick
@@ -49,16 +50,28 @@
 | USART
 +---------------------------------------------------------------------------------------------------------------------*/
 
-#define USARTx									USART2
+#if defined(NOWA_PLYTKA)
+	#define USARTx								USART1
+	#define USARTx_TX_PIN						GPIO_Pin_9
+	#define USARTx_RX_PIN						GPIO_Pin_10
+	#define USARTx_NVIC_IRQCHannel				USART1_IRQn
+	#define USARTx_IRQHandler                   USART1_IRQHandler
+#else
+	#define USARTx								USART2
+	#define USARTx_TX_PIN						GPIO_Pin_2
+	#define USARTx_RX_PIN						GPIO_Pin_3
+	#define USARTx_NVIC_IRQCHannel				USART2_IRQn
+	#define USARTx_IRQHandler                   USART2_IRQHandler
+#endif
+
+
 
 #define USARTx_RCC_GPIO							RCC_APB2Periph_GPIOA
 
 #define USARTx_GPIO								GPIOA
 #define USARTx_GPIO_SPEED						GPIO_Speed_50MHz
 
-#define USARTx_TX_PIN							GPIO_Pin_2
 #define USARTx_TX_MODE							GPIO_Mode_AF_PP
-#define USARTx_RX_PIN							GPIO_Pin_3
 #define USARTx_RX_MODE							GPIO_Mode_AF_PP
 
 #define USARTx_BAUDRATE           	 			115200
@@ -70,7 +83,6 @@
 
 #define USARTx_IT								USART_IT_RXNE
 
-#define USARTx_NVIC_IRQCHannel						USART2_IRQn
 #define USARTx_NVIC_IRQChannelPreemptionPriority	1
 #define USARTx_NVIC_IRQChannelSubPriority			1
 #define USARTx_NVIC_IRQChannelCmd					ENABLE

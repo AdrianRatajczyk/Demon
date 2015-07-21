@@ -8,6 +8,8 @@ C_SRCS += \
 ../src/LIS3DH.c \
 ../src/LM9DS0.c \
 ../src/MMA9551L.c \
+../src/fifo.c \
+../src/fifo2.c \
 ../src/main.c \
 ../src/pomiar.c \
 ../src/spi.c \
@@ -18,6 +20,8 @@ OBJS += \
 ./src/LIS3DH.o \
 ./src/LM9DS0.o \
 ./src/MMA9551L.o \
+./src/fifo.o \
+./src/fifo2.o \
 ./src/main.o \
 ./src/pomiar.o \
 ./src/spi.o \
@@ -28,6 +32,8 @@ C_DEPS += \
 ./src/LIS3DH.d \
 ./src/LM9DS0.d \
 ./src/MMA9551L.d \
+./src/fifo.d \
+./src/fifo2.d \
 ./src/main.d \
 ./src/pomiar.d \
 ./src/spi.d \

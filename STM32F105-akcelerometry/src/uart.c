@@ -2,6 +2,7 @@
 #include "config.h"
 #include "uart.h"
 #include "stm32f10x_usart.h"
+#include "defines.h"
 
 void UART_Initialize()
 {
@@ -23,7 +24,11 @@ void UART_Initialize()
 	GPIO_Init(USARTx_GPIO, &Struktura_GPIO);
 
 	// Configuring USART
+#if defined(NOWA_PLYTKA)
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+#else
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
+#endif
 
 	USART_InitTypeDef Struktura_USART;
 
@@ -46,6 +51,21 @@ void UART_Initialize()
 	Struktura_NVIC.NVIC_IRQChannelPreemptionPriority=USARTx_NVIC_IRQChannelPreemptionPriority;
 	Struktura_NVIC.NVIC_IRQChannelSubPriority=USARTx_NVIC_IRQChannelSubPriority;
 	NVIC_Init(&Struktura_NVIC);
+
+	#if defined(DMA_TRANSMISSION)
+	// Configuring UART for DMA transmission
+	USARTx->CR3 |= USART_CR3_DMAT;
+
+	// Configuring interrupt for DMA
+	Struktura_NVIC.NVIC_IRQChannel=DMA1_Channel7_IRQn;
+	Struktura_NVIC.NVIC_IRQChannelCmd=ENABLE;
+	Struktura_NVIC.NVIC_IRQChannelPreemptionPriority=1;
+	Struktura_NVIC.NVIC_IRQChannelSubPriority=2;
+	NVIC_Init(&Struktura_NVIC);
+
+	// Configuring DMA for transmission
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+	#endif
 }
 
 void UART_Send_int16(int16_t tx, char* buf, uint8_t d)
@@ -215,7 +235,7 @@ void sprintf_int(char* ptr, int16_t number, uint8_t d)
 	}
 }
 
-void UART_Send_hex(uint8_t byte)
+void UART_Send_byte_in_asciiHex(uint8_t byte)
 {
 	uint8_t second = (byte%16);
 	uint8_t first = (byte/16);
@@ -234,6 +254,12 @@ void UART_Send_hex(uint8_t byte)
 
 	UART_Send_char(first);
 	UART_Send_char(second);
+}
+
+void UART_send_halfWord_in_asciiHex(int16_t halfWord)
+{
+	UART_Send_byte_in_asciiHex((uint8_t)(halfWord >> 8));
+	UART_Send_byte_in_asciiHex((uint8_t)(halfWord & 0xFF));
 }
 
 

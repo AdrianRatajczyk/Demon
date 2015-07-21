@@ -1,0 +1,20 @@
+#ifndef DEFINES_H_
+#define DEFINES_H_
+
+//#define ADXL343
+//#define LSM9DS0
+
+//#define UART_RAW
+
+//#define UART_HEX_ASCII
+
+#define NOWA_PLYTKA
+
+#define DMA_TRANSMISSION
+
+#define BUFOR_SIZE			3600
+#define BUFOR_LINE_LENGTH	18
+#define BUFOR_LINES_NUMBER	50
+#define BUFOR_FRAME_LENGTH  (BUFOR_LINE_LENGTH * BUFOR_LINES_NUMBER)
+
+#endif /* DEFINES_H_ */
