@@ -52,7 +52,7 @@ void UART_Initialize()
 	Struktura_NVIC.NVIC_IRQChannelSubPriority=USARTx_NVIC_IRQChannelSubPriority;
 	NVIC_Init(&Struktura_NVIC);
 
-	#if defined(DMA_TRANSMISSION)
+#if defined(DMA_TRANSMISSION)
 	// Configuring UART for DMA transmission
 	USARTx->CR3 |= USART_CR3_DMAT;
 
@@ -65,7 +65,7 @@ void UART_Initialize()
 
 	// Configuring DMA for transmission
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
-	#endif
+#endif
 }
 
 void UART_Send_int16(int16_t tx, char* buf, uint8_t d)

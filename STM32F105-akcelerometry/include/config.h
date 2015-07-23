@@ -74,7 +74,7 @@
 #define USARTx_TX_MODE							GPIO_Mode_AF_PP
 #define USARTx_RX_MODE							GPIO_Mode_AF_PP
 
-#define USARTx_BAUDRATE           	 			115200
+#define USARTx_BAUDRATE           	 			9600//115200
 #define USARTx_WORDLENGTH         				USART_WordLength_8b
 #define USARTx_STOPBITS           				USART_StopBits_1
 #define USARTx_PARITY           				USART_Parity_No

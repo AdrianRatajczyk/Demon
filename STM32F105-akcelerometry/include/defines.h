@@ -8,7 +8,7 @@
 
 //#define UART_HEX_ASCII
 
-#define NOWA_PLYTKA
+//#define NOWA_PLYTKA
 
 #define DMA_TRANSMISSION
 

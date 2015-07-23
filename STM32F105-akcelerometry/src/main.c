@@ -79,11 +79,21 @@ int main(void)
 
 	l=kolejka->getLength(kolejka);
 
-	pomiar();
+	//pomiar();
 
 	while (1)
 	{
-		UART_Send_char(65);
+//		UART_Send_char(65);
+//		buf[0]=USART_ReceiveData(USARTx);
+
+		if (USART_GetFlagStatus(USARTx, USART_FLAG_RXNE) != RESET)
+		{
+			uint16_t x = USART_ReceiveData(USARTx);
+
+		    while(USART_GetFlagStatus(USARTx, USART_FLAG_TXE) == RESET);
+
+		    USART_SendData(USARTx, x);
+		}
 	}
 }
 
