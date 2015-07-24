@@ -5,13 +5,15 @@
 #include "stm32f10x_usart.h"
 #include "pomiar.h"
 #include "uart.h"
-//#include "defines.h"
+#include "defines.h"
 #include "LIS3DH.h"
+#include "fifo.h"
 
 /*---------------------------------------------------------------------------------------------------------------------+
 | global variables
 +---------------------------------------------------------------------------------------------------------------------*/
 
+volatile Queue * queue;
 
 volatile uint16_t Rx;
 
@@ -20,10 +22,21 @@ volatile uint16_t czas=0;
 volatile uint8_t pomiar_w_toku=0;
 volatile uint8_t odlicz_pomiar=0;
 volatile uint8_t wyslano_koniec=1;
+volatile uint8_t dma_wolne = 1;
+volatile uint8_t wykonaj_pomiar = 1;
+
+volatile uint8_t bufor[BUFOR_SIZE];
+volatile uint8_t buforEnd [] = { 35 , 13 , 10 };
+volatile uint8_t buforStart [] = { 36 , 13 , 10 };
+volatile uint16_t index=0;
+volatile int linieOdebrane=0;
 
 volatile int czas_pomiaru=CZAS_POMIARU;
 
-volatile char buf[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+volatile int ile=0;
+volatile int ile1=0;
+
+volatile char buf[20] = {65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84};
 
 void pomiar()
 {
@@ -33,15 +46,17 @@ void pomiar()
 	uint8_t test;
 	uint8_t test1;
 
-	int i;
+//	queue = createQueue();  //TODO: z tym siê nie chce debugowac stara p³ytka
+//
+//	Element element;
+
+	int i = 0;
 
 	while(1)
 	{
 		if(pomiar_w_toku)
 		{
 			//for(i=0;i<10000;i++){};
-
-
 
 			#if defined(ADXL343)
 				ADXL343_Read(&x, &y, &z);
@@ -129,3 +144,38 @@ void USART2_IRQHandler(void)
 		}
 	}
 }
+
+//void push_uint8_to_bufor_in_asciiHex(uint8_t x, uint8_t * bufor, int index)
+//{
+//	uint8_t second = (x % 16);
+//	uint8_t first = (x / 16);
+//
+//	if (first > 9) {
+//		first += 55;
+//	} else {
+//		first += 48;
+//	}
+//
+//	if (second > 9) {
+//		second += 55;
+//	} else {
+//		second += 48;
+//	}
+//
+//	bufor[index] = first;
+//	bufor[index+1] = second;
+//}
+//
+//int push_int16_to_bufor_in_asciiHex(int16_t x, uint8_t * bufor, int index)
+//{
+//	push_uint8_to_bufor_in_asciiHex((uint8_t)(x >> 8), bufor, index);
+//	push_uint8_to_bufor_in_asciiHex((uint8_t)(x & 0xFF), bufor, index+2);
+//	return index + 4;
+//}
+//
+//int push_CRLF_to_bufor(uint8_t * bufor, int index)
+//{
+//	bufor[index++] = 13;
+//	bufor[index++] = 10;
+//	return index;
+//}
