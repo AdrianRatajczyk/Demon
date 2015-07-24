@@ -7,7 +7,7 @@
 void UART_Initialize()
 {
 	// Configuring GPIO
-	RCC_APB2PeriphClockCmd(USARTx_RCC_GPIO, ENABLE);
+	RCC_APB2PeriphClockCmd(USARTx_RCC_GPIO | RCC_APB2Periph_AFIO, ENABLE);
 
 	GPIO_InitTypeDef Struktura_GPIO;
 

@@ -171,45 +171,45 @@ void DMA1_Channel7_IRQHandler(void)
 	}
 }
 
-void USARTx_IRQHandler(void)
-{
-	if(USART_GetITStatus(USARTx,USARTx_IT) != RESET)
-	{
-		Rx=USART_ReceiveData(USARTx);
-		USART_ClearITPendingBit(USARTx, USARTx_IT);
-		switch(Rx)
-		{
-			// sygna³ do rozpoczecia pomiaru
-			case 49:
-				if(!pomiar_w_toku)
-				{
-					while(queue->getLength(queue))
-					{
-						queue->get(queue);
-					}
-					//queue->add(buforStart, 3, queue);
-					index=0;
-					pomiar_w_toku=1;
-					wyslano_koniec=0;
-					czas=0;
-					linieOdebrane=0;
-				}
-				break;
-			// sygna³ do zakoñczenia pomiaru
-			case 50:
-				pomiar_w_toku=0;
-				break;
-			case 51:
-				czas_pomiaru=CZAS_POMIARU;
-				break;
-			case 52:
-				czas_pomiaru=1000000;
-				break;
-			default:
-				break;
-		}
-	}
-}
+//void USARTx_IRQHandler(void)
+//{
+//	if(USART_GetITStatus(USARTx,USARTx_IT) != RESET)
+//	{
+//		Rx=USART_ReceiveData(USARTx);
+//		USART_ClearITPendingBit(USARTx, USARTx_IT);
+//		switch(Rx)
+//		{
+//			// sygna³ do rozpoczecia pomiaru
+//			case 49:
+//				if(!pomiar_w_toku)
+//				{
+//					while(queue->getLength(queue))
+//					{
+//						queue->get(queue);
+//					}
+//					//queue->add(buforStart, 3, queue);
+//					index=0;
+//					pomiar_w_toku=1;
+//					wyslano_koniec=0;
+//					czas=0;
+//					linieOdebrane=0;
+//				}
+//				break;
+//			// sygna³ do zakoñczenia pomiaru
+//			case 50:
+//				pomiar_w_toku=0;
+//				break;
+//			case 51:
+//				czas_pomiaru=CZAS_POMIARU;
+//				break;
+//			case 52:
+//				czas_pomiaru=1000000;
+//				break;
+//			default:
+//				break;
+//		}
+//	}
+//}
 
 void push_uint8_to_bufor_in_asciiHex(uint8_t x, uint8_t * bufor, int index)
 {

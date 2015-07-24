@@ -83,17 +83,17 @@ int main(void)
 
 	while (1)
 	{
-//		UART_Send_char(65);
-//		buf[0]=USART_ReceiveData(USARTx);
+		UART_Send_char(65);
+		buf[0]=USART_ReceiveData(USARTx);
 
-		if (USART_GetFlagStatus(USARTx, USART_FLAG_RXNE) != RESET)
-		{
-			uint16_t x = USART_ReceiveData(USARTx);
-
-		    while(USART_GetFlagStatus(USARTx, USART_FLAG_TXE) == RESET);
-
-		    USART_SendData(USARTx, x);
-		}
+//		if (USART_GetFlagStatus(USARTx, USART_FLAG_RXNE) != RESET)
+//		{
+//			uint16_t x = USART_ReceiveData(USARTx);
+//
+//		    while(USART_GetFlagStatus(USARTx, USART_FLAG_TXE) == RESET);
+//
+//		    USART_SendData(USARTx, x);
+//		}
 	}
 }
 
@@ -102,8 +102,6 @@ int main(void)
 void Periph_Initialize()
 {
 	SPI_Initialize(LSM9DS0_SPI_CPOL, LSM9DS0_SPI_CPHA);
-
-	LSM9DS0_Init();
 
 	#if defined(ADXL343)
 		ADXL343_Init();

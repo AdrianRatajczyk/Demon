@@ -5,9 +5,10 @@
 
 void SPI_Initialize(enum spi_CPOL cpol, enum spi_CPHA cpha)
 {
-	// Configuring GPIO
+	RCC_PCLK2Config(RCC_HCLK_Div2);
 
-	RCC_APB2PeriphClockCmd(SPIx_RCC_GPIO, ENABLE);
+	// Configuring GPIO
+	RCC_APB2PeriphClockCmd(SPIx_RCC_GPIO | RCC_APB2Periph_AFIO, ENABLE);
 
 	GPIO_InitTypeDef Struktura_GPIO;
 
@@ -34,7 +35,6 @@ void SPI_Initialize(enum spi_CPOL cpol, enum spi_CPHA cpha)
 	Struktura_GPIO.GPIO_Pin=SPIx_MOSI_PIN;
 	Struktura_GPIO.GPIO_Mode=SPIx_MOSI_MODE;
 	GPIO_Init(SPIx_GPIO, &Struktura_GPIO);
-
 
 	// Configuring SPI
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);

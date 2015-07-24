@@ -10,7 +10,7 @@
 
 //#define NOWA_PLYTKA
 
-#define DMA_TRANSMISSION
+//#define DMA_TRANSMISSION
 
 #define BUFOR_SIZE			3600
 #define BUFOR_LINE_LENGTH	18

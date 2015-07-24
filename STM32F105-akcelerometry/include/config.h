@@ -26,7 +26,7 @@
 #define SPIx_SCLK_PIN					GPIO_Pin_5
 #define SPIx_SCLK_MODE					GPIO_Mode_AF_PP
 #define	SPIx_MISO_PIN					GPIO_Pin_6
-#define SPIx_MISO_MODE					GPIO_Mode_AF_OD
+#define SPIx_MISO_MODE					GPIO_Mode_IN_FLOATING
 #define SPIx_MOSI_PIN					GPIO_Pin_7
 #define SPIx_MOSI_MODE					GPIO_Mode_AF_PP
 
@@ -72,9 +72,9 @@
 #define USARTx_GPIO_SPEED						GPIO_Speed_50MHz
 
 #define USARTx_TX_MODE							GPIO_Mode_AF_PP
-#define USARTx_RX_MODE							GPIO_Mode_AF_PP
+#define USARTx_RX_MODE							GPIO_Mode_IN_FLOATING
 
-#define USARTx_BAUDRATE           	 			9600//115200
+#define USARTx_BAUDRATE           	 			115200
 #define USARTx_WORDLENGTH         				USART_WordLength_8b
 #define USARTx_STOPBITS           				USART_StopBits_1
 #define USARTx_PARITY           				USART_Parity_No
