@@ -9,7 +9,7 @@
 #include "pomiar.h"
 #include "LSM9DS0.h"
 #include "MMA9551L.h"
-#include "defines.h"
+//#include "defines.h"
 #include "LIS3DH.h"
 
 /*---------------------------------------------------------------------------------------------------------------------+

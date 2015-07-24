@@ -5,7 +5,7 @@
 #include "stm32f10x_usart.h"
 #include "pomiar.h"
 #include "uart.h"
-#include "defines.h"
+//#include "defines.h"
 #include "LIS3DH.h"
 
 /*---------------------------------------------------------------------------------------------------------------------+
