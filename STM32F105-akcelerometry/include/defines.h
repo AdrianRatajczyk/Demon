@@ -6,7 +6,7 @@
 
 //#define UART_RAW
 
-//#define UART_HEX_ASCII
+#define UART_HEX_ASCII
 
 //#define NOWA_PLYTKA
 

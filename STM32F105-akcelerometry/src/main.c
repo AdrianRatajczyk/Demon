@@ -45,7 +45,7 @@ int main(void)
 	SysTick_Config(SystemCoreClock / SYSTICK_FREQUENCY_HZ);
 	//SysTick_Config(72000);
 
-	//Periph_Initialize();
+	Periph_Initialize();
 
 	int16_t x;
 	int16_t y;
@@ -58,7 +58,7 @@ int main(void)
 
 	char buf[20];
 
-	//pomiar();
+	pomiar();
 
 	while (1)
 	{
