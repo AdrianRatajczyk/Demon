@@ -57,6 +57,10 @@ static unsigned int queueGetLength(Queue * queue)
 Queue * createQueue()
 {
 	Queue * queue = malloc(sizeof(Queue));
+	if(queue == 0)
+	{
+		return 0;
+	}
 	queue->length = 0;
 	queue->head = 0;
 	queue->tail = 0;

@@ -46,9 +46,9 @@ void pomiar()
 	uint8_t test;
 	uint8_t test1;
 
-//	queue = createQueue();  //TODO: z tym siê nie chce debugowac stara p³ytka
+	//queue = createQueue();  //TODO: z tym siê nie chce debugowac stara p³ytka
 //
-//	Element element;
+	Element element;
 
 	int i = 0;
 
