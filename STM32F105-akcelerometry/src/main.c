@@ -61,30 +61,56 @@ int main(void)
 
 	char buf[20];
 
-	Queue * kolejka = createQueue();
+//	Queue * kolejka = createQueue();
+//
+//	kolejka->add(&a, 1, kolejka);
+//	kolejka->add(&b, 1, kolejka);
+//	kolejka->add(&c, 1, kolejka);
+//
+//	Element e1;
+//	Element e2;
+//	Element e3;
+//
+//	l=kolejka->getLength(kolejka);
+//
+//	e1 = kolejka->get(kolejka);
+//	e2 = kolejka->get(kolejka);
+//	e3 = kolejka->get(kolejka);
+//
+//	l=kolejka->getLength(kolejka);
 
-	kolejka->add(&a, 1, kolejka);
-	kolejka->add(&b, 1, kolejka);
-	kolejka->add(&c, 1, kolejka);
+	pomiar();
 
-	Element e1;
-	Element e2;
-	Element e3;
+	GPIO_InitTypeDef Struktura_GPIO;
 
-	l=kolejka->getLength(kolejka);
+	// NSS PIN
+	Struktura_GPIO.GPIO_Speed = SPIx_GPIO_SPEED;
+	Struktura_GPIO.GPIO_Pin = SPIx_NSS_PIN;
+	Struktura_GPIO.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_Init(SPIx_GPIO, &Struktura_GPIO);
 
-	e1 = kolejka->get(kolejka);
-	e2 = kolejka->get(kolejka);
-	e3 = kolejka->get(kolejka);
+	// SCLK
+	Struktura_GPIO.GPIO_Speed = SPIx_GPIO_SPEED;
+	Struktura_GPIO.GPIO_Pin = SPIx_SCLK_PIN;
+	Struktura_GPIO.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_Init(SPIx_GPIO, &Struktura_GPIO);
 
-	l=kolejka->getLength(kolejka);
+	// MISO
+	Struktura_GPIO.GPIO_Speed = SPIx_GPIO_SPEED;
+	Struktura_GPIO.GPIO_Pin = SPIx_MISO_PIN;
+	Struktura_GPIO.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_Init(SPIx_GPIO, &Struktura_GPIO);
 
-	//pomiar();
+	// MOSI
+	Struktura_GPIO.GPIO_Speed = SPIx_GPIO_SPEED;
+	Struktura_GPIO.GPIO_Pin = SPIx_MOSI_PIN;
+	Struktura_GPIO.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_Init(SPIx_GPIO, &Struktura_GPIO);
 
 	while (1)
 	{
-		UART_Send_char(65);
-		buf[0]=USART_ReceiveData(USARTx);
+		//UART_Send_char(65);
+		//buf[0]=USART_ReceiveData(USARTx);
 
 //		if (USART_GetFlagStatus(USARTx, USART_FLAG_RXNE) != RESET)
 //		{
@@ -94,6 +120,18 @@ int main(void)
 //
 //		    USART_SendData(USARTx, x);
 //		}
+		int i;
+		for(i=0;i<1000000;i++){};
+		GPIO_SetBits(SPIx_GPIO, SPIx_MOSI_PIN);
+		GPIO_SetBits(SPIx_GPIO, SPIx_NSS_PIN);
+		GPIO_SetBits(SPIx_GPIO, SPIx_SCLK_PIN);
+		GPIO_SetBits(SPIx_GPIO, SPIx_MISO_PIN);
+		for(i=0;i<1000000;i++){};
+		GPIO_ResetBits(SPIx_GPIO, SPIx_MOSI_PIN);
+		GPIO_ResetBits(SPIx_GPIO, SPIx_NSS_PIN);
+		GPIO_ResetBits(SPIx_GPIO, SPIx_SCLK_PIN);
+		GPIO_ResetBits(SPIx_GPIO, SPIx_MISO_PIN);
+
 	}
 }
 
@@ -103,13 +141,15 @@ void Periph_Initialize()
 {
 	SPI_Initialize(LSM9DS0_SPI_CPOL, LSM9DS0_SPI_CPHA);
 
-	#if defined(ADXL343)
-		ADXL343_Init();
-	#elif defined(LSM9DS0)
-		LSM9DS0_Init();
-	#else
-		LIS3DH_Init();
-	#endif
+	LIS3DH_Init();
+
+//	#if defined(ADXL343)
+//		ADXL343_Init();
+//	#elif defined(LSM9DS0)
+//		LSM9DS0_Init();
+//	#else
+//		LIS3DH_Init();
+//	#endif
 
 	UART_Initialize();
 }

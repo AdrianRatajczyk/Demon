@@ -17,8 +17,8 @@
 static void LSM9DS0_SPI_Init()
 {
 	// Configuring GPIO
-	RCC_APB2PeriphClockCmd(LSM9DS0_CS_RCC_GPIO, ENABLE);
-	RCC_APB2PeriphClockCmd(LSM9DS0_XM_RCC_GPIO, ENABLE);
+//	RCC_APB2PeriphClockCmd(LSM9DS0_CS_RCC_GPIO, ENABLE);
+//	RCC_APB2PeriphClockCmd(LSM9DS0_XM_RCC_GPIO, ENABLE);
 	RCC_APB2PeriphClockCmd(LSM9DS0_G_RCC_GPIO, ENABLE);
 
 	GPIO_InitTypeDef Struktura_GPIO;
@@ -95,8 +95,8 @@ static void LSM9DS0_SPI_Init()
 	LSM9DS0_G_SpiStop();
 	LSM9DS0_XM_SpiStop();
 
-	SPI_Init_CS();
-	SPI_StopTransmission();
+	//SPI_Init_CS();
+	//SPI_StopTransmission();
 }
 
 static void LSM9DS0_SpiRead(uint8_t* rx, uint8_t number)
@@ -161,7 +161,7 @@ void LSM9DS0_Init()
 
 	LSM9DS0_G_SpiStart();
 	LSM9DS0_SpiSend(tab, 1);
-	LSM9DS0_SpiRead(tab, 1);
+	LSM9DS0_SpiRead(&tab[1], 1);
 	LSM9DS0_G_SpiStop();
 
 	for(i=0;i<10000;i++){};
@@ -170,7 +170,7 @@ void LSM9DS0_Init()
 
 	LSM9DS0_XM_SpiStart();
 	LSM9DS0_SpiSend(tab, 1);
-	LSM9DS0_SpiRead(tab, 1);
+	LSM9DS0_SpiRead(&tab[1], 1);
 	LSM9DS0_XM_SpiStop();
 
 	for(i=0;i<10000;i++){};
@@ -247,7 +247,7 @@ void LSM9DS0_Gyro_Read(int16_t *x, int16_t *y, int16_t *z)
 {
 	uint8_t bufor[6];
 
-	SPI_StartTransmission();
+	//SPI_StartTransmission();
 	LSM9DS0_G_SpiStart();
 
 	bufor[0] = LSM9DS0_READ | LSM9DS0_MULTIPLE_BYTE | LSM9DS0_OUT_X_L_G;
@@ -258,14 +258,14 @@ void LSM9DS0_Gyro_Read(int16_t *x, int16_t *y, int16_t *z)
 	*z = ((int16_t) ((bufor[5]) << 8) | bufor[4]);
 
 	LSM9DS0_G_SpiStop();
-	SPI_StopTransmission();
+	//SPI_StopTransmission();
 }
 
 void LSM9DS0_Acc_Read(int16_t *x, int16_t *y, int16_t *z)
 {
 	uint8_t bufor[6];
 
-	SPI_StartTransmission();
+	//SPI_StartTransmission();
 	LSM9DS0_XM_SpiStart();
 
 	bufor[0] = LSM9DS0_READ | LSM9DS0_MULTIPLE_BYTE | LSM9DS0_OUT_X_L_A;
@@ -276,14 +276,14 @@ void LSM9DS0_Acc_Read(int16_t *x, int16_t *y, int16_t *z)
 	*z = ((int16_t) ((bufor[5]) << 8) | bufor[4]);
 
 	LSM9DS0_XM_SpiStop();
-	SPI_StopTransmission();
+	//SPI_StopTransmission();
 }
 
 void LSM9DS0_Magn_Read(int16_t *x, int16_t *y, int16_t *z)
 {
 	uint8_t bufor[6];
 
-	SPI_StartTransmission();
+	//SPI_StartTransmission();
 	LSM9DS0_XM_SpiStart();
 
 	bufor[0] = LSM9DS0_READ | LSM9DS0_MULTIPLE_BYTE | LSM9DS0_OUT_X_L_M;
@@ -293,6 +293,6 @@ void LSM9DS0_Magn_Read(int16_t *x, int16_t *y, int16_t *z)
 	*y = ((int16_t) ((bufor[3]) << 8) | bufor[2]);
 	*z = ((int16_t) ((bufor[5]) << 8) | bufor[4]);
 
-	SPI_StopTransmission();
+	//SPI_StopTransmission();
 	LSM9DS0_XM_SpiStop();
 }

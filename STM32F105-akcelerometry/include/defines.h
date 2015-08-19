@@ -4,11 +4,13 @@
 //#define ADXL343
 //#define LSM9DS0
 
+//#define LSM9DS0
+
 //#define UART_RAW
 
-//#define UART_HEX_ASCII
+#define UART_HEX_ASCII
 
-//#define NOWA_PLYTKA
+#define NOWA_PLYTKA
 
 //#define DMA_TRANSMISSION
 

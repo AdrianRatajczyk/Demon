@@ -25,12 +25,12 @@ void MMA9551L_SpiSend(uint8_t* tx, uint8_t number)
 
 void MMA9551L_SpiStart()
 {
-	SPI_StartTransmission();
+	//SPI_StartTransmission();
 }
 
 void MMA9551L_SpiStop()
 {
-	SPI_StopTransmission();
+	//SPI_StopTransmission();
 }
 
 void MMA9551L_ResetB_Low()
@@ -53,7 +53,7 @@ void MMA9551L_SpiInit()
 
 	//RCC_APB2PeriphClockCmd(MMA9551L_RESETB_GPIO, ENABLE);
 
-	RCC_APB2PeriphClockCmd(LSM9DS0_CS_RCC_GPIO, ENABLE);
+	//RCC_APB2PeriphClockCmd(LSM9DS0_CS_RCC_GPIO, ENABLE);
 
 	GPIO_InitTypeDef Struktura_GPIO;
 

@@ -18,12 +18,12 @@ void LIS3DH_SpiSend(uint8_t* tx, uint8_t number)
 
 void LIS3DH_SpiStart()
 {
-	SPI_StartTransmission();
+	SPI_StartTransmission(SPIx_NSS_PIN);
 }
 
 void LIS3DH_SpiStop()
 {
-	SPI_StopTransmission();
+	SPI_StopTransmission(SPIx_NSS_PIN);
 }
 
 /*---------------------------------------------------------------------------------------------------------------------+

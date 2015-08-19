@@ -26,11 +26,11 @@ enum spi_CPHA
 
 void SPI_Initialize(enum spi_CPOL cpol, enum spi_CPHA cpha);
 
-void SPI_Init_CS();
+void SPI_Init_CS(uint16_t GPIO_Pin);
 
-void SPI_StartTransmission();
+void SPI_StartTransmission(uint16_t GPIO_Pin);
 
-void SPI_StopTransmission();
+void SPI_StopTransmission(uint16_t GPIO_Pin);
 
 void SPI_Send(uint8_t* tx, uint8_t number);
 

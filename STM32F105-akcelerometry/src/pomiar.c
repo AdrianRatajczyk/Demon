@@ -38,6 +38,8 @@ volatile unsigned long czas_pomiaru=CZAS_POMIARU;
 volatile int ile=0;
 volatile int ile1=0;
 
+volatile enum akcelerometr wybor = lis3dh;
+
 volatile char buf[20] = {65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84};
 
 void pomiar()
@@ -47,9 +49,9 @@ void pomiar()
 	int16_t y;
 	int16_t z;
 
-	queue = createQueue();
+	//queue = createQueue();
 
-	Element element;
+	//Element element;
 
 	int i = 0;
 
@@ -58,13 +60,20 @@ void pomiar()
 		if(pomiar_w_toku && wykonaj_pomiar)
 		{
 			wykonaj_pomiar = 0;
-			#if defined(ADXL343)
-				ADXL343_Read(&x, &y, &z);
-			#elif defined(LSM9DS0)
-				LSM9DS0_Acc_Read(&x, &y, &z);
-			#else
-				LIS3DH_Read(&x, &y, &z);
-			#endif
+			switch(wybor)
+			{
+				case lis3dh:
+					LIS3DH_Read(&x, &y, &z);
+					break;
+				case adxl343:
+					ADXL343_Read(&x, &y, &z);
+					break;
+				case lsm9ds0:
+					LSM9DS0_Acc_Read(&x, &y, &z);
+					break;
+				default:
+					break;
+			}
 
 			#if defined(UART_RAW)
 				UART_Send_int16_raw(czas);
@@ -118,6 +127,7 @@ void pomiar()
 
 		}
 
+#if defined(DMA_TRANSMISSION)
 		if (dma_wolne) {
 			if (queue->getLength(queue)) {
 				dma_wolne = 0;
@@ -137,6 +147,7 @@ void pomiar()
 				DMA1_Channel7->CCR = DMA_CCR7_EN | DMA_CCR7_TCIE | DMA_CCR7_MINC | DMA_CCR7_DIR;
 			}
 		}
+#endif
 	}
 }
 
@@ -154,7 +165,9 @@ void SysTick_Handler(void)
 		{
 			pomiar_w_toku=0;
 
+#if defined (DMA_TRANSMISSION)
 			queue->add(buforEnd, 3, queue);
+#endif
 		}
 	}
 }
@@ -171,45 +184,59 @@ void DMA1_Channel7_IRQHandler(void)
 	}
 }
 
-//void USARTx_IRQHandler(void)
-//{
-//	if(USART_GetITStatus(USARTx,USARTx_IT) != RESET)
-//	{
-//		Rx=USART_ReceiveData(USARTx);
-//		USART_ClearITPendingBit(USARTx, USARTx_IT);
-//		switch(Rx)
-//		{
-//			// sygna³ do rozpoczecia pomiaru
-//			case 49:
-//				if(!pomiar_w_toku)
-//				{
-//					while(queue->getLength(queue))
-//					{
-//						queue->get(queue);
-//					}
-//					//queue->add(buforStart, 3, queue);
-//					index=0;
-//					pomiar_w_toku=1;
-//					wyslano_koniec=0;
-//					czas=0;
-//					linieOdebrane=0;
-//				}
-//				break;
-//			// sygna³ do zakoñczenia pomiaru
-//			case 50:
-//				pomiar_w_toku=0;
-//				break;
-//			case 51:
-//				czas_pomiaru=CZAS_POMIARU;
-//				break;
-//			case 52:
-//				czas_pomiaru=1000000;
-//				break;
-//			default:
-//				break;
-//		}
-//	}
-//}
+void USARTx_IRQHandler(void)
+{
+	if(USART_GetITStatus(USARTx,USARTx_IT) != RESET)
+	{
+		Rx=USART_ReceiveData(USARTx);
+		USART_ClearITPendingBit(USARTx, USARTx_IT);
+		switch(Rx)
+		{
+			// sygna³ do rozpoczecia pomiaru
+			case 49:
+				if(!pomiar_w_toku)
+				{
+#if defined (DMA_TRANSMISSION)
+					while(queue->getLength(queue))
+					{
+						queue->get(queue);
+					}
+					//queue->add(buforStart, 3, queue);
+					index=0;
+#endif
+					pomiar_w_toku=1;
+					wyslano_koniec=0;
+					czas=0;
+					linieOdebrane=0;
+				}
+				break;
+			// sygna³ do zakoñczenia pomiaru
+			case 50:
+				pomiar_w_toku=0;
+				break;
+			case 51:
+				czas_pomiaru=CZAS_POMIARU;
+				break;
+			case 52:
+				czas_pomiaru=1000000;
+				break;
+			case 53:
+				ADXL343_Init();
+				wybor = adxl343;
+				break;
+			case 54:
+				LIS3DH_Init();
+				wybor = lis3dh;
+				break;
+			case 55:
+				LSM9DS0_Init();
+				wybor = lsm9ds0;
+				break;
+			default:
+				break;
+		}
+	}
+}
 
 void push_uint8_to_bufor_in_asciiHex(uint8_t x, uint8_t * bufor, int index)
 {

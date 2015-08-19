@@ -18,6 +18,12 @@ void SPI_Initialize(enum spi_CPOL cpol, enum spi_CPHA cpha)
 	Struktura_GPIO.GPIO_Mode=SPIx_NSS_MODE;
 	GPIO_Init(SPIx_GPIO, &Struktura_GPIO);
 
+	// CS PIN
+	Struktura_GPIO.GPIO_Speed=SPIx_GPIO_SPEED;
+	Struktura_GPIO.GPIO_Pin=SPIx_CS_PIN;
+	Struktura_GPIO.GPIO_Mode=SPIx_CS_MODE;
+	GPIO_Init(SPIx_GPIO, &Struktura_GPIO);
+
 	// SCLK
 	Struktura_GPIO.GPIO_Speed=SPIx_GPIO_SPEED;
 	Struktura_GPIO.GPIO_Pin=SPIx_SCLK_PIN;
@@ -53,28 +59,29 @@ void SPI_Initialize(enum spi_CPOL cpol, enum spi_CPHA cpha)
 	// Enabling SPI
 	SPI_Cmd(SPIx, ENABLE);
 
-	SPI_StopTransmission();
+	SPI_StopTransmission(SPIx_NSS_PIN);
+	SPI_StopTransmission(SPIx_CS_PIN);
 }
 
-void SPI_Init_CS()
+void SPI_Init_CS(uint16_t GPIO_Pin)
 {
 	GPIO_InitTypeDef Struktura_GPIO;
 
-	// NSS PIN
+	// NSS/CS PIN
 	Struktura_GPIO.GPIO_Speed = SPIx_GPIO_SPEED;
-	Struktura_GPIO.GPIO_Pin = SPIx_NSS_PIN;
+	Struktura_GPIO.GPIO_Pin = GPIO_Pin;
 	Struktura_GPIO.GPIO_Mode = SPIx_NSS_MODE;
 	GPIO_Init(SPIx_GPIO, &Struktura_GPIO);
 }
 
-void SPI_StartTransmission()
+void SPI_StartTransmission(uint16_t GPIO_Pin)
 {
-	GPIO_WriteBit(SPIx_GPIO, SPIx_NSS_PIN, Bit_RESET);
+	GPIO_WriteBit(SPIx_GPIO, GPIO_Pin, Bit_RESET);
 }
 
-void SPI_StopTransmission()
+void SPI_StopTransmission(uint16_t GPIO_Pin)
 {
-	GPIO_WriteBit(SPIx_GPIO, SPIx_NSS_PIN, Bit_SET);
+	GPIO_WriteBit(SPIx_GPIO, GPIO_Pin, Bit_SET);
 }
 
 void SPI_Send(uint8_t* tx, uint8_t number)
