@@ -116,14 +116,14 @@ void pomiar()
 				UART_Send_CRLF();
 			#endif
 
-//			if (!pomiar_w_toku && !wyslano_koniec)
-//			{
-//				while(queue->getLength(queue)){};
-//
-//				UART_Send_char('#');
-//				UART_Send_CRLF();
-//				wyslano_koniec = 1;
-//			}
+			if (!pomiar_w_toku && !wyslano_koniec)
+			{
+				//while(queue->getLength(queue)){};
+
+				UART_Send_char('#');
+				UART_Send_CRLF();
+				wyslano_koniec = 1;
+			}
 
 		}
 
