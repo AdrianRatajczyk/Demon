@@ -315,6 +315,35 @@ Discarded input sections
  .debug_frame   0x00000000      0x13c ./src/MMA9551L.o
  .ARM.attributes
                 0x00000000       0x33 ./src/MMA9551L.o
+ .group         0x00000000        0x8 ./src/autokorelacja.o
+ .group         0x00000000        0x8 ./src/autokorelacja.o
+ .group         0x00000000        0x8 ./src/autokorelacja.o
+ .group         0x00000000        0x8 ./src/autokorelacja.o
+ .group         0x00000000        0x8 ./src/autokorelacja.o
+ .group         0x00000000        0x8 ./src/autokorelacja.o
+ .text          0x00000000        0x0 ./src/autokorelacja.o
+ .data          0x00000000        0x0 ./src/autokorelacja.o
+ .bss           0x00000000        0x0 ./src/autokorelacja.o
+ .text.autokorelacja
+                0x00000000       0x64 ./src/autokorelacja.o
+ .debug_info    0x00000000      0x134 ./src/autokorelacja.o
+ .debug_abbrev  0x00000000       0x8c ./src/autokorelacja.o
+ .debug_aranges
+                0x00000000       0x20 ./src/autokorelacja.o
+ .debug_ranges  0x00000000       0x10 ./src/autokorelacja.o
+ .debug_macro   0x00000000       0x54 ./src/autokorelacja.o
+ .debug_macro   0x00000000      0x87a ./src/autokorelacja.o
+ .debug_macro   0x00000000       0x22 ./src/autokorelacja.o
+ .debug_macro   0x00000000       0x44 ./src/autokorelacja.o
+ .debug_macro   0x00000000       0x1c ./src/autokorelacja.o
+ .debug_macro   0x00000000      0x1f7 ./src/autokorelacja.o
+ .debug_macro   0x00000000      0x16d ./src/autokorelacja.o
+ .debug_line    0x00000000      0x1ba ./src/autokorelacja.o
+ .debug_str     0x00000000     0x3348 ./src/autokorelacja.o
+ .comment       0x00000000       0x71 ./src/autokorelacja.o
+ .debug_frame   0x00000000       0x38 ./src/autokorelacja.o
+ .ARM.attributes
+                0x00000000       0x33 ./src/autokorelacja.o
  .group         0x00000000        0x8 ./src/fifo.o
  .group         0x00000000        0x8 ./src/fifo.o
  .group         0x00000000        0x8 ./src/fifo.o
@@ -3934,6 +3963,7 @@ LOAD ./src/ADXL343.o
 LOAD ./src/LIS3DH.o
 LOAD ./src/LM9DS0.o
 LOAD ./src/MMA9551L.o
+LOAD ./src/autokorelacja.o
 LOAD ./src/fifo.o
 LOAD ./src/fifo2.o
 LOAD ./src/main.o
