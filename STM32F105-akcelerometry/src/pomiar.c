@@ -49,7 +49,7 @@ void pomiar()
 	int16_t y;
 	int16_t z;
 
-	//queue = createQueue();
+	queue = createQueue();
 
 	//Element element;
 

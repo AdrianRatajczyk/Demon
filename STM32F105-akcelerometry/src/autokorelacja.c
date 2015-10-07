@@ -8,6 +8,8 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#include "autokorelacja.h"
+
 int32_t autokorelacja(int16_t* x, size_t length, uint16_t m)
 {
 	int32_t autokorelacja = 0;

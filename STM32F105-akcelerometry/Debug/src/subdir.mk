@@ -9,6 +9,7 @@ C_SRCS += \
 ../src/LM9DS0.c \
 ../src/MMA9551L.c \
 ../src/autokorelacja.c \
+../src/bufor.c \
 ../src/fifo.c \
 ../src/fifo2.c \
 ../src/main.c \
@@ -22,6 +23,7 @@ OBJS += \
 ./src/LM9DS0.o \
 ./src/MMA9551L.o \
 ./src/autokorelacja.o \
+./src/bufor.o \
 ./src/fifo.o \
 ./src/fifo2.o \
 ./src/main.o \
@@ -35,6 +37,7 @@ C_DEPS += \
 ./src/LM9DS0.d \
 ./src/MMA9551L.d \
 ./src/autokorelacja.d \
+./src/bufor.d \
 ./src/fifo.d \
 ./src/fifo2.d \
 ./src/main.d \
