@@ -25,9 +25,8 @@ Allocating common symbols
 Common symbol       size              file
 
 errno               0x4               d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-reent.o)
-queue               0x4               ./src/pomiar.o
 Rx                  0x2               ./src/pomiar.o
-bufor               0xe10             ./src/pomiar.o
+bufor               0x4               ./src/pomiar.o
 
 Discarded input sections
 
@@ -353,30 +352,14 @@ Discarded input sections
  .text          0x00000000        0x0 ./src/bufor.o
  .data          0x00000000        0x0 ./src/bufor.o
  .bss           0x00000000        0x0 ./src/bufor.o
- .text.createBufor
-                0x00000000       0x48 ./src/bufor.o
  .text.destroyBufor
                 0x00000000       0x14 ./src/bufor.o
- .text.buforAddElement
-                0x00000000       0x18 ./src/bufor.o
- .debug_info    0x00000000      0x1b2 ./src/bufor.o
- .debug_abbrev  0x00000000      0x10a ./src/bufor.o
- .debug_aranges
-                0x00000000       0x30 ./src/bufor.o
- .debug_ranges  0x00000000       0x20 ./src/bufor.o
- .debug_macro   0x00000000       0x5e ./src/bufor.o
  .debug_macro   0x00000000      0x87a ./src/bufor.o
  .debug_macro   0x00000000       0x22 ./src/bufor.o
  .debug_macro   0x00000000       0x44 ./src/bufor.o
  .debug_macro   0x00000000       0x1c ./src/bufor.o
  .debug_macro   0x00000000      0x1f7 ./src/bufor.o
  .debug_macro   0x00000000      0x16d ./src/bufor.o
- .debug_line    0x00000000      0x1f4 ./src/bufor.o
- .debug_str     0x00000000     0x337f ./src/bufor.o
- .comment       0x00000000       0x71 ./src/bufor.o
- .debug_frame   0x00000000       0x80 ./src/bufor.o
- .ARM.attributes
-                0x00000000       0x33 ./src/bufor.o
  .group         0x00000000        0x8 ./src/fifo.o
  .group         0x00000000        0x8 ./src/fifo.o
  .group         0x00000000        0x8 ./src/fifo.o
@@ -385,13 +368,33 @@ Discarded input sections
  .text          0x00000000        0x0 ./src/fifo.o
  .data          0x00000000        0x0 ./src/fifo.o
  .bss           0x00000000        0x0 ./src/fifo.o
+ .text.queueAdd
+                0x00000000       0x70 ./src/fifo.o
+ .text.queueGetHead
+                0x00000000       0x64 ./src/fifo.o
+ .text.queueGetLength
+                0x00000000       0x18 ./src/fifo.o
+ .text.createQueue
+                0x00000000       0x4c ./src/fifo.o
  .text.createElement
                 0x00000000       0x2c ./src/fifo.o
+ .debug_info    0x00000000      0x33d ./src/fifo.o
+ .debug_abbrev  0x00000000      0x175 ./src/fifo.o
+ .debug_aranges
+                0x00000000       0x40 ./src/fifo.o
+ .debug_ranges  0x00000000       0x30 ./src/fifo.o
+ .debug_macro   0x00000000       0x55 ./src/fifo.o
  .debug_macro   0x00000000      0x87a ./src/fifo.o
  .debug_macro   0x00000000       0x22 ./src/fifo.o
  .debug_macro   0x00000000       0x44 ./src/fifo.o
  .debug_macro   0x00000000       0x1c ./src/fifo.o
  .debug_macro   0x00000000      0x1f7 ./src/fifo.o
+ .debug_line    0x00000000      0x221 ./src/fifo.o
+ .debug_str     0x00000000     0x30a5 ./src/fifo.o
+ .comment       0x00000000       0x71 ./src/fifo.o
+ .debug_frame   0x00000000       0xc8 ./src/fifo.o
+ .ARM.attributes
+                0x00000000       0x33 ./src/fifo.o
  .group         0x00000000        0x8 ./src/fifo2.o
  .group         0x00000000        0x8 ./src/fifo2.o
  .group         0x00000000        0x8 ./src/fifo2.o
@@ -641,20 +644,6 @@ Discarded input sections
  .bss           0x00000000        0x0 ./src/pomiar.o
  .bss.odlicz_pomiar
                 0x00000000        0x1 ./src/pomiar.o
- .data.buforEnd
-                0x00000000        0x4 ./src/pomiar.o
- .data.buforStart
-                0x00000000        0x4 ./src/pomiar.o
- .bss.index     0x00000000        0x2 ./src/pomiar.o
- .bss.ile       0x00000000        0x4 ./src/pomiar.o
- .bss.ile1      0x00000000        0x4 ./src/pomiar.o
- .data.buf      0x00000000       0x14 ./src/pomiar.o
- .text.push_uint8_to_bufor_in_asciiHex
-                0x00000000       0x64 ./src/pomiar.o
- .text.push_int16_to_bufor_in_asciiHex
-                0x00000000       0x40 ./src/pomiar.o
- .text.push_CRLF_to_bufor
-                0x00000000       0x38 ./src/pomiar.o
  .debug_macro   0x00000000      0x87a ./src/pomiar.o
  .debug_macro   0x00000000       0x50 ./src/pomiar.o
  .debug_macro   0x00000000       0x22 ./src/pomiar.o
@@ -822,7 +811,11 @@ Discarded input sections
                 0x00000000       0x68 ./src/uart.o
  .text.UART_Send_int16_raw
                 0x00000000       0x34 ./src/uart.o
+ .text.UART_Send_char
+                0x00000000       0x34 ./src/uart.o
  .text.UART_Send_LFCR
+                0x00000000       0x3c ./src/uart.o
+ .text.UART_Send_CRLF
                 0x00000000       0x3c ./src/uart.o
  .text.sChar2Str
                 0x00000000       0xc4 ./src/uart.o
@@ -830,6 +823,10 @@ Discarded input sections
                 0x00000000      0x114 ./src/uart.o
  .text.sprintf_int
                 0x00000000       0xd8 ./src/uart.o
+ .text.UART_Send_byte_in_asciiHex
+                0x00000000       0x5c ./src/uart.o
+ .text.UART_send_halfWord_in_asciiHex
+                0x00000000       0x2c ./src/uart.o
  .debug_macro   0x00000000      0x87a ./src/uart.o
  .debug_macro   0x00000000       0x50 ./src/uart.o
  .debug_macro   0x00000000       0x22 ./src/uart.o
@@ -3457,6 +3454,8 @@ Discarded input sections
                 0x00000000       0x38 ./libs/StdPeriph/src/stm32f10x_usart.o
  .text.USART_LINCmd
                 0x00000000       0x40 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .text.USART_SendData
+                0x00000000       0x24 ./libs/StdPeriph/src/stm32f10x_usart.o
  .text.USART_SendBreak
                 0x00000000       0x24 ./libs/StdPeriph/src/stm32f10x_usart.o
  .text.USART_SetGuardTime
@@ -3477,6 +3476,8 @@ Discarded input sections
                 0x00000000       0x38 ./libs/StdPeriph/src/stm32f10x_usart.o
  .text.USART_IrDACmd
                 0x00000000       0x40 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .text.USART_GetFlagStatus
+                0x00000000       0x38 ./libs/StdPeriph/src/stm32f10x_usart.o
  .text.USART_ClearFlag
                 0x00000000       0x20 ./libs/StdPeriph/src/stm32f10x_usart.o
  .debug_macro   0x00000000      0x87a ./libs/StdPeriph/src/stm32f10x_usart.o
@@ -3861,6 +3862,7 @@ Discarded input sections
  .text          0x00000000        0x0 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-malloc.o)
  .data          0x00000000        0x0 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-malloc.o)
  .bss           0x00000000        0x0 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-malloc.o)
+ .text.free     0x00000000       0x10 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-malloc.o)
  .text          0x00000000        0x0 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mallocr.o)
  .data          0x00000000        0x0 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mallocr.o)
  .bss           0x00000000        0x0 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mallocr.o)
@@ -3959,7 +3961,7 @@ END GROUP
                 0x2000fc00                __Main_Stack_Limit = (__stack - __Main_Stack_Size)
                 0x2000fc00                PROVIDE (_Main_Stack_Limit, __Main_Stack_Limit)
                 0x00000100                _Minimum_Stack_Size = 0x100
-                0x200016c4                PROVIDE (_Heap_Begin, _end_noinit)
+                0x200008b4                PROVIDE (_Heap_Begin, _end_noinit)
                 0x2000fc00                PROVIDE (_Heap_Limit, (__stack - _Main_Stack_Size))
 
 .isr_vector     0x08000000      0x2c0
@@ -4099,7 +4101,7 @@ END GROUP
  *(.flashtext .flashtext.*)
                 0x080002c4                . = ALIGN (0x4)
 
-.text           0x080002c4     0x23e4
+.text           0x080002c4     0x2260
                 0x080002c4                . = ALIGN (0x4)
  *(.text .text.*)
  .text.ADXL343_SpiRead
@@ -4158,202 +4160,180 @@ END GROUP
  .text.LSM9DS0_Acc_Read
                 0x08000918       0x6c ./src/LM9DS0.o
                 0x08000918                LSM9DS0_Acc_Read
- .text.queueAdd
-                0x08000984       0x70 ./src/fifo.o
- .text.queueGetHead
-                0x080009f4       0x64 ./src/fifo.o
- .text.queueGetLength
-                0x08000a58       0x18 ./src/fifo.o
- .text.createQueue
-                0x08000a70       0x4c ./src/fifo.o
-                0x08000a70                createQueue
+ .text.createBufor
+                0x08000984       0x5c ./src/bufor.o
+                0x08000984                createBufor
+ .text.buforAddElement
+                0x080009e0       0xd0 ./src/bufor.o
+ .text.buforGetElement
+                0x08000ab0       0x48 ./src/bufor.o
  .text.NVIC_SetPriority
-                0x08000abc       0x54 ./src/main.o
+                0x08000af8       0x54 ./src/main.o
  .text.SysTick_Config
-                0x08000b10       0x44 ./src/main.o
- .text.main     0x08000b54      0x108 ./src/main.o
-                0x08000b54                main
+                0x08000b4c       0x44 ./src/main.o
+ .text.main     0x08000b90      0x108 ./src/main.o
+                0x08000b90                main
  .text.Periph_Initialize
-                0x08000c5c       0x18 ./src/main.o
-                0x08000c5c                Periph_Initialize
- .text.pomiar   0x08000c74       0xf4 ./src/pomiar.o
-                0x08000c74                pomiar
+                0x08000c98       0x18 ./src/main.o
+                0x08000c98                Periph_Initialize
+ .text.pomiar   0x08000cb0       0x98 ./src/pomiar.o
+                0x08000cb0                pomiar
  .text.SysTick_Handler
-                0x08000d68       0x54 ./src/pomiar.o
-                0x08000d68                SysTick_Handler
+                0x08000d48       0x54 ./src/pomiar.o
+                0x08000d48                SysTick_Handler
  .text.DMA1_Channel7_IRQHandler
-                0x08000dbc       0x30 ./src/pomiar.o
-                0x08000dbc                DMA1_Channel7_IRQHandler
+                0x08000d9c       0x30 ./src/pomiar.o
+                0x08000d9c                DMA1_Channel7_IRQHandler
  .text.USART1_IRQHandler
-                0x08000dec       0xe8 ./src/pomiar.o
-                0x08000dec                USART1_IRQHandler
+                0x08000dcc       0xe8 ./src/pomiar.o
+                0x08000dcc                USART1_IRQHandler
  .text.SPI_Initialize
-                0x08000ed4       0xfc ./src/spi.o
-                0x08000ed4                SPI_Initialize
+                0x08000eb4       0xfc ./src/spi.o
+                0x08000eb4                SPI_Initialize
  .text.SPI_StartTransmission
-                0x08000fd0       0x20 ./src/spi.o
-                0x08000fd0                SPI_StartTransmission
+                0x08000fb0       0x20 ./src/spi.o
+                0x08000fb0                SPI_StartTransmission
  .text.SPI_StopTransmission
-                0x08000ff0       0x20 ./src/spi.o
-                0x08000ff0                SPI_StopTransmission
+                0x08000fd0       0x20 ./src/spi.o
+                0x08000fd0                SPI_StopTransmission
  .text.SPI_Send
-                0x08001010       0x4c ./src/spi.o
-                0x08001010                SPI_Send
+                0x08000ff0       0x4c ./src/spi.o
+                0x08000ff0                SPI_Send
  .text.SPI_Read
-                0x0800105c       0x48 ./src/spi.o
-                0x0800105c                SPI_Read
+                0x0800103c       0x48 ./src/spi.o
+                0x0800103c                SPI_Read
  .text.UART_Initialize
-                0x080010a4       0xac ./src/uart.o
-                0x080010a4                UART_Initialize
- .text.UART_Send_char
-                0x08001150       0x34 ./src/uart.o
-                0x08001150                UART_Send_char
- .text.UART_Send_CRLF
-                0x08001184       0x3c ./src/uart.o
-                0x08001184                UART_Send_CRLF
- .text.UART_Send_byte_in_asciiHex
-                0x080011c0       0x5c ./src/uart.o
-                0x080011c0                UART_Send_byte_in_asciiHex
- .text.UART_send_halfWord_in_asciiHex
-                0x0800121c       0x2c ./src/uart.o
-                0x0800121c                UART_send_halfWord_in_asciiHex
- .text._sbrk    0x08001248       0x68 ./libs/misc/src/_sbrk.o
-                0x08001248                _sbrk
+                0x08001084       0xac ./src/uart.o
+                0x08001084                UART_Initialize
+ .text._sbrk    0x08001130       0x68 ./libs/misc/src/_sbrk.o
+                0x08001130                _sbrk
  .text.NVIC_Init
-                0x080012b0       0xc4 ./libs/StdPeriph/src/misc.o
-                0x080012b0                NVIC_Init
+                0x08001198       0xc4 ./libs/StdPeriph/src/misc.o
+                0x08001198                NVIC_Init
  .text.GPIO_Init
-                0x08001374      0x180 ./libs/StdPeriph/src/stm32f10x_gpio.o
-                0x08001374                GPIO_Init
+                0x0800125c      0x180 ./libs/StdPeriph/src/stm32f10x_gpio.o
+                0x0800125c                GPIO_Init
  .text.GPIO_SetBits
-                0x080014f4       0x1c ./libs/StdPeriph/src/stm32f10x_gpio.o
-                0x080014f4                GPIO_SetBits
+                0x080013dc       0x1c ./libs/StdPeriph/src/stm32f10x_gpio.o
+                0x080013dc                GPIO_SetBits
  .text.GPIO_ResetBits
-                0x08001510       0x1c ./libs/StdPeriph/src/stm32f10x_gpio.o
-                0x08001510                GPIO_ResetBits
+                0x080013f8       0x1c ./libs/StdPeriph/src/stm32f10x_gpio.o
+                0x080013f8                GPIO_ResetBits
  .text.GPIO_WriteBit
-                0x0800152c       0x30 ./libs/StdPeriph/src/stm32f10x_gpio.o
-                0x0800152c                GPIO_WriteBit
+                0x08001414       0x30 ./libs/StdPeriph/src/stm32f10x_gpio.o
+                0x08001414                GPIO_WriteBit
  .text.RCC_PCLK2Config
-                0x0800155c       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
-                0x0800155c                RCC_PCLK2Config
+                0x08001444       0x38 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08001444                RCC_PCLK2Config
  .text.RCC_GetClocksFreq
-                0x08001594      0x1c8 ./libs/StdPeriph/src/stm32f10x_rcc.o
-                0x08001594                RCC_GetClocksFreq
+                0x0800147c      0x1c8 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x0800147c                RCC_GetClocksFreq
  .text.RCC_APB2PeriphClockCmd
-                0x0800175c       0x3c ./libs/StdPeriph/src/stm32f10x_rcc.o
-                0x0800175c                RCC_APB2PeriphClockCmd
+                0x08001644       0x3c ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x08001644                RCC_APB2PeriphClockCmd
  .text.SPI_Init
-                0x08001798       0x88 ./libs/StdPeriph/src/stm32f10x_spi.o
-                0x08001798                SPI_Init
- .text.SPI_Cmd  0x08001820       0x40 ./libs/StdPeriph/src/stm32f10x_spi.o
-                0x08001820                SPI_Cmd
+                0x08001680       0x88 ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x08001680                SPI_Init
+ .text.SPI_Cmd  0x08001708       0x40 ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x08001708                SPI_Cmd
  .text.SPI_I2S_SendData
-                0x08001860       0x1c ./libs/StdPeriph/src/stm32f10x_spi.o
-                0x08001860                SPI_I2S_SendData
+                0x08001748       0x1c ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x08001748                SPI_I2S_SendData
  .text.SPI_I2S_ReceiveData
-                0x0800187c       0x1c ./libs/StdPeriph/src/stm32f10x_spi.o
-                0x0800187c                SPI_I2S_ReceiveData
+                0x08001764       0x1c ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x08001764                SPI_I2S_ReceiveData
  .text.SPI_I2S_GetFlagStatus
-                0x08001898       0x38 ./libs/StdPeriph/src/stm32f10x_spi.o
-                0x08001898                SPI_I2S_GetFlagStatus
+                0x08001780       0x38 ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x08001780                SPI_I2S_GetFlagStatus
  .text.USART_Init
-                0x080018d0      0x174 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x080018d0                USART_Init
+                0x080017b8      0x174 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x080017b8                USART_Init
  .text.USART_Cmd
-                0x08001a44       0x40 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001a44                USART_Cmd
+                0x0800192c       0x40 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x0800192c                USART_Cmd
  .text.USART_ITConfig
-                0x08001a84       0x90 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001a84                USART_ITConfig
- .text.USART_SendData
-                0x08001b14       0x24 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001b14                USART_SendData
+                0x0800196c       0x90 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x0800196c                USART_ITConfig
  .text.USART_ReceiveData
-                0x08001b38       0x20 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001b38                USART_ReceiveData
- .text.USART_GetFlagStatus
-                0x08001b58       0x38 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001b58                USART_GetFlagStatus
+                0x080019fc       0x20 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x080019fc                USART_ReceiveData
  .text.USART_GetITStatus
-                0x08001b90       0xb8 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001b90                USART_GetITStatus
+                0x08001a1c       0xb8 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x08001a1c                USART_GetITStatus
  .text.USART_ClearITPendingBit
-                0x08001c48       0x38 ./libs/StdPeriph/src/stm32f10x_usart.o
-                0x08001c48                USART_ClearITPendingBit
+                0x08001ad4       0x38 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x08001ad4                USART_ClearITPendingBit
  .text.__libc_init_array
-                0x08001c80       0x6c ./libs/CMSIS/src/startup_cm.o
-                0x08001c80                __libc_init_array
+                0x08001b0c       0x6c ./libs/CMSIS/src/startup_cm.o
+                0x08001b0c                __libc_init_array
  .text.__libc_fini_array
-                0x08001cec       0x3c ./libs/CMSIS/src/startup_cm.o
-                0x08001cec                __libc_fini_array
- .text._exit    0x08001d28        0xc ./libs/CMSIS/src/startup_stm32f10x.o
-                0x08001d28                _exit
+                0x08001b78       0x3c ./libs/CMSIS/src/startup_cm.o
+                0x08001b78                __libc_fini_array
+ .text._exit    0x08001bb4        0xc ./libs/CMSIS/src/startup_stm32f10x.o
+                0x08001bb4                _exit
  .text.SystemInit
-                0x08001d34       0x78 ./libs/CMSIS/src/system_stm32f10x.o
-                0x08001d34                SystemInit
+                0x08001bc0       0x78 ./libs/CMSIS/src/system_stm32f10x.o
+                0x08001bc0                SystemInit
  .text.SetSysClock
-                0x08001dac        0xc ./libs/CMSIS/src/system_stm32f10x.o
+                0x08001c38        0xc ./libs/CMSIS/src/system_stm32f10x.o
  .text.SetSysClockTo72
-                0x08001db8      0x144 ./libs/CMSIS/src/system_stm32f10x.o
- .text.__errno  0x08001efc        0xc d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-errno.o)
-                0x08001efc                __errno
- .text.malloc   0x08001f08       0x10 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-malloc.o)
-                0x08001f08                malloc
- .text.free     0x08001f18       0x10 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-malloc.o)
-                0x08001f18                free
+                0x08001c44      0x144 ./libs/CMSIS/src/system_stm32f10x.o
+ .text.__errno  0x08001d88        0xc d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-errno.o)
+                0x08001d88                __errno
+ .text.malloc   0x08001d94       0x10 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-malloc.o)
+                0x08001d94                malloc
  .text._malloc_r
-                0x08001f28      0x504 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mallocr.o)
-                0x08001f28                _malloc_r
+                0x08001da4      0x504 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mallocr.o)
+                0x08001da4                _malloc_r
  .text.__malloc_lock
-                0x0800242c        0x4 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mlock.o)
-                0x0800242c                __malloc_lock
+                0x080022a8        0x4 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mlock.o)
+                0x080022a8                __malloc_lock
  .text.__malloc_unlock
-                0x08002430        0x4 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mlock.o)
-                0x08002430                __malloc_unlock
- .text._sbrk_r  0x08002434       0x24 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-sbrkr.o)
-                0x08002434                _sbrk_r
+                0x080022ac        0x4 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mlock.o)
+                0x080022ac                __malloc_unlock
+ .text._sbrk_r  0x080022b0       0x24 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-sbrkr.o)
+                0x080022b0                _sbrk_r
  .text._malloc_trim_r
-                0x08002458       0x9c d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-freer.o)
-                0x08002458                _malloc_trim_r
- .text._free_r  0x080024f4      0x1b0 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-freer.o)
-                0x080024f4                _free_r
+                0x080022d4       0x9c d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-freer.o)
+                0x080022d4                _malloc_trim_r
+ .text._free_r  0x08002370      0x1b0 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-freer.o)
+                0x08002370                _free_r
  *(.rodata .rodata.*)
  .rodata.str1.4
-                0x080026a4        0x4 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-impure.o)
+                0x08002520        0x4 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-impure.o)
  *(.eh_frame*)
  *(.glue_7)
  .glue_7        0x00000000        0x0 linker stubs
  *(.glue_7t)
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x080026a8        0x0
+.vfp11_veneer   0x08002524        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x080026a8        0x0
+.v4_bx          0x08002524        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x080026a8        0x0
+.iplt           0x08002524        0x0
  .iplt          0x00000000        0x0 ./src/ADXL343.o
 
-.rel.dyn        0x080026a8        0x0
+.rel.dyn        0x08002524        0x0
  .rel.iplt      0x00000000        0x0 ./src/ADXL343.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x080026a8                __exidx_start = .
+                0x08002524                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x080026a8                __exidx_end = .
-                0x080026a8                . = ALIGN (0x4)
-                0x080026a8                _etext = .
-                0x080026a8                _sidata = _etext
+                0x08002524                __exidx_end = .
+                0x08002524                . = ALIGN (0x4)
+                0x08002524                _etext = .
+                0x08002524                _sidata = _etext
 
 .ROarraySection
  *(.ROarraySection .ROarraySection.*)
 
-.data           0x20000000      0x864 load address 0x080026a8
+.data           0x20000000      0x864 load address 0x08002524
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
                 0x20000000                __data_start__ = .
@@ -4401,10 +4381,10 @@ END GROUP
                 0x20000864                _edata = .
                 0x20000864                __data_end__ = .
 
-.igot.plt       0x20000864        0x0 load address 0x08002f0c
+.igot.plt       0x20000864        0x0 load address 0x08002d88
  .igot.plt      0x00000000        0x0 ./src/ADXL343.o
 
-.bss            0x20000864      0xe60 load address 0x08002f0c
+.bss            0x20000864       0x50 load address 0x08002d88
                 0x20000864                . = ALIGN (0x4)
  *rdimon-crt0.o(.data)
                 0x20000864                . = ALIGN (0x4)
@@ -4435,32 +4415,31 @@ END GROUP
                 0x20000880       0x28 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mallocr.o)
                 0x20000880                __malloc_current_mallinfo
  *(COMMON)
- COMMON         0x200008a8      0xe18 ./src/pomiar.o
-                0x200008a8                queue
-                0x200008ac                Rx
-                0x200008b0                bufor
- COMMON         0x200016c0        0x4 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-reent.o)
-                0x200016c0                errno
-                0x200016c4                . = ALIGN (0x4)
-                0x200016c4                __bss_end__ = .
-                0x200016c4                _ebss = .
+ COMMON         0x200008a8        0x8 ./src/pomiar.o
+                0x200008a8                Rx
+                0x200008ac                bufor
+ COMMON         0x200008b0        0x4 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-reent.o)
+                0x200008b0                errno
+                0x200008b4                . = ALIGN (0x4)
+                0x200008b4                __bss_end__ = .
+                0x200008b4                _ebss = .
 
-.noinit         0x200016c4        0x0
-                0x200016c4                . = ALIGN (0x4)
-                0x200016c4                _noinit = .
+.noinit         0x200008b4        0x0
+                0x200008b4                . = ALIGN (0x4)
+                0x200008b4                _noinit = .
  *(.noinit .noinit.*)
-                0x200016c4                . = ALIGN (0x4)
-                0x200016c4                _end_noinit = .
-                0x200016c4                PROVIDE (end, _end_noinit)
-                0x200016c4                PROVIDE (_end, _end_noinit)
-                0x200016c4                PROVIDE (__end, _end_noinit)
-                0x200016c4                PROVIDE (__end__, _end_noinit)
+                0x200008b4                . = ALIGN (0x4)
+                0x200008b4                _end_noinit = .
+                0x200008b4                PROVIDE (end, _end_noinit)
+                0x200008b4                PROVIDE (_end, _end_noinit)
+                0x200008b4                PROVIDE (__end, _end_noinit)
+                0x200008b4                PROVIDE (__end__, _end_noinit)
 
-._check_stack   0x200016c4      0x100 load address 0x08003d6c
-                0x200016c4                . = ALIGN (0x4)
-                0x200017c4                . = (. + _Minimum_Stack_Size)
- *fill*         0x200016c4      0x100 
-                0x200017c4                . = ALIGN (0x4)
+._check_stack   0x200008b4      0x100 load address 0x08002dd8
+                0x200008b4                . = ALIGN (0x4)
+                0x200009b4                . = (. + _Minimum_Stack_Size)
+ *fill*         0x200008b4      0x100 
+                0x200009b4                . = ALIGN (0x4)
 
 .bss_CCMRAM
  *(.bss.CCMRAM .bss.CCMRAM.*)
@@ -4514,7 +4493,7 @@ END GROUP
                                  0x71 (size before relaxing)
  .comment       0x00000000       0x71 ./src/LIS3DH.o
  .comment       0x00000000       0x71 ./src/LM9DS0.o
- .comment       0x00000000       0x71 ./src/fifo.o
+ .comment       0x00000000       0x71 ./src/bufor.o
  .comment       0x00000000       0x71 ./src/main.o
  .comment       0x00000000       0x71 ./src/pomiar.o
  .comment       0x00000000       0x71 ./src/spi.o
@@ -4539,7 +4518,7 @@ END GROUP
  .ARM.attributes
                 0x00000066       0x33 ./src/LM9DS0.o
  .ARM.attributes
-                0x00000099       0x33 ./src/fifo.o
+                0x00000099       0x33 ./src/bufor.o
  .ARM.attributes
                 0x000000cc       0x33 ./src/main.o
  .ARM.attributes
@@ -4597,7 +4576,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x7d0
+.debug_aranges  0x00000000      0x7b0
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x50 ./src/ADXL343.o
@@ -4606,167 +4585,167 @@ END GROUP
  .debug_aranges
                 0x00000098       0x70 ./src/LM9DS0.o
  .debug_aranges
-                0x00000108       0x40 ./src/fifo.o
+                0x00000108       0x38 ./src/bufor.o
  .debug_aranges
-                0x00000148       0x50 ./src/main.o
+                0x00000140       0x50 ./src/main.o
  .debug_aranges
-                0x00000198       0x50 ./src/pomiar.o
+                0x00000190       0x38 ./src/pomiar.o
  .debug_aranges
-                0x000001e8       0x48 ./src/spi.o
+                0x000001c8       0x48 ./src/spi.o
  .debug_aranges
-                0x00000230       0x70 ./src/uart.o
+                0x00000210       0x70 ./src/uart.o
  .debug_aranges
-                0x000002a0       0x20 ./libs/misc/src/_sbrk.o
+                0x00000280       0x20 ./libs/misc/src/_sbrk.o
  .debug_aranges
-                0x000002c0       0x40 ./libs/StdPeriph/src/misc.o
+                0x000002a0       0x40 ./libs/StdPeriph/src/misc.o
  .debug_aranges
-                0x00000300       0xa8 ./libs/StdPeriph/src/stm32f10x_gpio.o
+                0x000002e0       0xa8 ./libs/StdPeriph/src/stm32f10x_gpio.o
  .debug_aranges
-                0x000003a8      0x160 ./libs/StdPeriph/src/stm32f10x_rcc.o
+                0x00000388      0x160 ./libs/StdPeriph/src/stm32f10x_rcc.o
  .debug_aranges
-                0x00000508       0xd0 ./libs/StdPeriph/src/stm32f10x_spi.o
+                0x000004e8       0xd0 ./libs/StdPeriph/src/stm32f10x_spi.o
  .debug_aranges
-                0x000005d8      0x100 ./libs/StdPeriph/src/stm32f10x_usart.o
+                0x000005b8      0x100 ./libs/StdPeriph/src/stm32f10x_usart.o
  .debug_aranges
-                0x000006d8       0x38 ./libs/CMSIS/src/startup_cm.o
+                0x000006b8       0x38 ./libs/CMSIS/src/startup_cm.o
  .debug_aranges
-                0x00000710       0x20 ./libs/CMSIS/src/startup_stm32f10x.o
+                0x000006f0       0x20 ./libs/CMSIS/src/startup_stm32f10x.o
  .debug_aranges
-                0x00000730       0x38 ./libs/CMSIS/src/system_stm32f10x.o
+                0x00000710       0x38 ./libs/CMSIS/src/system_stm32f10x.o
  .debug_aranges
-                0x00000768       0x68 ./libs/CMSIS/src/vectors_stm32f10x.o
+                0x00000748       0x68 ./libs/CMSIS/src/vectors_stm32f10x.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x5d29
+.debug_info     0x00000000     0x5a2b
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x26e ./src/ADXL343.o
  .debug_info    0x0000026e      0x1d9 ./src/LIS3DH.o
  .debug_info    0x00000447      0x5bd ./src/LM9DS0.o
- .debug_info    0x00000a04      0x33d ./src/fifo.o
- .debug_info    0x00000d41      0x877 ./src/main.o
- .debug_info    0x000015b8      0x66b ./src/pomiar.o
- .debug_info    0x00001c23      0x4f3 ./src/spi.o
- .debug_info    0x00002116      0x823 ./src/uart.o
- .debug_info    0x00002939      0x109 ./libs/misc/src/_sbrk.o
- .debug_info    0x00002a42      0x4f1 ./libs/StdPeriph/src/misc.o
- .debug_info    0x00002f33      0x6d9 ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_info    0x0000360c      0xa85 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_info    0x00004091      0x99b ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_info    0x00004a2c      0x9da ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_info    0x00005406      0x29c ./libs/CMSIS/src/startup_cm.o
- .debug_info    0x000056a2       0xaa ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_info    0x0000574c      0x4a9 ./libs/CMSIS/src/system_stm32f10x.o
- .debug_info    0x00005bf5      0x134 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_info    0x00000a04      0x254 ./src/bufor.o
+ .debug_info    0x00000c58      0x877 ./src/main.o
+ .debug_info    0x000014cf      0x456 ./src/pomiar.o
+ .debug_info    0x00001925      0x4f3 ./src/spi.o
+ .debug_info    0x00001e18      0x823 ./src/uart.o
+ .debug_info    0x0000263b      0x109 ./libs/misc/src/_sbrk.o
+ .debug_info    0x00002744      0x4f1 ./libs/StdPeriph/src/misc.o
+ .debug_info    0x00002c35      0x6d9 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_info    0x0000330e      0xa85 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_info    0x00003d93      0x99b ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_info    0x0000472e      0x9da ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_info    0x00005108      0x29c ./libs/CMSIS/src/startup_cm.o
+ .debug_info    0x000053a4       0xaa ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_info    0x0000544e      0x4a9 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_info    0x000058f7      0x134 ./libs/CMSIS/src/vectors_stm32f10x.o
 
-.debug_abbrev   0x00000000     0x18a9
+.debug_abbrev   0x00000000     0x17bd
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0xf1 ./src/ADXL343.o
  .debug_abbrev  0x000000f1       0xf5 ./src/LIS3DH.o
  .debug_abbrev  0x000001e6      0x1b4 ./src/LM9DS0.o
- .debug_abbrev  0x0000039a      0x175 ./src/fifo.o
- .debug_abbrev  0x0000050f      0x24e ./src/main.o
- .debug_abbrev  0x0000075d      0x262 ./src/pomiar.o
- .debug_abbrev  0x000009bf      0x128 ./src/spi.o
- .debug_abbrev  0x00000ae7      0x1b8 ./src/uart.o
- .debug_abbrev  0x00000c9f       0x8e ./libs/misc/src/_sbrk.o
- .debug_abbrev  0x00000d2d      0x159 ./libs/StdPeriph/src/misc.o
- .debug_abbrev  0x00000e86      0x1cd ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_abbrev  0x00001053      0x1bf ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_abbrev  0x00001212      0x183 ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_abbrev  0x00001395      0x167 ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_abbrev  0x000014fc      0x128 ./libs/CMSIS/src/startup_cm.o
- .debug_abbrev  0x00001624       0x6e ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_abbrev  0x00001692      0x185 ./libs/CMSIS/src/system_stm32f10x.o
- .debug_abbrev  0x00001817       0x92 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_abbrev  0x0000039a      0x141 ./src/bufor.o
+ .debug_abbrev  0x000004db      0x24e ./src/main.o
+ .debug_abbrev  0x00000729      0x1aa ./src/pomiar.o
+ .debug_abbrev  0x000008d3      0x128 ./src/spi.o
+ .debug_abbrev  0x000009fb      0x1b8 ./src/uart.o
+ .debug_abbrev  0x00000bb3       0x8e ./libs/misc/src/_sbrk.o
+ .debug_abbrev  0x00000c41      0x159 ./libs/StdPeriph/src/misc.o
+ .debug_abbrev  0x00000d9a      0x1cd ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_abbrev  0x00000f67      0x1bf ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_abbrev  0x00001126      0x183 ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_abbrev  0x000012a9      0x167 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_abbrev  0x00001410      0x128 ./libs/CMSIS/src/startup_cm.o
+ .debug_abbrev  0x00001538       0x6e ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_abbrev  0x000015a6      0x185 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_abbrev  0x0000172b       0x92 ./libs/CMSIS/src/vectors_stm32f10x.o
 
-.debug_line     0x00000000     0x5218
+.debug_line     0x00000000     0x51c2
  *(.debug_line)
  .debug_line    0x00000000      0x48c ./src/ADXL343.o
  .debug_line    0x0000048c      0x480 ./src/LIS3DH.o
  .debug_line    0x0000090c      0x5ba ./src/LM9DS0.o
- .debug_line    0x00000ec6      0x221 ./src/fifo.o
- .debug_line    0x000010e7      0x5e2 ./src/main.o
- .debug_line    0x000016c9      0x59e ./src/pomiar.o
- .debug_line    0x00001c67      0x48f ./src/spi.o
- .debug_line    0x000020f6      0x599 ./src/uart.o
- .debug_line    0x0000268f      0x220 ./libs/misc/src/_sbrk.o
- .debug_line    0x000028af      0x441 ./libs/StdPeriph/src/misc.o
- .debug_line    0x00002cf0      0x5a9 ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_line    0x00003299      0x771 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_line    0x00003a0a      0x611 ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_line    0x0000401b      0x678 ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_line    0x00004693      0x270 ./libs/CMSIS/src/startup_cm.o
- .debug_line    0x00004903      0x3f2 ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_line    0x00004cf5      0x490 ./libs/CMSIS/src/system_stm32f10x.o
- .debug_line    0x00005185       0x93 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_line    0x00000ec6      0x217 ./src/bufor.o
+ .debug_line    0x000010dd      0x5e2 ./src/main.o
+ .debug_line    0x000016bf      0x552 ./src/pomiar.o
+ .debug_line    0x00001c11      0x48f ./src/spi.o
+ .debug_line    0x000020a0      0x599 ./src/uart.o
+ .debug_line    0x00002639      0x220 ./libs/misc/src/_sbrk.o
+ .debug_line    0x00002859      0x441 ./libs/StdPeriph/src/misc.o
+ .debug_line    0x00002c9a      0x5a9 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_line    0x00003243      0x771 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_line    0x000039b4      0x611 ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_line    0x00003fc5      0x678 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_line    0x0000463d      0x270 ./libs/CMSIS/src/startup_cm.o
+ .debug_line    0x000048ad      0x3f2 ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_line    0x00004c9f      0x490 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_line    0x0000512f       0x93 ./libs/CMSIS/src/vectors_stm32f10x.o
 
-.debug_frame    0x00000000     0x1f2c
+.debug_frame    0x00000000     0x1e98
  *(.debug_frame)
  .debug_frame   0x00000000       0xfc ./src/ADXL343.o
  .debug_frame   0x000000fc       0xd8 ./src/LIS3DH.o
  .debug_frame   0x000001d4      0x17c ./src/LM9DS0.o
- .debug_frame   0x00000350       0xc8 ./src/fifo.o
- .debug_frame   0x00000418      0x104 ./src/main.o
- .debug_frame   0x0000051c      0x100 ./src/pomiar.o
- .debug_frame   0x0000061c       0xe8 ./src/spi.o
- .debug_frame   0x00000704      0x194 ./src/uart.o
- .debug_frame   0x00000898       0x34 ./libs/misc/src/_sbrk.o
- .debug_frame   0x000008cc       0xd8 ./libs/StdPeriph/src/misc.o
- .debug_frame   0x000009a4      0x2d0 ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_frame   0x00000c74      0x65c ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_frame   0x000012d0      0x3a0 ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_frame   0x00001670      0x490 ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_frame   0x00001b00       0x9c ./libs/CMSIS/src/startup_cm.o
- .debug_frame   0x00001b9c       0x2c ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_frame   0x00001bc8       0x98 ./libs/CMSIS/src/system_stm32f10x.o
- .debug_frame   0x00001c60      0x100 ./libs/CMSIS/src/vectors_stm32f10x.o
- .debug_frame   0x00001d60       0x20 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-errno.o)
- .debug_frame   0x00001d80       0x30 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-malloc.o)
- .debug_frame   0x00001db0       0x54 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mallocr.o)
- .debug_frame   0x00001e04       0x30 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mlock.o)
- .debug_frame   0x00001e34       0x2c d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-sbrkr.o)
- .debug_frame   0x00001e60       0x74 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-freer.o)
- .debug_frame   0x00001ed4       0x58 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-reent.o)
+ .debug_frame   0x00000350       0xa8 ./src/bufor.o
+ .debug_frame   0x000003f8      0x104 ./src/main.o
+ .debug_frame   0x000004fc       0x8c ./src/pomiar.o
+ .debug_frame   0x00000588       0xe8 ./src/spi.o
+ .debug_frame   0x00000670      0x194 ./src/uart.o
+ .debug_frame   0x00000804       0x34 ./libs/misc/src/_sbrk.o
+ .debug_frame   0x00000838       0xd8 ./libs/StdPeriph/src/misc.o
+ .debug_frame   0x00000910      0x2d0 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_frame   0x00000be0      0x65c ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_frame   0x0000123c      0x3a0 ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_frame   0x000015dc      0x490 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_frame   0x00001a6c       0x9c ./libs/CMSIS/src/startup_cm.o
+ .debug_frame   0x00001b08       0x2c ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_frame   0x00001b34       0x98 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_frame   0x00001bcc      0x100 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_frame   0x00001ccc       0x20 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-errno.o)
+ .debug_frame   0x00001cec       0x30 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-malloc.o)
+ .debug_frame   0x00001d1c       0x54 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mallocr.o)
+ .debug_frame   0x00001d70       0x30 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-mlock.o)
+ .debug_frame   0x00001da0       0x2c d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-sbrkr.o)
+ .debug_frame   0x00001dcc       0x74 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-freer.o)
+ .debug_frame   0x00001e40       0x58 d:/arm/gnu_tools_arm_embedded/4.9 2014q4/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-reent.o)
 
-.debug_str      0x00000000    0x59c62
+.debug_str      0x00000000    0x59bdd
  *(.debug_str)
- .debug_str     0x00000000    0x52317 ./src/ADXL343.o
+ .debug_str     0x00000000    0x5231d ./src/ADXL343.o
                               0x52485 (size before relaxing)
- .debug_str     0x00052317      0x61d ./src/LIS3DH.o
+ .debug_str     0x0005231d      0x61d ./src/LIS3DH.o
                               0x526d1 (size before relaxing)
- .debug_str     0x00052934      0xfd9 ./src/LM9DS0.o
+ .debug_str     0x0005293a      0xfd9 ./src/LM9DS0.o
                               0x530f5 (size before relaxing)
- .debug_str     0x0005390d       0xae ./src/fifo.o
-                               0x30a5 (size before relaxing)
- .debug_str     0x000539bb     0x366d ./src/main.o
+ .debug_str     0x00053913      0x309 ./src/bufor.o
+                               0x3395 (size before relaxing)
+ .debug_str     0x00053c1c     0x33ee ./src/main.o
                               0x56dfc (size before relaxing)
- .debug_str     0x00057028      0x164 ./src/pomiar.o
-                              0x559fa (size before relaxing)
- .debug_str     0x0005718c       0xba ./src/spi.o
+ .debug_str     0x0005700a       0xeb ./src/pomiar.o
+                              0x5595c (size before relaxing)
+ .debug_str     0x000570f5       0xba ./src/spi.o
                               0x523d0 (size before relaxing)
- .debug_str     0x00057246      0x219 ./src/uart.o
+ .debug_str     0x000571af      0x22b ./src/uart.o
                               0x52842 (size before relaxing)
- .debug_str     0x0005745f      0x4d2 ./libs/misc/src/_sbrk.o
+ .debug_str     0x000573da      0x4d2 ./libs/misc/src/_sbrk.o
                                0x4512 (size before relaxing)
- .debug_str     0x00057931      0x123 ./libs/StdPeriph/src/misc.o
+ .debug_str     0x000578ac      0x123 ./libs/StdPeriph/src/misc.o
                               0x5193d (size before relaxing)
- .debug_str     0x00057a54      0x484 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_str     0x000579cf      0x484 ./libs/StdPeriph/src/stm32f10x_gpio.o
                               0x51cb5 (size before relaxing)
- .debug_str     0x00057ed8      0xe3f ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_str     0x00057e53      0xe3f ./libs/StdPeriph/src/stm32f10x_rcc.o
                               0x52658 (size before relaxing)
- .debug_str     0x00058d17      0x505 ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_str     0x00058c92      0x505 ./libs/StdPeriph/src/stm32f10x_spi.o
                               0x51e02 (size before relaxing)
- .debug_str     0x0005921c      0x761 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_str     0x00059197      0x761 ./libs/StdPeriph/src/stm32f10x_usart.o
                               0x51fc5 (size before relaxing)
- .debug_str     0x0005997d      0x139 ./libs/CMSIS/src/startup_cm.o
+ .debug_str     0x000598f8      0x139 ./libs/CMSIS/src/startup_cm.o
                                0x3582 (size before relaxing)
- .debug_str     0x00059ab6       0x2c ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_str     0x00059a31       0x2c ./libs/CMSIS/src/startup_stm32f10x.o
                               0x516c2 (size before relaxing)
- .debug_str     0x00059ae2       0xb5 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_str     0x00059a5d       0xb5 ./libs/CMSIS/src/system_stm32f10x.o
                               0x518a7 (size before relaxing)
- .debug_str     0x00059b97       0xcb ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_str     0x00059b12       0xcb ./libs/CMSIS/src/vectors_stm32f10x.o
                                0x25a6 (size before relaxing)
 
 .debug_loc
@@ -4788,27 +4767,27 @@ END GROUP
  *(.debug_varnames)
 OUTPUT(STM32F105-akcelerometry.elf elf32-littlearm)
 
-.debug_ranges   0x00000000      0x6b0
+.debug_ranges   0x00000000      0x690
  .debug_ranges  0x00000000       0x40 ./src/ADXL343.o
  .debug_ranges  0x00000040       0x38 ./src/LIS3DH.o
  .debug_ranges  0x00000078       0x60 ./src/LM9DS0.o
- .debug_ranges  0x000000d8       0x30 ./src/fifo.o
- .debug_ranges  0x00000108       0x40 ./src/main.o
- .debug_ranges  0x00000148       0x40 ./src/pomiar.o
- .debug_ranges  0x00000188       0x38 ./src/spi.o
- .debug_ranges  0x000001c0       0x60 ./src/uart.o
- .debug_ranges  0x00000220       0x10 ./libs/misc/src/_sbrk.o
- .debug_ranges  0x00000230       0x30 ./libs/StdPeriph/src/misc.o
- .debug_ranges  0x00000260       0x98 ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_ranges  0x000002f8      0x150 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_ranges  0x00000448       0xc0 ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_ranges  0x00000508       0xf0 ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_ranges  0x000005f8       0x28 ./libs/CMSIS/src/startup_cm.o
- .debug_ranges  0x00000620       0x10 ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_ranges  0x00000630       0x28 ./libs/CMSIS/src/system_stm32f10x.o
- .debug_ranges  0x00000658       0x58 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_ranges  0x000000d8       0x28 ./src/bufor.o
+ .debug_ranges  0x00000100       0x40 ./src/main.o
+ .debug_ranges  0x00000140       0x28 ./src/pomiar.o
+ .debug_ranges  0x00000168       0x38 ./src/spi.o
+ .debug_ranges  0x000001a0       0x60 ./src/uart.o
+ .debug_ranges  0x00000200       0x10 ./libs/misc/src/_sbrk.o
+ .debug_ranges  0x00000210       0x30 ./libs/StdPeriph/src/misc.o
+ .debug_ranges  0x00000240       0x98 ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_ranges  0x000002d8      0x150 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_ranges  0x00000428       0xc0 ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_ranges  0x000004e8       0xf0 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_ranges  0x000005d8       0x28 ./libs/CMSIS/src/startup_cm.o
+ .debug_ranges  0x00000600       0x10 ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_ranges  0x00000610       0x28 ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_ranges  0x00000638       0x58 ./libs/CMSIS/src/vectors_stm32f10x.o
 
-.debug_macro    0x00000000    0x104a4
+.debug_macro    0x00000000    0x104b7
  .debug_macro   0x00000000      0x193 ./src/ADXL343.o
  .debug_macro   0x00000193      0x87a ./src/ADXL343.o
  .debug_macro   0x00000a0d       0x22 ./src/ADXL343.o
@@ -4848,28 +4827,28 @@ OUTPUT(STM32F105-akcelerometry.elf elf32-littlearm)
  .debug_macro   0x0000d0da      0x166 ./src/LIS3DH.o
  .debug_macro   0x0000d240      0x193 ./src/LM9DS0.o
  .debug_macro   0x0000d3d3      0x2e2 ./src/LM9DS0.o
- .debug_macro   0x0000d6b5       0x55 ./src/fifo.o
- .debug_macro   0x0000d70a      0x2aa ./src/main.o
- .debug_macro   0x0000d9b4       0x22 ./src/main.o
- .debug_macro   0x0000d9d6      0x69f ./src/main.o
- .debug_macro   0x0000e075      0x2c4 ./src/main.o
- .debug_macro   0x0000e339      0x28e ./src/pomiar.o
- .debug_macro   0x0000e5c7      0x18f ./src/spi.o
- .debug_macro   0x0000e756      0x193 ./src/uart.o
- .debug_macro   0x0000e8e9      0x2a6 ./src/uart.o
- .debug_macro   0x0000eb8f       0xd1 ./libs/misc/src/_sbrk.o
- .debug_macro   0x0000ec60       0x19 ./libs/misc/src/_sbrk.o
- .debug_macro   0x0000ec79       0x10 ./libs/misc/src/_sbrk.o
- .debug_macro   0x0000ec89      0x23b ./libs/misc/src/_sbrk.o
- .debug_macro   0x0000eec4      0x173 ./libs/StdPeriph/src/misc.o
- .debug_macro   0x0000f037       0x85 ./libs/StdPeriph/src/misc.o
- .debug_macro   0x0000f0bc      0x1bb ./libs/StdPeriph/src/stm32f10x_gpio.o
- .debug_macro   0x0000f277      0x2e2 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_macro   0x0000f559      0x5b4 ./libs/StdPeriph/src/stm32f10x_rcc.o
- .debug_macro   0x0000fb0d      0x1d3 ./libs/StdPeriph/src/stm32f10x_spi.o
- .debug_macro   0x0000fce0      0x221 ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_macro   0x0000ff01      0x21a ./libs/StdPeriph/src/stm32f10x_usart.o
- .debug_macro   0x0001011b       0xa6 ./libs/CMSIS/src/startup_cm.o
- .debug_macro   0x000101c1      0x163 ./libs/CMSIS/src/startup_stm32f10x.o
- .debug_macro   0x00010324      0x16f ./libs/CMSIS/src/system_stm32f10x.o
- .debug_macro   0x00010493       0x11 ./libs/CMSIS/src/vectors_stm32f10x.o
+ .debug_macro   0x0000d6b5       0x5e ./src/bufor.o
+ .debug_macro   0x0000d713      0x2aa ./src/main.o
+ .debug_macro   0x0000d9bd       0x22 ./src/main.o
+ .debug_macro   0x0000d9df      0x69f ./src/main.o
+ .debug_macro   0x0000e07e      0x2c4 ./src/main.o
+ .debug_macro   0x0000e342      0x298 ./src/pomiar.o
+ .debug_macro   0x0000e5da      0x18f ./src/spi.o
+ .debug_macro   0x0000e769      0x193 ./src/uart.o
+ .debug_macro   0x0000e8fc      0x2a6 ./src/uart.o
+ .debug_macro   0x0000eba2       0xd1 ./libs/misc/src/_sbrk.o
+ .debug_macro   0x0000ec73       0x19 ./libs/misc/src/_sbrk.o
+ .debug_macro   0x0000ec8c       0x10 ./libs/misc/src/_sbrk.o
+ .debug_macro   0x0000ec9c      0x23b ./libs/misc/src/_sbrk.o
+ .debug_macro   0x0000eed7      0x173 ./libs/StdPeriph/src/misc.o
+ .debug_macro   0x0000f04a       0x85 ./libs/StdPeriph/src/misc.o
+ .debug_macro   0x0000f0cf      0x1bb ./libs/StdPeriph/src/stm32f10x_gpio.o
+ .debug_macro   0x0000f28a      0x2e2 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_macro   0x0000f56c      0x5b4 ./libs/StdPeriph/src/stm32f10x_rcc.o
+ .debug_macro   0x0000fb20      0x1d3 ./libs/StdPeriph/src/stm32f10x_spi.o
+ .debug_macro   0x0000fcf3      0x221 ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_macro   0x0000ff14      0x21a ./libs/StdPeriph/src/stm32f10x_usart.o
+ .debug_macro   0x0001012e       0xa6 ./libs/CMSIS/src/startup_cm.o
+ .debug_macro   0x000101d4      0x163 ./libs/CMSIS/src/startup_stm32f10x.o
+ .debug_macro   0x00010337      0x16f ./libs/CMSIS/src/system_stm32f10x.o
+ .debug_macro   0x000104a6       0x11 ./libs/CMSIS/src/vectors_stm32f10x.o

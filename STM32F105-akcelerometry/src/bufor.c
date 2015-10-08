@@ -23,6 +23,9 @@ Bufor * createBufor(size_t size)
 
 	bufor->tab = malloc(size * sizeof(int16_t));
 
+	bufor->add = &buforAddElement;
+	bufor->get = &buforGetElement;
+
 	return bufor;
 }
 
@@ -33,16 +36,47 @@ void destroyBufor(Bufor * bufor)
 
 static void buforAddElement(Bufor *bufor, int16_t element)
 {
-//	// if bufor is empty
-//	if(bufor->length == 0)
-//	{
-//		// don't update tail index
-//
-//	}
+	// UPDATING PARAMETERS OF BUFOR STRUCTURE
+
+	// if bufor is empty
+	if(bufor->length == 0)
+	{
+		// don't update tail index and head index
+		bufor->length++;
+	}
 
 	// if bufor is not full
-	if(bufor->length < bufor->size)
+	else if(bufor->length < bufor->size)
 	{
-
+		// don't update head index
+		bufor->length++;
+		bufor->tail_index++;
+		bufor->tail_index %= bufor->size;
 	}
+
+	// if bufor is full
+	else if(bufor->length == bufor->size)
+	{
+		// don't update length
+		bufor->tail_index++;
+		bufor->tail_index %= bufor->size;
+		bufor->head_index++;
+		bufor->head_index %= bufor->size;
+	}
+
+	// ADDING NEW ELEMENT TO BUFOR
+
+	*(bufor->tab + bufor->tail_index) = element;
+}
+
+static int16_t buforGetElement(Bufor *bufor, uint16_t index)
+{
+	int16_t element;
+
+	index += bufor->head_index;
+	index %= bufor->size;
+
+	element = *(bufor->tab + index);
+
+	return element;
 }

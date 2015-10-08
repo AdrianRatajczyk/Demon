@@ -16,6 +16,9 @@ typedef struct
 	uint16_t tail_index; // index in bufor which contains the newest element
 
 	int16_t * tab;
+
+	void (* add) (struct Bufor *bufor, int16_t element);
+	int16_t (* get) (struct Bufor *bufor, uint16_t index);
 } Bufor;
 
 Bufor * createBufor(size_t size);
