@@ -11,6 +11,7 @@
 #include "config.h"
 #include "stm32f10x.h"
 #include "bufor.h"
+#include "autokorelacja.h"
 
 
 /*---------------------------------------------------------------------------------------------------------------------+
@@ -41,7 +42,13 @@ void pomiar()
 	int16_t y;
 	int16_t z;
 
+	int16_t zBufora;
+
+	int32_t wynik;
+
 	int i = 0;
+
+	uint8_t buf[20];
 
 	bufor = createBufor(128);
 
@@ -64,6 +71,16 @@ void pomiar()
 				default:
 					break;
 			}
+
+			bufor->add(bufor, z);
+
+			zBufora = bufor->get(bufor, 0);
+
+			if(bufor->length >= 100)
+			{
+				bufor->calculateMean(bufor);
+				wynik = autokorelacja(bufor, 100, 50);
+			}
 		}
 	}
 }
@@ -72,6 +89,7 @@ void SysTick_Handler(void)
 {
 	//TimingDelay_Decrement();
 	if(pomiar_w_toku)
+
 	{
 		czas++;
 		if(czas%2 == 0)
@@ -82,18 +100,6 @@ void SysTick_Handler(void)
 		{
 			pomiar_w_toku=0;
 		}
-	}
-}
-
-void DMA1_Channel7_IRQHandler(void)
-{
-	//transfer complete
-	if(DMA1->ISR && DMA_ISR_TCIF7)
-	{
-		//clear TRANSFER COMPLETE FLAG
-		DMA1->IFCR |= DMA_IFCR_CTCIF7;
-
-		dma_wolne = 1;
 	}
 }
 

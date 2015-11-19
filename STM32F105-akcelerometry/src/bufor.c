@@ -11,6 +11,7 @@
 
 static void buforAddElement(Bufor *bufor, int16_t element);
 static int16_t buforGetElement(Bufor *bufor, uint16_t index);
+static void buforCalculateMean(Bufor *bufor);
 
 Bufor * createBufor(size_t size)
 {
@@ -20,11 +21,13 @@ Bufor * createBufor(size_t size)
 	bufor->length = 0;
 	bufor->head_index = 0;
 	bufor->tail_index = 0;
+	bufor->mean = 0;
 
 	bufor->tab = malloc(size * sizeof(int16_t));
 
 	bufor->add = &buforAddElement;
 	bufor->get = &buforGetElement;
+	bufor->calculateMean = &buforCalculateMean;
 
 	return bufor;
 }
@@ -32,6 +35,23 @@ Bufor * createBufor(size_t size)
 void destroyBufor(Bufor * bufor)
 {
 	free(bufor);
+}
+
+static void buforCalculateMean(Bufor *bufor)
+{
+	int32_t mean = 0;
+
+	uint16_t index = 0;
+
+	while(index < bufor->length)
+	{
+		mean += bufor->get(bufor, index);
+		index++;
+	}
+
+	mean /= bufor->length;
+
+	bufor->mean = mean;
 }
 
 static void buforAddElement(Bufor *bufor, int16_t element)
@@ -65,7 +85,6 @@ static void buforAddElement(Bufor *bufor, int16_t element)
 	}
 
 	// ADDING NEW ELEMENT TO BUFOR
-
 	*(bufor->tab + bufor->tail_index) = element;
 }
 

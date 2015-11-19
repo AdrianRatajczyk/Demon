@@ -8,9 +8,11 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#include "bufor.h"
 #include "autokorelacja.h"
 
-int32_t autokorelacja(int16_t* x, size_t length, uint16_t m)
+
+int32_t autokorelacja(Bufor * bufor, size_t length, uint16_t m)
 {
 	int32_t autokorelacja = 0;
 
@@ -18,9 +20,18 @@ int32_t autokorelacja(int16_t* x, size_t length, uint16_t m)
 
 	int32_t skladnik = 0;
 
+	int16_t czynnik1;
+	int16_t czynnik2;
+
 	while(index < length)
 	{
-		skladnik = (int32_t)((*(x+index))*(*(x+index-m)));
+		czynnik1 = bufor->get(bufor, index);
+		czynnik1 -= bufor->mean;
+
+		czynnik2 = bufor->get(bufor, index-m);
+		czynnik2 -= bufor->mean;
+
+		skladnik = czynnik1 * czynnik2;
 		autokorelacja += skladnik;
 		index++;
 	}
